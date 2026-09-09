@@ -19,10 +19,12 @@ if (registerForm) registerForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   message.textContent = "Criando conta...";
   const { data, error } = await supabaseClient.auth.signUp({
-    email: document.getElementById("email").value,
-    password: document.getElementById("password").value,
-    options: { data: { full_name: document.getElementById("name").value } }
-  });
-  if (error) return message.textContent = error.message;
-  message.textContent = data.session ? "Conta criada!" : "Conta criada. Confira seu e-mail para confirmar o cadastro.";
+  email: document.getElementById("email").value,
+  password: document.getElementById("password").value,
+  options: {
+    data: {
+      full_name: document.getElementById("name").value
+    },
+    emailRedirectTo: "https://naysantana98.github.io/plataforma-cursos/login.html"
+  }
 });
