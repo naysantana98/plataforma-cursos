@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Comprar curso</title><link rel="stylesheet" href="css/style.css"></head>
+<body class="auth-page">
+<div class="auth-box checkout">
+<a class="brand" href="index.html">Academia<span>Online</span></a>
+<span class="eyebrow">CHECKOUT</span><h1>Curso completo</h1>
+<p>Aqui entra o checkout do seu gateway de pagamento (Mercado Pago, Stripe, Asaas etc.).</p>
+<div class="checkout-price">R$ 197,00</div>
+<button class="btn full" id="payButton">Ir para pagamento</button>
+<p class="small">Nesta versão inicial o botão é um placeholder. A confirmação real deve ser feita por webhook no backend/Edge Function.</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="js/config.js"></script><script>const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);document.getElementById('payButton').onclick=async()=>{const b=document.getElementById('payButton');b.disabled=true;b.textContent='Abrindo pagamento...';const {data:{user}}=await sb.auth.getUser();if(!user){location.href='login.html?redirect=checkout.html';return}const courseId=new URLSearchParams(location.search).get('course_id');const {data,error}=await sb.functions.invoke('create-checkout',{body:{course_id:courseId}});if(error||data?.error){b.disabled=false;b.textContent='Tentar novamente';alert(data?.error||error.message);return}location.href=data.init_point}</script></body></html>

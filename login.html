@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Entrar</title><link rel="stylesheet" href="css/style.css"></head>
+<body class="auth-page">
+<div class="auth-box">
+<a class="brand" href="index.html">Academia<span>Online</span></a>
+<h1>Bem-vindo de volta</h1><p class="muted-text">Entre para acessar suas aulas.</p>
+<form id="loginForm">
+<label>E-mail<input id="email" type="email" required></label>
+<label>Senha<input id="password" type="password" required></label>
+<button class="btn full" type="submit">Entrar</button>
+<div id="message" class="message"></div>
+</form>
+<p>Ainda não tem acesso? <a href="cadastro.html">Criar conta</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script><script src="js/auth.js"></script>
+</body></html>
