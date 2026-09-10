@@ -76,15 +76,34 @@ async function load() {
       <div class="list-row">
         <div>
           <b>${escapeHtml(course.title)}</b>
-          <small>R$ ${Number(course.price).toFixed(2)}</small>
+          <small>R$ ${Number(course.price || 0).toFixed(2)}</small>
         </div>
 
-        <a
-          class="btn btn-outline"
-          href="admin-curso.html?id=${course.id}"
-        >
-          Gerenciar
-        </a>
+        <div class="course-actions">
+          <button
+            type="button"
+            class="btn btn-outline edit-course"
+            data-id="${course.id}"
+          >
+            Editar
+          </button>
+
+          <a
+            class="btn btn-outline"
+            href="admin-curso.html?id=${course.id}"
+          >
+            Conteúdo
+          </a>
+
+          <button
+            type="button"
+            class="btn btn-outline delete-course"
+            data-id="${course.id}"
+            data-title="${escapeHtml(course.title)}"
+          >
+            Excluir
+          </button>
+        </div>
       </div>
     `).join("");
   }
@@ -105,6 +124,98 @@ async function load() {
       </div>
     `).join("");
   }
+
+  addCourseButtons();
+}
+
+function addCourseButtons() {
+  document.querySelectorAll(".edit-course").forEach(button => {
+    button.addEventListener("click", async () => {
+      await editCourse(button.dataset.id);
+    });
+  });
+
+  document.querySelectorAll(".delete-course").forEach(button => {
+    button.addEventListener("click", async () => {
+      await deleteCourse(
+        button.dataset.id,
+        button.dataset.title
+      );
+    });
+  });
+}
+
+async function editCourse(courseId) {
+  const { data: course, error } = await adminSb
+    .from("courses")
+    .select("*")
+    .eq("id", courseId)
+    .single();
+
+  if (error) {
+    message.textContent = error.message;
+    return;
+  }
+
+  const newTitle = prompt("Nome do curso:", course.title);
+  if (newTitle === null) return;
+
+  const newSlug = prompt("Slug:", course.slug);
+  if (newSlug === null) return;
+
+  const newPrice = prompt("Preço:", course.price ?? 0);
+  if (newPrice === null) return;
+
+  const newDescription = prompt(
+    "Descrição:",
+    course.description || ""
+  );
+
+  if (newDescription === null) return;
+
+  message.textContent = "Salvando alterações...";
+
+  const { error: updateError } = await adminSb
+    .from("courses")
+    .update({
+      title: newTitle.trim(),
+      slug: newSlug.trim(),
+      price: Number(newPrice || 0),
+      description: newDescription.trim()
+    })
+    .eq("id", courseId);
+
+  if (updateError) {
+    message.textContent = updateError.message;
+    return;
+  }
+
+  message.textContent = "Curso atualizado com sucesso!";
+  await load();
+}
+
+async function deleteCourse(courseId, courseTitle) {
+  const confirmed = confirm(
+    `Tem certeza que deseja excluir o curso "${courseTitle}"?`
+  );
+
+  if (!confirmed) return;
+
+  message.textContent = "Excluindo curso...";
+
+  const { error } = await adminSb
+    .from("courses")
+    .delete()
+    .eq("id", courseId);
+
+  if (error) {
+    message.textContent =
+      "Não foi possível excluir: " + error.message;
+    return;
+  }
+
+  message.textContent = "Curso excluído com sucesso!";
+  await load();
 }
 
 const courseForm = $("#courseForm");
@@ -130,7 +241,6 @@ if (courseForm) {
     }
 
     message.textContent = "Curso cadastrado com sucesso!";
-
     courseForm.reset();
 
     await load();
@@ -147,7 +257,7 @@ if (logoutButton) {
 }
 
 function escapeHtml(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",
