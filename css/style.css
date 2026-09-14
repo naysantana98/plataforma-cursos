@@ -96,3 +96,38 @@ textarea,select{padding:13px;border:1px solid #d9dfe7;border-radius:9px;font:inh
 .access-option input{
   width:auto;
 }
+.publish-option{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:18px;
+  padding:14px;
+  border:1px solid #dde3ec;
+  border-radius:10px;
+}
+
+.publish-option input{
+  width:auto;
+  margin:0;
+}
+
+.module-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.lesson-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.lesson-row small{
+  display:block;
+  margin-top:4px;
+}
