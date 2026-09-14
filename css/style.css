@@ -148,22 +148,31 @@ textarea,select{padding:13px;border:1px solid #d9dfe7;border-radius:9px;font:inh
 .publish-option span{
   line-height:1;
 }
+/* =========================
+   NAVEGAÇÃO ENTRE AULAS
+========================= */
+
 .lesson-navigation{
   margin-top:28px;
   display:flex;
-  flex-direction:column;
-  gap:18px;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
 }
 
 .lesson-navigation-pages{
   display:flex;
-  justify-content:space-between;
   align-items:center;
   gap:12px;
+  margin-left:auto;
 }
 
 .lesson-navigation .btn{
   text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
 }
 
 .lesson-navigation button:disabled{
@@ -172,24 +181,32 @@ textarea,select{padding:13px;border:1px solid #d9dfe7;border-radius:9px;font:inh
 }
 
 .lesson-back{
-  align-self:flex-start;
+  margin-right:auto;
 }
+
+/* CELULAR */
 
 @media (max-width:700px){
 
-  .lesson-navigation-pages{
+  .lesson-navigation{
     flex-direction:column;
     align-items:stretch;
   }
 
-  .lesson-navigation-pages .btn{
+  .lesson-navigation-pages{
+    width:100%;
+    margin-left:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+
+  .lesson-navigation .btn{
     width:100%;
     text-align:center;
   }
 
   .lesson-back{
-    width:100%;
-    text-align:center;
+    margin-right:0;
   }
 
 }
