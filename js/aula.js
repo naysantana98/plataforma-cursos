@@ -14,7 +14,6 @@ async function initLesson() {
   const { data: lesson, error } = await sb2.from("lessons").select("*,modules(title,course_id)").eq("id",id).single();
   if (error || !lesson || lesson.modules.course_id !== enrollment.course_id) return box.innerHTML="<h1>Aula indisponível.</h1>";
 
-  const { data: prog } = await sb2.from("lesson_progress").select("completed").eq("user_id",user.id).eq("lesson_id",id).maybeSingle();
 
   box.innerHTML = `<span class="eyebrow">${escapeHtml(lesson.modules.title)}</span>
     <h1>${escapeHtml(lesson.title)}</h1>
