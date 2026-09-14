@@ -107,24 +107,40 @@ async function load() {
       </div>
     `).join("");
   }
+const students = $("#students");
 
-  const students = $("#students");
+if (students) {
+  students.innerHTML = (studentsResult.data || []).map(student => `
+    <div class="list-row">
+      <div>
+        <b>${escapeHtml(student.full_name || "Sem nome")}</b>
 
-  if (students) {
-    students.innerHTML = (studentsResult.data || []).map(student => `
-      <div class="list-row">
-        <div>
-          <b>${escapeHtml(student.full_name || "Sem nome")}</b>
-          <small>${escapeHtml(student.id)}</small>
-        </div>
-
-        <span class="status">
-          ${student.active ? "Ativo" : "Inativo"}
-        </span>
+        <small>
+          ${student.active ? "🟢 Usuário ativo" : "🔴 Usuário inativo"}
+        </small>
       </div>
-    `).join("");
-  }
 
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button
+          type="button"
+          class="btn btn-outline"
+          onclick="toggleStudent('${student.id}', ${student.active})"
+        >
+          ${student.active ? "Desativar" : "Ativar"}
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-outline"
+          onclick="manageAccess('${student.id}')"
+        >
+          Acessos
+        </button>
+      </div>
+    </div>
+  `).join("");
+}
+ 
   addCourseButtons();
 }
 
@@ -265,5 +281,141 @@ function escapeHtml(value) {
     "'": "&#039;"
   }[char]));
 }
+window.toggleStudent = async function(studentId, currentStatus) {
+  const action = currentStatus ? "desativar" : "ativar";
+
+  if (!confirm(`Deseja realmente ${action} este aluno?`)) {
+    return;
+  }
+
+  const { error } = await adminSb
+    .from("profiles")
+    .update({
+      active: !currentStatus
+    })
+    .eq("id", studentId);
+
+  if (error) {
+    alert("Erro: " + error.message);
+    return;
+  }
+
+  alert(
+    currentStatus
+      ? "Aluno desativado com sucesso!"
+      : "Aluno ativado com sucesso!"
+  );
+
+  await load();
+};
+
+
+window.manageAccess = async function(studentId) {
+
+  const { data: courses, error: coursesError } = await adminSb
+    .from("courses")
+    .select("id, title")
+    .order("title");
+
+  if (coursesError) {
+    alert("Erro ao carregar cursos: " + coursesError.message);
+    return;
+  }
+
+  if (!courses || courses.length === 0) {
+    alert("Nenhum curso cadastrado.");
+    return;
+  }
+
+  const options = courses
+    .map((course, index) => `${index + 1} - ${course.title}`)
+    .join("\n");
+
+  const choice = prompt(
+    `Qual curso deseja gerenciar?\n\n${options}\n\nDigite o número do curso:`
+  );
+
+  if (!choice) return;
+
+  const selectedCourse = courses[Number(choice) - 1];
+
+  if (!selectedCourse) {
+    alert("Curso inválido.");
+    return;
+  }
+
+  const { data: enrollment } = await adminSb
+    .from("enrollments")
+    .select("*")
+    .eq("user_id", studentId)
+    .eq("course_id", selectedCourse.id)
+    .maybeSingle();
+
+  if (enrollment?.status === "active") {
+
+    const remove = confirm(
+      `O aluno possui acesso ao curso:\n\n${selectedCourse.title}\n\nDeseja REMOVER o acesso?`
+    );
+
+    if (!remove) return;
+
+    const { error } = await adminSb
+      .from("enrollments")
+      .update({
+        status: "inactive"
+      })
+      .eq("id", enrollment.id);
+
+    if (error) {
+      alert("Erro: " + error.message);
+      return;
+    }
+
+    alert("Acesso removido com sucesso!");
+
+  } else {
+
+    const grant = confirm(
+      `O aluno NÃO possui acesso ao curso:\n\n${selectedCourse.title}\n\nDeseja LIBERAR o acesso?`
+    );
+
+    if (!grant) return;
+
+    let error;
+
+    if (enrollment) {
+
+      const result = await adminSb
+        .from("enrollments")
+        .update({
+          status: "active"
+        })
+        .eq("id", enrollment.id);
+
+      error = result.error;
+
+    } else {
+
+      const result = await adminSb
+        .from("enrollments")
+        .insert({
+          user_id: studentId,
+          course_id: selectedCourse.id,
+          status: "active"
+        });
+
+      error = result.error;
+    }
+
+    if (error) {
+      alert("Erro: " + error.message);
+      return;
+    }
+
+    alert("Acesso liberado com sucesso!");
+  }
+
+  await load();
+};
 
 init();
