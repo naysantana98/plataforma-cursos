@@ -3,7 +3,7 @@ const sbA = window.supabase.createClient(
   SUPABASE_ANON_KEY
 );
 
-const courseId = new URLSearchParams(location.search).get("id");
+const id = (new URLSearchParams(location.search).get("id") || "").trim();
 const msgA = document.getElementById("message");
 
 async function init() {
