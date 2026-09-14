@@ -1,90 +1,412 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Administração</title>
+
+  <title>Painel Administrativo | Academia Online</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
 
-<header class="topbar">
-  <a class="brand" href="index.html">
-    Academia<span>Online</span>
-  </a>
+<body class="admin-premium">
 
-  <nav>
-    <a href="aluno.html">Área do aluno</a>
-    <button id="logout" class="btn btn-outline">Sair</button>
-  </nav>
-</header>
+<div class="admin-layout">
 
-<main class="dashboard">
 
-  <span class="eyebrow">ADMINISTRAÇÃO</span>
-  <h1>Painel de gestão</h1>
+  <!-- ================================
+       MENU LATERAL
+  ================================= -->
 
-  <div id="stats" class="cards"></div>
+  <aside class="admin-sidebar">
 
-  <section class="admin-grid">
+    <div class="sidebar-logo">
 
-    <div class="panel">
+      <div class="sidebar-logo-icon">
+        ◇
+      </div>
 
-      <h2>Cursos</h2>
+      <div>
+        <a class="brand premium-brand" href="index.html">
+          Academia<span>Online</span>
+        </a>
 
-      <form id="courseForm">
+        <small>CONHECIMENTO SEM LIMITES</small>
+      </div>
+
+    </div>
+
+
+    <nav class="sidebar-menu">
+
+      <a href="admin.html" class="sidebar-link active">
+        <span class="sidebar-icon">⌂</span>
+        Dashboard
+      </a>
+
+      <a href="#cursos" class="sidebar-link">
+        <span class="sidebar-icon">▣</span>
+        Cursos
+      </a>
+
+      <a href="#alunos" class="sidebar-link">
+        <span class="sidebar-icon">♙</span>
+        Alunos
+      </a>
+
+      <a href="aluno.html" class="sidebar-link">
+        <span class="sidebar-icon">▷</span>
+        Área do aluno
+      </a>
+
+    </nav>
+
+
+    <div class="sidebar-quote">
+
+      <div class="quote-line"></div>
+
+      <p>
+        Educação transforma<br>
+        planos em realidade.
+      </p>
+
+    </div>
+
+  </aside>
+
+
+
+  <!-- ================================
+       CONTEÚDO
+  ================================= -->
+
+  <div class="admin-content">
+
+
+    <!-- TOPO -->
+
+    <header class="admin-topbar">
+
+      <div class="admin-search">
+
+        <span>⌕</span>
 
         <input
-          id="title"
-          placeholder="Nome do curso"
-          required
+          type="text"
+          placeholder="Buscar alunos, cursos ou aulas..."
         >
 
-        <input
-          id="slug"
-          placeholder="slug"
-          required
+      </div>
+
+
+      <div class="admin-user">
+
+        <div class="admin-avatar">
+          A
+        </div>
+
+        <div class="admin-user-info">
+          <strong>Administrador</strong>
+          <span>Painel de gestão</span>
+        </div>
+
+        <button
+          id="logout"
+          class="admin-logout"
+          type="button"
         >
-
-        <input
-          id="price"
-          type="number"
-          step="0.01"
-          placeholder="Preço"
-        >
-
-        <textarea
-          id="description"
-          placeholder="Descrição"
-        ></textarea>
-
-        <button class="btn" type="submit">
-          Cadastrar curso
+          Sair
         </button>
 
-      </form>
+      </div>
 
-      <div id="courses"></div>
-
-    </div>
-
-    <div class="panel">
-
-      <h2>Alunos</h2>
-
-      <div id="students"></div>
-
-    </div>
-
-  </section>
-
-  <div id="message" class="message"></div>
-
-</main>
+    </header>
 
 
-<!-- MODAL EDITAR CURSO -->
+
+    <!-- CONTEÚDO PRINCIPAL -->
+
+    <main class="premium-dashboard">
+
+
+      <!-- INTRODUÇÃO -->
+
+      <section class="dashboard-heading">
+
+        <div>
+
+          <span class="premium-eyebrow">
+            PAINEL ADMINISTRATIVO
+          </span>
+
+          <h1>
+            Painel de gestão
+          </h1>
+
+          <p>
+            Gerencie cursos, alunos e acessos em um só lugar.
+          </p>
+
+        </div>
+
+
+        <div class="dashboard-heading-detail">
+
+          <span>Academia Online</span>
+
+          <p>
+            Educação que transforma.
+          </p>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ESTATÍSTICAS -->
+
+      <section class="premium-stats-section">
+
+        <div id="stats" class="cards premium-stats"></div>
+
+      </section>
+
+
+
+      <!-- CONTEÚDO -->
+
+      <section class="admin-main-grid">
+
+
+        <!-- =================================
+             CURSOS
+        ================================== -->
+
+        <div
+          class="premium-panel courses-panel"
+          id="cursos"
+        >
+
+          <div class="premium-panel-header">
+
+            <div>
+
+              <span class="premium-eyebrow">
+                GESTÃO
+              </span>
+
+              <h2>
+                Cursos
+              </h2>
+
+              <p>
+                Cadastre e gerencie os cursos da plataforma.
+              </p>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- NOVO CURSO -->
+
+          <div class="course-create-box">
+
+            <div class="create-box-header">
+
+              <div class="create-icon">
+                +
+              </div>
+
+              <div>
+                <h3>Novo curso</h3>
+                <p>Preencha as informações para adicionar um curso.</p>
+              </div>
+
+            </div>
+
+
+            <form id="courseForm" class="premium-form">
+
+              <div class="form-grid">
+
+                <div class="form-group form-full">
+
+                  <label for="title">
+                    Nome do curso
+                  </label>
+
+                  <input
+                    id="title"
+                    placeholder="Ex.: Curso Completo de Excel"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="slug">
+                    Slug
+                  </label>
+
+                  <input
+                    id="slug"
+                    placeholder="curso-completo-excel"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="price">
+                    Preço
+                  </label>
+
+                  <div class="price-input">
+
+                    <span>R$</span>
+
+                    <input
+                      id="price"
+                      type="number"
+                      step="0.01"
+                      placeholder="0,00"
+                    >
+
+                  </div>
+
+                </div>
+
+
+                <div class="form-group form-full">
+
+                  <label for="description">
+                    Descrição
+                  </label>
+
+                  <textarea
+                    id="description"
+                    rows="4"
+                    placeholder="Descreva o conteúdo e os objetivos do curso..."
+                  ></textarea>
+
+                </div>
+
+              </div>
+
+
+              <div class="form-footer">
+
+                <button
+                  class="btn premium-btn"
+                  type="submit"
+                >
+                  <span>＋</span>
+                  Cadastrar curso
+                </button>
+
+              </div>
+
+            </form>
+
+          </div>
+
+
+
+          <!-- LISTA -->
+
+          <div class="section-divider">
+
+            <span>CURSOS CADASTRADOS</span>
+
+          </div>
+
+
+          <div
+            id="courses"
+            class="premium-course-list"
+          ></div>
+
+        </div>
+
+
+
+        <!-- =================================
+             ALUNOS
+        ================================== -->
+
+        <div
+          class="premium-panel students-panel"
+          id="alunos"
+        >
+
+          <div class="premium-panel-header">
+
+            <div>
+
+              <span class="premium-eyebrow">
+                USUÁRIOS
+              </span>
+
+              <h2>
+                Alunos
+              </h2>
+
+              <p>
+                Controle usuários e acessos aos cursos.
+              </p>
+
+            </div>
+
+
+            <div class="panel-icon">
+              ♙
+            </div>
+
+          </div>
+
+
+          <div
+            id="students"
+            class="premium-student-list"
+          ></div>
+
+        </div>
+
+      </section>
+
+
+      <div
+        id="message"
+        class="message premium-message"
+      ></div>
+
+    </main>
+
+  </div>
+
+</div>
+
+
+
+<!-- =================================================
+     MODAL EDITAR CURSO
+================================================= -->
 
 <div
   id="editCourseModal"
@@ -92,14 +414,26 @@
   style="display:none;"
 >
 
-  <div class="modal-content edit-modal-content">
+  <div class="modal-content premium-modal">
 
-    <div class="modal-header">
+    <div class="modal-header premium-modal-header">
 
       <div>
-        <span class="eyebrow">CURSO</span>
-        <h2>Editar curso</h2>
+
+        <span class="premium-eyebrow">
+          CURSO
+        </span>
+
+        <h2>
+          Editar curso
+        </h2>
+
+        <p>
+          Atualize as informações do curso.
+        </p>
+
       </div>
+
 
       <button
         id="closeEditCourse"
@@ -111,63 +445,106 @@
 
     </div>
 
-    <form id="editCourseForm">
+
+    <form
+      id="editCourseForm"
+      class="premium-form"
+    >
 
       <input
         id="editCourseId"
         type="hidden"
       >
 
-      <label class="form-label">
-        Nome do curso
-      </label>
 
-      <input
-        id="editTitle"
-        required
-      >
+      <div class="form-group">
 
-      <label class="form-label">
-        Slug
-      </label>
+        <label
+          class="form-label"
+          for="editTitle"
+        >
+          Nome do curso
+        </label>
 
-      <input
-        id="editSlug"
-        required
-      >
+        <input
+          id="editTitle"
+          required
+        >
 
-      <label class="form-label">
-        Preço
-      </label>
+      </div>
 
-      <input
-        id="editPrice"
-        type="number"
-        step="0.01"
-      >
 
-      <label class="form-label">
-        Descrição
-      </label>
+      <div class="form-group">
 
-      <textarea
-        id="editDescription"
-        rows="5"
-      ></textarea>
+        <label
+          class="form-label"
+          for="editSlug"
+        >
+          Slug
+        </label>
+
+        <input
+          id="editSlug"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label
+          class="form-label"
+          for="editPrice"
+        >
+          Preço
+        </label>
+
+        <div class="price-input">
+
+          <span>R$</span>
+
+          <input
+            id="editPrice"
+            type="number"
+            step="0.01"
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label
+          class="form-label"
+          for="editDescription"
+        >
+          Descrição
+        </label>
+
+        <textarea
+          id="editDescription"
+          rows="5"
+        ></textarea>
+
+      </div>
+
 
       <div class="modal-actions">
 
         <button
           id="cancelEditCourse"
           type="button"
-          class="btn btn-outline"
+          class="btn btn-outline premium-cancel"
         >
           Cancelar
         </button>
 
         <button
           type="submit"
-          class="btn"
+          class="btn premium-btn"
         >
           Salvar alterações
         </button>
@@ -179,6 +556,7 @@
   </div>
 
 </div>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
