@@ -310,16 +310,101 @@ window.toggleStudent = async function(studentId, currentStatus) {
 };
 
 
-window.manageAccess = async function(studentId) {
+window.manageAccess = async function(studentId) {window.manageAccess = async function(studentId){
 
-  const { data: courses, error: coursesError } = await adminSb
+  const { data:courses } = await adminSb
     .from("courses")
-    .select("id, title")
-    .order("title");
+    .select("id,title");
 
-  if (coursesError) {
-    alert("Erro ao carregar cursos: " + coursesError.message);
-    return;
+  const { data:enrollments } = await adminSb
+    .from("enrollments")
+    .select("course_id,status")
+    .eq("user_id",studentId);
+
+  let html = "<h3>Gerenciar acessos</h3>";
+
+  courses.forEach(course=>{
+
+    const active = enrollments?.find(e =>
+      e.course_id===course.id && e.status==="active"
+    );
+
+    html += `
+      <label style="display:flex;gap:10px;margin:12px 0;">
+        <input
+          type="checkbox"
+          value="${course.id}"
+          ${active ? "checked" : ""}
+        >
+        ${course.title}
+      </label>
+    `;
+  });
+
+  html += `<button id="saveAccess" class="btn">Salvar acessos</button>`;
+
+  const box = document.createElement("div");
+  box.className="modal";
+  box.innerHTML=`
+    <div class="modal-content">
+      ${html}
+    </div>
+  `;
+
+  document.body.appendChild(box);
+
+  document.getElementById("saveAccess").onclick = async ()=>{
+
+    const checks=[...box.querySelectorAll("input[type=checkbox]")];
+
+    for(const item of checks){
+
+      if(item.checked){
+
+        const { data } = await adminSb
+          .from("enrollments")
+          .select("id")
+          .eq("user_id",studentId)
+          .eq("course_id",item.value)
+          .maybeSingle();
+
+        if(!data){
+
+          await adminSb.from("enrollments").insert({
+            user_id:studentId,
+            course_id:item.value,
+            status:"active"
+          });
+
+        }else{
+
+          await adminSb.from("enrollments")
+            .update({status:"active"})
+            .eq("id",data.id);
+
+        }
+
+      }else{
+
+        await adminSb.from("enrollments")
+          .delete()
+          .eq("user_id",studentId)
+          .eq("course_id",item.value);
+
+      }
+
+    }
+
+    box.remove();
+
+    alert("Acessos atualizados!");
+  };
+
+  box.onclick=e=>{
+    if(e.target===box) box.remove();
+  };
+
+}
   }
 
   if (!courses || courses.length === 0) {
