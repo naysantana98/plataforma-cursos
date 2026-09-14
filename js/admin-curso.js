@@ -3,24 +3,63 @@ const sbA = window.supabase.createClient(
   SUPABASE_ANON_KEY
 );
 
-const id = (new URLSearchParams(location.search).get("id") || "").trim();
+const courseId = (
+  new URLSearchParams(window.location.search).get("id") || ""
+).trim();
+
 const msgA = document.getElementById("message");
 
-async function init() {
-  const { data: { user } } = await sbA.auth.getUser();
+const courseBox = document.getElementById("course");
+const modulesBox = document.getElementById("modules");
 
-  if (!user) {
+const moduleForm = document.getElementById("moduleForm");
+const moduleTitle = document.getElementById("moduleTitle");
+
+const lessonForm = document.getElementById("lessonForm");
+const moduleSelect = document.getElementById("moduleSelect");
+const lessonTitle = document.getElementById("lessonTitle");
+const lessonDescription = document.getElementById("lessonDescription");
+const videoUrl = document.getElementById("videoUrl");
+const materialUrl = document.getElementById("materialUrl");
+const duration = document.getElementById("duration");
+
+const logoutButton = document.getElementById("logout");
+
+
+/* =========================
+   INICIAR
+========================= */
+
+async function init() {
+  if (!courseId) {
+    msgA.textContent = "ID do curso não encontrado.";
+    return;
+  }
+
+  const {
+    data: { user },
+    error: userError
+  } = await sbA.auth.getUser();
+
+  if (userError || !user) {
     location.href = "login.html";
     return;
   }
 
-  const { data: profile } = await sbA
+  const {
+    data: profile,
+    error: profileError
+  } = await sbA
     .from("profiles")
     .select("role")
     .eq("id", user.id)
     .single();
 
-  if (profile?.role !== "admin") {
+  if (
+    profileError ||
+    !profile ||
+    profile.role !== "admin"
+  ) {
     location.href = "aluno.html";
     return;
   }
@@ -28,187 +67,259 @@ async function init() {
   await render();
 }
 
+
+/* =========================
+   CARREGAR CURSO
+========================= */
+
 async function render() {
-  const { data: course, error: courseError } = await sbA
+  msgA.textContent = "";
+
+  const {
+    data: course,
+    error: courseError
+  } = await sbA
     .from("courses")
     .select("*")
     .eq("id", courseId)
     .single();
 
   if (courseError || !course) {
-    msgA.textContent = "Não foi possível carregar o curso.";
+    console.error("Erro curso:", courseError);
+
+    msgA.textContent =
+      "Não foi possível carregar o curso.";
+
     return;
   }
 
-  document.getElementById("course").innerHTML = `
+  courseBox.innerHTML = `
     <span class="eyebrow">CURSO</span>
-    <h1>${esc(course.title)}</h1>
+
+    <h1>
+      ${escapeHtml(course.title)}
+    </h1>
+
     <p class="muted-text">
-      ${esc(course.description || "")}
+      ${escapeHtml(course.description || "")}
     </p>
   `;
 
-  const { data: modules, error: modulesError } = await sbA
-    .from("modules")
-    .select("*, lessons(*)")
-    .eq("course_id", courseId)
-    .order("position");
+  await loadModules();
+}
 
-  if (modulesError) {
-    msgA.textContent = modulesError.message;
+
+/* =========================
+   CARREGAR MÓDULOS E AULAS
+========================= */
+
+async function loadModules() {
+  const {
+    data: modules,
+    error
+  } = await sbA
+    .from("modules")
+    .select(`
+      *,
+      lessons (*)
+    `)
+    .eq("course_id", courseId)
+    .order("position", {
+      ascending: true
+    });
+
+  if (error) {
+    console.error("Erro módulos:", error);
+
+    msgA.textContent =
+      "Erro ao carregar os módulos: " +
+      error.message;
+
     return;
   }
 
-  document.getElementById("moduleSelect").innerHTML =
-    (modules || [])
-      .map(module => `
-        <option value="${module.id}">
-          ${esc(module.title)}
+  const moduleList = modules || [];
+
+  moduleSelect.innerHTML =
+    moduleList.length
+      ? moduleList
+          .map(module => `
+            <option value="${module.id}">
+              ${escapeHtml(module.title)}
+            </option>
+          `)
+          .join("")
+      : `
+        <option value="">
+          Crie um módulo primeiro
         </option>
-      `)
-      .join("");
+      `;
 
-  document.getElementById("modules").innerHTML =
-    (modules || [])
-      .map(module => {
-        const lessons = (module.lessons || [])
-          .sort((a, b) => a.position - b.position);
-
-        return `
-          <div class="module">
-
-            <div class="module-head">
-              <div>
-                <b>${esc(module.title)}</b>
-              </div>
-
-              <div class="course-actions">
-                <button
-                  type="button"
-                  class="btn btn-outline edit-module"
-                  data-id="${module.id}"
-                  data-title="${esc(module.title)}"
-                >
-                  Editar
-                </button>
-
-                <button
-                  type="button"
-                  class="btn btn-outline delete-module"
-                  data-id="${module.id}"
-                  data-title="${esc(module.title)}"
-                >
-                  Excluir
-                </button>
-              </div>
-            </div>
-
-            ${
-              lessons.length
-                ? lessons.map(lesson => `
-                  <div class="lesson-row">
-
-                    <div>
-                      <b>${esc(lesson.title)}</b>
-
-                      <small>
-                        ${lesson.duration_minutes || 0} min ·
-                        ${lesson.published ? "Publicado" : "Rascunho"}
-                      </small>
-                    </div>
-
-                    <div class="course-actions">
-
-                      <button
-                        type="button"
-                        class="btn btn-outline edit-lesson"
-                        data-id="${lesson.id}"
-                      >
-                        Editar
-                      </button>
-
-                      <button
-                        type="button"
-                        class="btn btn-outline delete-lesson"
-                        data-id="${lesson.id}"
-                        data-title="${esc(lesson.title)}"
-                      >
-                        Excluir
-                      </button>
-
-                    </div>
-
-                  </div>
-                `).join("")
-                : `
-                  <div class="lesson-row">
-                    <small>Nenhuma aula neste módulo.</small>
-                  </div>
-                `
-            }
-
+  modulesBox.innerHTML =
+    moduleList.length
+      ? moduleList
+          .map(module =>
+            renderModule(module)
+          )
+          .join("")
+      : `
+        <div class="module">
+          <div class="lesson-row">
+            <small>
+              Nenhum módulo cadastrado.
+            </small>
           </div>
-        `;
-      })
-      .join("");
+        </div>
+      `;
 
-  activateButtons();
+  activateModuleButtons();
+  activateLessonButtons();
 }
 
-function activateButtons() {
-  document
-    .querySelectorAll(".edit-module")
-    .forEach(button => {
-      button.onclick = () =>
-        editModule(
-          button.dataset.id,
-          button.dataset.title
-        );
-    });
 
-  document
-    .querySelectorAll(".delete-module")
-    .forEach(button => {
-      button.onclick = () =>
-        deleteModule(
-          button.dataset.id,
-          button.dataset.title
-        );
-    });
+/* =========================
+   HTML DE UM MÓDULO
+========================= */
 
-  document
-    .querySelectorAll(".edit-lesson")
-    .forEach(button => {
-      button.onclick = () =>
-        editLesson(button.dataset.id);
-    });
+function renderModule(module) {
+  const lessons = [
+    ...(module.lessons || [])
+  ].sort(
+    (a, b) =>
+      (a.position || 0) -
+      (b.position || 0)
+  );
 
-  document
-    .querySelectorAll(".delete-lesson")
-    .forEach(button => {
-      button.onclick = () =>
-        deleteLesson(
-          button.dataset.id,
-          button.dataset.title
-        );
-    });
+  return `
+    <div class="module">
+
+      <div class="module-head">
+
+        <div>
+          <b>
+            ${escapeHtml(module.title)}
+          </b>
+        </div>
+
+        <div class="course-actions">
+
+          <button
+            type="button"
+            class="btn btn-outline edit-module"
+            data-id="${module.id}"
+            data-title="${escapeAttribute(module.title)}"
+          >
+            Editar
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline delete-module"
+            data-id="${module.id}"
+            data-title="${escapeAttribute(module.title)}"
+          >
+            Excluir
+          </button>
+
+        </div>
+
+      </div>
+
+      ${
+        lessons.length
+          ? lessons
+              .map(lesson =>
+                renderLesson(lesson)
+              )
+              .join("")
+          : `
+            <div class="lesson-row">
+              <small>
+                Nenhuma aula neste módulo.
+              </small>
+            </div>
+          `
+      }
+
+    </div>
+  `;
 }
+
+
+/* =========================
+   HTML DE UMA AULA
+========================= */
+
+function renderLesson(lesson) {
+  return `
+    <div class="lesson-row">
+
+      <div>
+
+        <b>
+          ${escapeHtml(lesson.title)}
+        </b>
+
+        <small>
+          ${lesson.duration_minutes || 0} min ·
+          ${
+            lesson.published
+              ? "Publicado"
+              : "Rascunho"
+          }
+        </small>
+
+      </div>
+
+      <div class="course-actions">
+
+        <button
+          type="button"
+          class="btn btn-outline edit-lesson"
+          data-id="${lesson.id}"
+        >
+          Editar
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-outline delete-lesson"
+          data-id="${lesson.id}"
+          data-title="${escapeAttribute(lesson.title)}"
+        >
+          Excluir
+        </button>
+
+      </div>
+
+    </div>
+  `;
+}
+
 
 /* =========================
    CRIAR MÓDULO
 ========================= */
 
-document.getElementById("moduleForm").onsubmit =
+moduleForm.addEventListener(
+  "submit",
   async event => {
-
     event.preventDefault();
 
     const title =
-      document.getElementById("moduleTitle").value.trim();
+      moduleTitle.value.trim();
 
-    if (!title) return;
+    if (!title) {
+      msgA.textContent =
+        "Informe o nome do módulo.";
 
-    const { count } = await sbA
+      return;
+    }
+
+    const {
+      count,
+      error: countError
+    } = await sbA
       .from("modules")
       .select("*", {
         count: "exact",
@@ -216,7 +327,16 @@ document.getElementById("moduleForm").onsubmit =
       })
       .eq("course_id", courseId);
 
-    const { error } = await sbA
+    if (countError) {
+      msgA.textContent =
+        countError.message;
+
+      return;
+    }
+
+    const {
+      error
+    } = await sbA
       .from("modules")
       .insert({
         course_id: courseId,
@@ -224,90 +344,303 @@ document.getElementById("moduleForm").onsubmit =
         position: (count || 0) + 1
       });
 
-    msgA.textContent =
-      error?.message || "Módulo criado!";
+    if (error) {
+      msgA.textContent =
+        error.message;
 
-    if (!error) {
-      event.target.reset();
-      await render();
+      return;
     }
-  };
+
+    moduleForm.reset();
+
+    msgA.textContent =
+      "Módulo criado com sucesso!";
+
+    await loadModules();
+  }
+);
+
+
+/* =========================
+   CRIAR AULA
+========================= */
+
+lessonForm.addEventListener(
+  "submit",
+  async event => {
+    event.preventDefault();
+
+    const selectedModule =
+      moduleSelect.value;
+
+    if (!selectedModule) {
+      msgA.textContent =
+        "Crie um módulo antes de adicionar uma aula.";
+
+      return;
+    }
+
+    const title =
+      lessonTitle.value.trim();
+
+    if (!title) {
+      msgA.textContent =
+        "Informe o título da aula.";
+
+      return;
+    }
+
+    const {
+      count,
+      error: countError
+    } = await sbA
+      .from("lessons")
+      .select("*", {
+        count: "exact",
+        head: true
+      })
+      .eq(
+        "module_id",
+        selectedModule
+      );
+
+    if (countError) {
+      msgA.textContent =
+        countError.message;
+
+      return;
+    }
+
+    const {
+      error
+    } = await sbA
+      .from("lessons")
+      .insert({
+        module_id: selectedModule,
+
+        title,
+
+        description:
+          lessonDescription.value.trim(),
+
+        video_url:
+          videoUrl.value.trim() || null,
+
+        material_url:
+          materialUrl.value.trim() || null,
+
+        duration_minutes:
+          Number(
+            duration.value || 0
+          ),
+
+        position:
+          (count || 0) + 1,
+
+        published: true
+      });
+
+    if (error) {
+      msgA.textContent =
+        error.message;
+
+      return;
+    }
+
+    lessonForm.reset();
+
+    msgA.textContent =
+      "Aula criada com sucesso!";
+
+    await loadModules();
+  }
+);
+
+
+/* =========================
+   BOTÕES DOS MÓDULOS
+========================= */
+
+function activateModuleButtons() {
+  document
+    .querySelectorAll(
+      ".edit-module"
+    )
+    .forEach(button => {
+      button.onclick = async () => {
+        await editModule(
+          button.dataset.id
+        );
+      };
+    });
+
+  document
+    .querySelectorAll(
+      ".delete-module"
+    )
+    .forEach(button => {
+      button.onclick = async () => {
+        await deleteModule(
+          button.dataset.id,
+          button.dataset.title
+        );
+      };
+    });
+}
+
 
 /* =========================
    EDITAR MÓDULO
 ========================= */
 
-async function editModule(moduleId, currentTitle) {
+async function editModule(moduleId) {
+  const {
+    data: module,
+    error
+  } = await sbA
+    .from("modules")
+    .select("*")
+    .eq("id", moduleId)
+    .single();
 
-  const newTitle = prompt(
-    "Nome do módulo:",
-    currentTitle
-  );
+  if (error || !module) {
+    msgA.textContent =
+      error?.message ||
+      "Não foi possível carregar o módulo.";
 
-  if (newTitle === null) return;
-
-  if (!newTitle.trim()) {
-    alert("O nome do módulo não pode ficar vazio.");
     return;
   }
 
-  const { error } = await sbA
+  const newTitle = prompt(
+    "Nome do módulo:",
+    module.title || ""
+  );
+
+  if (newTitle === null) {
+    return;
+  }
+
+  if (!newTitle.trim()) {
+    alert(
+      "O nome do módulo não pode ficar vazio."
+    );
+
+    return;
+  }
+
+  const {
+    error: updateError
+  } = await sbA
     .from("modules")
     .update({
       title: newTitle.trim()
     })
-    .eq("id", moduleId);
+    .eq(
+      "id",
+      moduleId
+    );
 
-  if (error) {
-    msgA.textContent = error.message;
+  if (updateError) {
+    msgA.textContent =
+      updateError.message;
+
     return;
   }
 
   msgA.textContent =
     "Módulo atualizado com sucesso!";
 
-  await render();
+  await loadModules();
 }
+
 
 /* =========================
    EXCLUIR MÓDULO
 ========================= */
 
-async function deleteModule(moduleId, title) {
-
+async function deleteModule(
+  moduleId,
+  title
+) {
   const confirmed = confirm(
-    `Excluir o módulo "${title}"?\n\n` +
-    `As aulas desse módulo também serão excluídas.`
+    `Tem certeza que deseja excluir o módulo "${title}"?\n\nAs aulas deste módulo também serão excluídas.`
   );
 
-  if (!confirmed) return;
+  if (!confirmed) {
+    return;
+  }
 
-  msgA.textContent = "Excluindo módulo...";
-
-  // Primeiro apagamos as aulas.
-  const { error: lessonsError } = await sbA
+  const {
+    data: lessons,
+    error: lessonsError
+  } = await sbA
     .from("lessons")
-    .delete()
-    .eq("module_id", moduleId);
+    .select("id")
+    .eq(
+      "module_id",
+      moduleId
+    );
 
   if (lessonsError) {
     msgA.textContent =
-      "Erro ao excluir as aulas: " +
       lessonsError.message;
 
     return;
   }
 
-  // Depois apagamos o módulo.
-  const { error: moduleError } = await sbA
+  const lessonIds =
+    (lessons || [])
+      .map(lesson => lesson.id);
+
+  if (lessonIds.length) {
+    const {
+      error: progressError
+    } = await sbA
+      .from("lesson_progress")
+      .delete()
+      .in(
+        "lesson_id",
+        lessonIds
+      );
+
+    if (progressError) {
+      msgA.textContent =
+        progressError.message;
+
+      return;
+    }
+
+    const {
+      error: deleteLessonsError
+    } = await sbA
+      .from("lessons")
+      .delete()
+      .in(
+        "id",
+        lessonIds
+      );
+
+    if (deleteLessonsError) {
+      msgA.textContent =
+        deleteLessonsError.message;
+
+      return;
+    }
+  }
+
+  const {
+    error
+  } = await sbA
     .from("modules")
     .delete()
-    .eq("id", moduleId);
+    .eq(
+      "id",
+      moduleId
+    );
 
-  if (moduleError) {
+  if (error) {
     msgA.textContent =
-      "Erro ao excluir o módulo: " +
-      moduleError.message;
+      error.message;
 
     return;
   }
@@ -315,85 +648,57 @@ async function deleteModule(moduleId, title) {
   msgA.textContent =
     "Módulo excluído com sucesso!";
 
-  await render();
+  await loadModules();
 }
 
+
 /* =========================
-   CRIAR AULA
+   BOTÕES DAS AULAS
 ========================= */
 
-document.getElementById("lessonForm").onsubmit =
-  async event => {
+function activateLessonButtons() {
+  document
+    .querySelectorAll(
+      ".edit-lesson"
+    )
+    .forEach(button => {
+      button.onclick = async () => {
+        await editLesson(
+          button.dataset.id
+        );
+      };
+    });
 
-    event.preventDefault();
+  document
+    .querySelectorAll(
+      ".delete-lesson"
+    )
+    .forEach(button => {
+      button.onclick = async () => {
+        await deleteLesson(
+          button.dataset.id,
+          button.dataset.title
+        );
+      };
+    });
+}
 
-    const moduleId =
-      document.getElementById("moduleSelect").value;
-
-    if (!moduleId) {
-      msgA.textContent =
-        "Crie um módulo antes de adicionar uma aula.";
-
-      return;
-    }
-
-    const { count } = await sbA
-      .from("lessons")
-      .select("*", {
-        count: "exact",
-        head: true
-      })
-      .eq("module_id", moduleId);
-
-    const { error } = await sbA
-      .from("lessons")
-      .insert({
-        module_id: moduleId,
-
-        title:
-          document.getElementById("lessonTitle")
-            .value.trim(),
-
-        description:
-          document.getElementById("lessonDescription")
-            .value.trim(),
-
-        video_url:
-          document.getElementById("videoUrl")
-            .value.trim() || null,
-
-        material_url:
-          document.getElementById("materialUrl")
-            .value.trim() || null,
-
-        duration_minutes:
-          Number(
-            document.getElementById("duration")
-              .value || 0
-          ),
-
-        position: (count || 0) + 1
-      });
-
-    msgA.textContent =
-      error?.message || "Aula criada!";
-
-    if (!error) {
-      event.target.reset();
-      await render();
-    }
-  };
 
 /* =========================
    EDITAR AULA
 ========================= */
 
 async function editLesson(lessonId) {
-
-  const { data: lesson, error } = await sbA
+  const {
+    data: lesson,
+    error
+  } = await sbA
     .from("lessons")
     .select("*")
-    .eq("id", lessonId)
+    .eq(
+      "id",
+      lessonId
+    )
     .single();
 
   if (error || !lesson) {
@@ -406,104 +711,140 @@ async function editLesson(lessonId) {
 
   const title = prompt(
     "Título da aula:",
-    lesson.title
+    lesson.title || ""
   );
 
-  if (title === null) return;
+  if (title === null) {
+    return;
+  }
 
   const description = prompt(
     "Descrição:",
     lesson.description || ""
   );
 
-  if (description === null) return;
+  if (description === null) {
+    return;
+  }
 
-  const videoUrl = prompt(
+  const newVideoUrl = prompt(
     "URL do vídeo:",
     lesson.video_url || ""
   );
 
-  if (videoUrl === null) return;
+  if (newVideoUrl === null) {
+    return;
+  }
 
-  const materialUrl = prompt(
+  const newMaterialUrl = prompt(
     "URL do material:",
     lesson.material_url || ""
   );
 
-  if (materialUrl === null) return;
+  if (newMaterialUrl === null) {
+    return;
+  }
 
-  const duration = prompt(
+  const newDuration = prompt(
     "Duração em minutos:",
     lesson.duration_minutes || 0
   );
 
-  if (duration === null) return;
+  if (newDuration === null) {
+    return;
+  }
 
   const published = confirm(
-    "Deseja deixar esta aula PUBLICADA?\n\n" +
-    "OK = Publicada\n" +
-    "Cancelar = Rascunho"
+    "Deseja deixar a aula publicada?\n\nOK = Publicada\nCancelar = Rascunho"
   );
 
-  const { error: updateError } = await sbA
+  const {
+    error: updateError
+  } = await sbA
     .from("lessons")
     .update({
       title: title.trim(),
-      description: description.trim(),
-      video_url: videoUrl.trim() || null,
-      material_url: materialUrl.trim() || null,
-      duration_minutes: Number(duration || 0),
+
+      description:
+        description.trim(),
+
+      video_url:
+        newVideoUrl.trim() || null,
+
+      material_url:
+        newMaterialUrl.trim() || null,
+
+      duration_minutes:
+        Number(
+          newDuration || 0
+        ),
+
       published
     })
-    .eq("id", lessonId);
+    .eq(
+      "id",
+      lessonId
+    );
 
   if (updateError) {
-    msgA.textContent = updateError.message;
+    msgA.textContent =
+      updateError.message;
+
     return;
   }
 
   msgA.textContent =
     "Aula atualizada com sucesso!";
 
-  await render();
+  await loadModules();
 }
+
 
 /* =========================
    EXCLUIR AULA
 ========================= */
 
-async function deleteLesson(lessonId, title) {
-
+async function deleteLesson(
+  lessonId,
+  title
+) {
   const confirmed = confirm(
     `Tem certeza que deseja excluir a aula "${title}"?`
   );
 
-  if (!confirmed) return;
+  if (!confirmed) {
+    return;
+  }
 
-  msgA.textContent = "Excluindo aula...";
-
-  // Remove progresso relacionado à aula.
-  const { error: progressError } = await sbA
+  const {
+    error: progressError
+  } = await sbA
     .from("lesson_progress")
     .delete()
-    .eq("lesson_id", lessonId);
+    .eq(
+      "lesson_id",
+      lessonId
+    );
 
   if (progressError) {
     msgA.textContent =
-      "Erro ao remover o progresso da aula: " +
       progressError.message;
 
     return;
   }
 
-  const { error } = await sbA
+  const {
+    error
+  } = await sbA
     .from("lessons")
     .delete()
-    .eq("id", lessonId);
+    .eq(
+      "id",
+      lessonId
+    );
 
   if (error) {
     msgA.textContent =
-      "Erro ao excluir a aula: " +
       error.message;
 
     return;
@@ -512,33 +853,48 @@ async function deleteLesson(lessonId, title) {
   msgA.textContent =
     "Aula excluída com sucesso!";
 
-  await render();
+  await loadModules();
 }
+
 
 /* =========================
    LOGOUT
 ========================= */
 
-document.getElementById("logout").onclick =
-  async () => {
+if (logoutButton) {
+  logoutButton.onclick =
+    async () => {
+      await sbA.auth.signOut();
 
-    await sbA.auth.signOut();
-    location.href = "index.html";
-  };
+      location.href =
+        "index.html";
+    };
+}
+
 
 /* =========================
    SEGURANÇA
 ========================= */
 
-function esc(value) {
-  return String(value ?? "")
-    .replace(/[&<>"']/g, char => ({
+function escapeHtml(value) {
+  return String(
+    value ?? ""
+  ).replace(
+    /[&<>"']/g,
+    character => ({
       "&": "&amp;",
       "<": "&lt;",
       ">": "&gt;",
       '"': "&quot;",
       "'": "&#039;"
-    }[char]));
+    }[character])
+  );
 }
+
+
+function escapeAttribute(value) {
+  return escapeHtml(value);
+}
+
 
 init();
