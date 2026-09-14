@@ -1,1 +1,191 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Administração</title><link rel="stylesheet" href="css/style.css"></head><body><header class="topbar"><a class="brand" href="index.html">Academia<span>Online</span></a><nav><a href="aluno.html">Área do aluno</a><button id="logout" class="btn btn-outline">Sair</button></nav></header><main class="dashboard"><span class="eyebrow">ADMINISTRAÇÃO</span><h1>Painel de gestão</h1><div id="stats" class="cards"></div><section class="admin-grid"><div class="panel"><h2>Cursos</h2><form id="courseForm"><input id="title" placeholder="Nome do curso" required><input id="slug" placeholder="slug" required><input id="price" type="number" step="0.01" placeholder="Preço"><textarea id="description" placeholder="Descrição"></textarea><button class="btn">Cadastrar curso</button></form><div id="courses"></div></div><div class="panel"><h2>Alunos</h2><div id="students"></div></div></section><div id="message" class="message"></div></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="js/config.js"></script><script src="js/admin.js"></script></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Administração</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+  <a class="brand" href="index.html">
+    Academia<span>Online</span>
+  </a>
+
+  <nav>
+    <a href="aluno.html">Área do aluno</a>
+    <button id="logout" class="btn btn-outline">Sair</button>
+  </nav>
+</header>
+
+<main class="dashboard">
+
+  <span class="eyebrow">ADMINISTRAÇÃO</span>
+  <h1>Painel de gestão</h1>
+
+  <div id="stats" class="cards"></div>
+
+  <section class="admin-grid">
+
+    <div class="panel">
+
+      <h2>Cursos</h2>
+
+      <form id="courseForm">
+
+        <input
+          id="title"
+          placeholder="Nome do curso"
+          required
+        >
+
+        <input
+          id="slug"
+          placeholder="slug"
+          required
+        >
+
+        <input
+          id="price"
+          type="number"
+          step="0.01"
+          placeholder="Preço"
+        >
+
+        <textarea
+          id="description"
+          placeholder="Descrição"
+        ></textarea>
+
+        <button class="btn" type="submit">
+          Cadastrar curso
+        </button>
+
+      </form>
+
+      <div id="courses"></div>
+
+    </div>
+
+    <div class="panel">
+
+      <h2>Alunos</h2>
+
+      <div id="students"></div>
+
+    </div>
+
+  </section>
+
+  <div id="message" class="message"></div>
+
+</main>
+
+
+<!-- MODAL EDITAR CURSO -->
+
+<div
+  id="editCourseModal"
+  class="modal"
+  style="display:none;"
+>
+
+  <div class="modal-content edit-modal-content">
+
+    <div class="modal-header">
+
+      <div>
+        <span class="eyebrow">CURSO</span>
+        <h2>Editar curso</h2>
+      </div>
+
+      <button
+        id="closeEditCourse"
+        type="button"
+        class="modal-close"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <form id="editCourseForm">
+
+      <input
+        id="editCourseId"
+        type="hidden"
+      >
+
+      <label class="form-label">
+        Nome do curso
+      </label>
+
+      <input
+        id="editTitle"
+        required
+      >
+
+      <label class="form-label">
+        Slug
+      </label>
+
+      <input
+        id="editSlug"
+        required
+      >
+
+      <label class="form-label">
+        Preço
+      </label>
+
+      <input
+        id="editPrice"
+        type="number"
+        step="0.01"
+      >
+
+      <label class="form-label">
+        Descrição
+      </label>
+
+      <textarea
+        id="editDescription"
+        rows="5"
+      ></textarea>
+
+      <div class="modal-actions">
+
+        <button
+          id="cancelEditCourse"
+          type="button"
+          class="btn btn-outline"
+        >
+          Cancelar
+        </button>
+
+        <button
+          type="submit"
+          class="btn"
+        >
+          Salvar alterações
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/config.js"></script>
+
+<script src="js/admin.js"></script>
+
+</body>
+</html>
