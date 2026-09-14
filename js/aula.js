@@ -20,13 +20,9 @@ async function initLesson() {
     <h1>${escapeHtml(lesson.title)}</h1>
     <p class="muted-text">${escapeHtml(lesson.description || "")}</p>
     <div class="video">${lesson.video_url ? `<iframe width="100%" height="100%" style="border:0;border-radius:18px" src="${escapeAttr(lesson.video_url)}" allowfullscreen></iframe>` : "Vídeo da aula"}</div>
-    <button class="btn complete" id="complete">${prog?.completed ? "✓ Aula concluída" : "Marcar como concluída"}</button>
-    <div id="lessonMsg" class="message"></div>`;
+   <div id="lessonMsg" class="message"></div>`;
 
-  document.getElementById("complete").onclick = async () => {
-    const { error } = await sb2.from("lesson_progress").upsert({user_id:user.id, lesson_id:id, completed:true, completed_at:new Date().toISOString()},{onConflict:"user_id,lesson_id"});
-    document.getElementById("lessonMsg").textContent = error ? error.message : "Aula marcada como concluída!";
-  };
+
 }
 document.getElementById("logout").onclick=async()=>{await sb2.auth.signOut();location.href="index.html"};
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
