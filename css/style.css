@@ -148,3 +148,48 @@ textarea,select{padding:13px;border:1px solid #d9dfe7;border-radius:9px;font:inh
 .publish-option span{
   line-height:1;
 }
+.lesson-navigation{
+  margin-top:28px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.lesson-navigation-pages{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
+.lesson-navigation .btn{
+  text-decoration:none;
+}
+
+.lesson-navigation button:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+.lesson-back{
+  align-self:flex-start;
+}
+
+@media (max-width:700px){
+
+  .lesson-navigation-pages{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .lesson-navigation-pages .btn{
+    width:100%;
+    text-align:center;
+  }
+
+  .lesson-back{
+    width:100%;
+    text-align:center;
+  }
+
+}
