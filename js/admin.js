@@ -242,7 +242,7 @@ function renderCourses(coursesData) {
             <a
               class="btn btn-outline"
               href="
-                admin-curso.html?id=
+                href="admin-curso.html?id=${course.id}"
                 ${course.id}
               "
             >
