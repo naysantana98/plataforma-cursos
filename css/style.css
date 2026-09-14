@@ -210,3 +210,1090 @@ textarea,select{padding:13px;border:1px solid #d9dfe7;border-radius:9px;font:inh
   }
 
 }
+
+/* =====================================================
+   ADMIN PREMIUM / ELEGANTE
+===================================================== */
+
+body.admin-premium{
+  margin:0;
+  background:#f7f4ef;
+  color:#171717;
+  font-family:"DM Sans",sans-serif;
+}
+
+
+/* =====================================================
+   LAYOUT
+===================================================== */
+
+.admin-layout{
+  display:flex;
+  min-height:100vh;
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.admin-sidebar{
+  width:270px;
+  min-height:100vh;
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  padding:30px 20px;
+  box-sizing:border-box;
+
+  background:
+    linear-gradient(
+      180deg,
+      #242424 0%,
+      #151515 100%
+    );
+
+  color:#fff;
+
+  display:flex;
+  flex-direction:column;
+
+  z-index:100;
+}
+
+
+/* LOGO */
+
+.sidebar-logo{
+  display:flex;
+  align-items:center;
+  gap:13px;
+
+  padding:4px 10px 30px;
+}
+
+
+.sidebar-logo-icon{
+  width:42px;
+  height:42px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:30px;
+
+  color:#d5b36a;
+}
+
+
+.premium-brand{
+  color:#fff !important;
+  text-decoration:none;
+
+  font-size:23px;
+  font-weight:600;
+}
+
+
+.premium-brand span{
+  color:#d5b36a;
+}
+
+
+.sidebar-logo small{
+  display:block;
+
+  margin-top:4px;
+
+  font-size:8px;
+  letter-spacing:2px;
+
+  color:#9c9c9c;
+}
+
+
+/* MENU */
+
+.sidebar-menu{
+  display:flex;
+  flex-direction:column;
+
+  gap:8px;
+
+  margin-top:22px;
+}
+
+
+.sidebar-link{
+  display:flex;
+  align-items:center;
+
+  gap:14px;
+
+  padding:14px 16px;
+
+  border-radius:12px;
+
+  text-decoration:none;
+
+  color:#d3d3d3;
+
+  font-size:15px;
+
+  transition:.2s;
+}
+
+
+.sidebar-link:hover{
+  background:rgba(255,255,255,.07);
+  color:#fff;
+}
+
+
+.sidebar-link.active{
+  color:#e7c77f;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(213,179,106,.22),
+      rgba(213,179,106,.08)
+    );
+
+  border-left:2px solid #d5b36a;
+}
+
+
+.sidebar-icon{
+  width:25px;
+
+  text-align:center;
+
+  font-size:20px;
+}
+
+
+/* FRASE */
+
+.sidebar-quote{
+  margin-top:auto;
+
+  padding:20px;
+}
+
+
+.quote-line{
+  width:38px;
+  height:3px;
+
+  background:#d5b36a;
+
+  margin-bottom:22px;
+}
+
+
+.sidebar-quote p{
+  font-family:"Playfair Display",serif;
+
+  font-size:21px;
+  line-height:1.55;
+
+  font-style:italic;
+
+  color:#eee;
+}
+
+
+/* =====================================================
+   CONTEÚDO
+===================================================== */
+
+.admin-content{
+  margin-left:270px;
+
+  width:calc(100% - 270px);
+
+  min-height:100vh;
+}
+
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
+.admin-topbar{
+  height:84px;
+
+  padding:0 38px;
+
+  background:#fff;
+
+  border-bottom:1px solid #ebe7df;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  position:sticky;
+  top:0;
+
+  z-index:50;
+}
+
+
+.admin-search{
+  width:420px;
+
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+
+  background:#f5f3ef;
+
+  padding:0 16px;
+
+  border:1px solid #ebe6dc;
+
+  border-radius:12px;
+}
+
+
+.admin-search span{
+  font-size:24px;
+
+  color:#6f6a62;
+}
+
+
+.admin-search input{
+  width:100%;
+
+  padding:13px 0;
+
+  background:transparent;
+
+  border:0;
+  outline:none;
+
+  font-size:14px;
+}
+
+
+.admin-user{
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+}
+
+
+.admin-avatar{
+  width:43px;
+  height:43px;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#fff;
+
+  font-weight:600;
+
+  background:
+    linear-gradient(
+      135deg,
+      #765b3d,
+      #c9a86a
+    );
+}
+
+
+.admin-user-info{
+  display:flex;
+  flex-direction:column;
+}
+
+
+.admin-user-info strong{
+  font-size:14px;
+}
+
+
+.admin-user-info span{
+  font-size:12px;
+
+  color:#777;
+}
+
+
+.admin-logout{
+  margin-left:12px;
+
+  border:1px solid #ded8cd;
+
+  background:#fff;
+
+  padding:9px 14px;
+
+  border-radius:8px;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+
+.admin-logout:hover{
+  color:#fff;
+
+  background:#242424;
+
+  border-color:#242424;
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+.premium-dashboard{
+  padding:38px;
+
+  max-width:1500px;
+
+  margin:auto;
+}
+
+
+.dashboard-heading{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+
+  gap:30px;
+
+  margin-bottom:28px;
+}
+
+
+.premium-eyebrow{
+  display:block;
+
+  margin-bottom:8px;
+
+  color:#9a762f;
+
+  font-size:11px;
+  font-weight:700;
+
+  letter-spacing:2px;
+}
+
+
+.dashboard-heading h1{
+  margin:0;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:39px;
+
+  color:#181818;
+}
+
+
+.dashboard-heading > div > p{
+  margin:8px 0 0;
+
+  color:#746f68;
+}
+
+
+.dashboard-heading-detail{
+  text-align:right;
+}
+
+
+.dashboard-heading-detail span{
+  font-weight:600;
+
+  color:#403b35;
+}
+
+
+.dashboard-heading-detail p{
+  font-family:"Playfair Display",serif;
+
+  font-style:italic;
+}
+
+
+/* =====================================================
+   CARDS / ESTATÍSTICAS
+===================================================== */
+
+.premium-stats{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  gap:18px;
+
+  margin-bottom:24px;
+}
+
+
+.premium-stats .card{
+  background:#fff;
+
+  border:1px solid #ebe5da;
+
+  border-radius:15px;
+
+  padding:22px;
+
+  box-shadow:
+    0 8px 30px
+    rgba(56,45,30,.05);
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+
+.premium-stats .card::before{
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  top:0;
+  bottom:0;
+
+  width:3px;
+
+  background:#c19a52;
+}
+
+
+.premium-stats .card h3,
+.premium-stats .card strong{
+  color:#191919;
+}
+
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.admin-main-grid{
+  display:grid;
+
+  grid-template-columns:minmax(0,1.7fr) minmax(320px,.8fr);
+
+  gap:22px;
+
+  align-items:start;
+}
+
+
+/* =====================================================
+   PAINÉIS
+===================================================== */
+
+.premium-panel{
+  background:#fff;
+
+  border:1px solid #e9e4db;
+
+  border-radius:18px;
+
+  padding:26px;
+
+  box-shadow:
+    0 10px 35px
+    rgba(51,42,29,.055);
+}
+
+
+.premium-panel-header{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:flex-start;
+
+  gap:20px;
+
+  margin-bottom:25px;
+}
+
+
+.premium-panel-header h2{
+  margin:0;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:27px;
+}
+
+
+.premium-panel-header p{
+  margin:7px 0 0;
+
+  color:#817b72;
+
+  font-size:13px;
+}
+
+
+.panel-icon{
+  width:45px;
+  height:45px;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#f3ead9;
+
+  color:#99722f;
+
+  font-size:22px;
+}
+
+
+/* =====================================================
+   CADASTRO DE CURSO
+===================================================== */
+
+.course-create-box{
+  padding:21px;
+
+  background:#faf8f4;
+
+  border:1px solid #ebe5da;
+
+  border-radius:14px;
+}
+
+
+.create-box-header{
+  display:flex;
+
+  align-items:center;
+
+  gap:13px;
+
+  margin-bottom:20px;
+}
+
+
+.create-box-header h3{
+  margin:0;
+
+  font-size:16px;
+}
+
+
+.create-box-header p{
+  margin:4px 0 0;
+
+  color:#8a857e;
+
+  font-size:12px;
+}
+
+
+.create-icon{
+  width:38px;
+  height:38px;
+
+  border-radius:10px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#71511d;
+
+  background:#efe1c4;
+
+  font-size:22px;
+}
+
+
+/* =====================================================
+   FORMULÁRIOS
+===================================================== */
+
+.premium-form{
+  display:block;
+}
+
+
+.form-grid{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:16px;
+}
+
+
+.form-full{
+  grid-column:1 / -1;
+}
+
+
+.form-group{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:7px;
+
+  margin-bottom:16px;
+}
+
+
+.form-group label,
+.form-label{
+  color:#4c4843;
+
+  font-size:12px;
+
+  font-weight:600;
+}
+
+
+.premium-form input,
+.premium-form textarea,
+.course-create-box input,
+.course-create-box textarea{
+  width:100%;
+
+  box-sizing:border-box;
+
+  padding:12px 14px;
+
+  border:1px solid #ded9d0;
+
+  border-radius:9px;
+
+  outline:none;
+
+  background:#fff;
+
+  color:#252525;
+
+  font-family:"DM Sans",sans-serif;
+
+  transition:.2s;
+}
+
+
+.premium-form input:focus,
+.premium-form textarea:focus{
+  border-color:#b58a42;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(181,138,66,.12);
+}
+
+
+.premium-form textarea{
+  resize:vertical;
+}
+
+
+.price-input{
+  display:flex;
+
+  align-items:center;
+
+  border:1px solid #ded9d0;
+
+  background:#fff;
+
+  border-radius:9px;
+
+  overflow:hidden;
+}
+
+
+.price-input span{
+  padding:0 12px;
+
+  color:#8c744d;
+
+  font-size:13px;
+
+  font-weight:600;
+
+  border-right:1px solid #e4dfd7;
+}
+
+
+.price-input input{
+  border:0 !important;
+
+  border-radius:0 !important;
+
+  box-shadow:none !important;
+}
+
+
+.form-footer{
+  display:flex;
+
+  justify-content:flex-end;
+}
+
+
+/* =====================================================
+   BOTÕES
+===================================================== */
+
+.premium-btn{
+  background:
+    linear-gradient(
+      135deg,
+      #a77b32,
+      #d0ab64
+    ) !important;
+
+  color:#fff !important;
+
+  border:0 !important;
+
+  border-radius:9px;
+
+  padding:11px 18px;
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  cursor:pointer;
+
+  font-weight:600;
+
+  box-shadow:
+    0 5px 15px
+    rgba(167,123,50,.18);
+
+  transition:.2s;
+}
+
+
+.premium-btn:hover{
+  transform:translateY(-1px);
+
+  box-shadow:
+    0 8px 18px
+    rgba(167,123,50,.25);
+}
+
+
+.admin-premium .btn-outline{
+  border:1px solid #b99350;
+
+  color:#76531e;
+
+  background:transparent;
+
+  border-radius:8px;
+}
+
+
+.admin-premium .btn-outline:hover{
+  background:#f5ebda;
+}
+
+
+/* =====================================================
+   DIVISOR
+===================================================== */
+
+.section-divider{
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  margin:25px 0 15px;
+
+  color:#a0978b;
+
+  font-size:10px;
+
+  letter-spacing:1.4px;
+}
+
+
+.section-divider::after{
+  content:"";
+
+  flex:1;
+
+  height:1px;
+
+  background:#ece7df;
+}
+
+
+/* =====================================================
+   ITENS GERADOS PELO ADMIN.JS
+===================================================== */
+
+.premium-course-list > *,
+.premium-student-list > *{
+  border-color:#eee8df;
+}
+
+
+.admin-premium .course-row,
+.admin-premium .student-row{
+  background:#fff;
+
+  border:1px solid #ebe5dc;
+
+  border-radius:11px;
+
+  margin-bottom:10px;
+
+  padding:14px;
+
+  transition:.2s;
+}
+
+
+.admin-premium .course-row:hover,
+.admin-premium .student-row:hover{
+  border-color:#d3b67e;
+
+  box-shadow:
+    0 7px 20px
+    rgba(55,44,27,.06);
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.admin-premium .modal{
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(20,18,15,.58);
+
+  backdrop-filter:blur(5px);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  z-index:9999;
+}
+
+
+.premium-modal{
+  width:520px;
+
+  max-width:92%;
+
+  padding:28px;
+
+  border-radius:18px;
+
+  background:#fff;
+
+  border:1px solid #e4ded3;
+
+  box-shadow:
+    0 25px 70px
+    rgba(0,0,0,.22);
+}
+
+
+.premium-modal-header{
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:flex-start;
+
+  margin-bottom:25px;
+}
+
+
+.premium-modal-header h2{
+  margin:0;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:28px;
+}
+
+
+.premium-modal-header p{
+  color:#817b72;
+
+  font-size:13px;
+
+  margin:6px 0 0;
+}
+
+
+.modal-close{
+  width:36px;
+  height:36px;
+
+  border-radius:50%;
+
+  border:1px solid #e4ded4;
+
+  background:#faf8f4;
+
+  color:#625c54;
+
+  cursor:pointer;
+
+  font-size:22px;
+
+  line-height:1;
+}
+
+
+.modal-close:hover{
+  background:#252525;
+
+  color:#fff;
+}
+
+
+.modal-actions{
+  display:flex;
+
+  justify-content:flex-end;
+
+  gap:10px;
+
+  margin-top:22px;
+}
+
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+
+@media (max-width:1100px){
+
+  .admin-main-grid{
+    grid-template-columns:1fr;
+  }
+
+  .premium-stats{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+}
+
+
+@media (max-width:780px){
+
+  .admin-sidebar{
+    position:relative;
+
+    width:100%;
+
+    min-height:auto;
+  }
+
+
+  .admin-layout{
+    flex-direction:column;
+  }
+
+
+  .admin-content{
+    width:100%;
+
+    margin-left:0;
+  }
+
+
+  .sidebar-quote{
+    display:none;
+  }
+
+
+  .sidebar-menu{
+    flex-direction:row;
+
+    overflow-x:auto;
+  }
+
+
+  .sidebar-link{
+    white-space:nowrap;
+  }
+
+
+  .admin-topbar{
+    padding:15px 20px;
+
+    height:auto;
+  }
+
+
+  .admin-search{
+    display:none;
+  }
+
+
+  .premium-dashboard{
+    padding:22px 16px;
+  }
+
+
+  .dashboard-heading{
+    flex-direction:column;
+  }
+
+
+  .dashboard-heading-detail{
+    display:none;
+  }
+
+
+  .premium-stats{
+    grid-template-columns:1fr;
+  }
+
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+
+  .form-full{
+    grid-column:auto;
+  }
+
+}
