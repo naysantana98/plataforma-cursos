@@ -147,53 +147,100 @@ function renderStats(
 
   const activeEnrollments =
     enrollments.filter(
-      item =>
-        item.status === "active"
+      item => item.status === "active"
     ).length;
+
 
   stats.innerHTML = `
 
-    <article>
+    <article class="premium-stat-card">
 
-      <h3>
-        ${courses.length}
-      </h3>
+      <div class="stat-icon">
+        ◫
+      </div>
 
-      <p>
-        Cursos
-      </p>
+      <div class="stat-content">
+
+        <span class="stat-label">
+          Cursos
+        </span>
+
+        <strong class="stat-number">
+          ${courses.length}
+        </strong>
+
+        <small>
+          ${
+            courses.length === 1
+              ? "Curso cadastrado"
+              : "Cursos cadastrados"
+          }
+        </small>
+
+      </div>
 
     </article>
 
 
-    <article>
+    <article class="premium-stat-card">
 
-      <h3>
-        ${students.length}
-      </h3>
+      <div class="stat-icon">
+        ♙
+      </div>
 
-      <p>
-        Alunos
-      </p>
+      <div class="stat-content">
+
+        <span class="stat-label">
+          Alunos
+        </span>
+
+        <strong class="stat-number">
+          ${students.length}
+        </strong>
+
+        <small>
+          ${
+            students.length === 1
+              ? "Aluno cadastrado"
+              : "Alunos cadastrados"
+          }
+        </small>
+
+      </div>
 
     </article>
 
 
-    <article>
+    <article class="premium-stat-card">
 
-      <h3>
-        ${activeEnrollments}
-      </h3>
+      <div class="stat-icon">
+        ◇
+      </div>
 
-      <p>
-        Matrículas ativas
-      </p>
+      <div class="stat-content">
+
+        <span class="stat-label">
+          Matrículas
+        </span>
+
+        <strong class="stat-number">
+          ${activeEnrollments}
+        </strong>
+
+        <small>
+          ${
+            activeEnrollments === 1
+              ? "Acesso ativo"
+              : "Acessos ativos"
+          }
+        </small>
+
+      </div>
 
     </article>
 
   `;
 }
-
 
 function renderCourses(coursesData) {
 
