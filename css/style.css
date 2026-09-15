@@ -1441,3 +1441,12 @@ body.admin-premium{
   }
 
 }
+/* Topo do painel sem barra de pesquisa */
+
+.admin-topbar{
+  justify-content:flex-end;
+}
+
+.admin-user{
+  margin-left:auto;
+}
