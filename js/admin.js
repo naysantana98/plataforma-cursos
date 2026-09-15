@@ -248,65 +248,83 @@ function renderCourses(coursesData) {
 
   if (!courses) return;
 
+  if (!coursesData.length) {
+    courses.innerHTML = `
+      <div class="premium-empty">
+        <div class="premium-empty-icon">◇</div>
+        <strong>Nenhum curso cadastrado</strong>
+        <span>Os cursos cadastrados aparecerão aqui.</span>
+      </div>
+    `;
+    return;
+  }
 
   courses.innerHTML =
     coursesData
       .map(course => `
 
-        <div class="list-row">
+        <div class="premium-course-card">
 
-          <div>
+          <div class="course-card-icon">
+            ◇
+          </div>
 
-            <b>
+          <div class="course-card-info">
+
+            <span class="course-card-label">
+              CURSO
+            </span>
+
+            <h3>
               ${escapeHtml(course.title)}
-            </b>
+            </h3>
 
-            <small>
-              R$
-              ${Number(
-                course.price || 0
-              ).toFixed(2)}
-            </small>
+            <div class="course-card-meta">
+
+              <span>
+                ${escapeHtml(course.slug || "Sem slug")}
+              </span>
+
+              <span class="meta-dot"></span>
+
+              <strong>
+                R$ ${Number(course.price || 0)
+                  .toLocaleString(
+                    "pt-BR",
+                    {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2
+                    }
+                  )}
+              </strong>
+
+            </div>
 
           </div>
 
 
-          <div class="course-actions">
+          <div class="course-card-actions">
 
             <button
               type="button"
-              class="
-                btn
-                btn-outline
-                edit-course
-              "
+              class="btn course-edit-btn edit-course"
               data-id="${course.id}"
             >
               Editar
             </button>
 
-
             <a
-  class="btn btn-outline"
-  href="admin-curso.html?id=${course.id}"
->
-  Conteúdo
-</a>
-
+              class="btn course-content-btn"
+              href="admin-curso.html?id=${course.id}"
+            >
+              Conteúdo
+            </a>
 
             <button
               type="button"
-              class="
-                btn
-                btn-outline
-                delete-course
-              "
+              class="btn course-delete-btn delete-course"
               data-id="${course.id}"
-              data-title="
-                ${escapeHtml(
-                  course.title
-                )}
-              "
+              data-title="${escapeHtml(course.title)}"
             >
               Excluir
             </button>
@@ -318,91 +336,133 @@ function renderCourses(coursesData) {
       `)
       .join("");
 }
+function renderStudents(studentsData) {
 
-
-function renderStudents(
-  studentsData
-) {
-
-  const students =
-    $("#students");
+  const students = $("#students");
 
   if (!students) return;
+
+  if (!studentsData.length) {
+
+    students.innerHTML = `
+      <div class="premium-empty">
+
+        <div class="premium-empty-icon">
+          ♙
+        </div>
+
+        <strong>
+          Nenhum aluno cadastrado
+        </strong>
+
+        <span>
+          Os alunos aparecerão aqui.
+        </span>
+
+      </div>
+    `;
+
+    return;
+  }
 
 
   students.innerHTML =
     studentsData
-      .map(student => `
+      .map(student => {
 
-        <div class="list-row">
+        const name =
+          student.full_name ||
+          "Sem nome";
 
-          <div>
+        const initial =
+          name
+            .trim()
+            .charAt(0)
+            .toUpperCase() || "A";
 
-            <b>
-              ${
-                escapeHtml(
-                  student.full_name ||
-                  "Sem nome"
-                )
-              }
-            </b>
 
-            <small>
+        return `
 
-              ${
-                student.active
-                  ? "🟢 Usuário ativo"
-                  : "🔴 Usuário inativo"
-              }
+          <div class="premium-student-card">
 
-            </small>
+            <div class="student-main">
+
+              <div class="student-avatar">
+                ${escapeHtml(initial)}
+              </div>
+
+
+              <div class="student-info">
+
+                <strong>
+                  ${escapeHtml(name)}
+                </strong>
+
+                <div class="
+                  student-status
+                  ${
+                    student.active
+                      ? "status-active"
+                      : "status-inactive"
+                  }
+                ">
+
+                  <span class="status-dot"></span>
+
+                  ${
+                    student.active
+                      ? "Usuário ativo"
+                      : "Usuário inativo"
+                  }
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="student-actions">
+
+              <button
+                type="button"
+                class="btn student-status-btn"
+                onclick="
+                  toggleStudent(
+                    '${student.id}',
+                    ${student.active}
+                  )
+                "
+              >
+                ${
+                  student.active
+                    ? "Desativar"
+                    : "Ativar"
+                }
+              </button>
+
+
+              <button
+                type="button"
+                class="btn student-access-btn"
+                onclick="
+                  manageAccess(
+                    '${student.id}'
+                  )
+                "
+              >
+                Acessos
+              </button>
+
+            </div>
 
           </div>
 
+        `;
 
-          <div class="student-actions">
-
-            <button
-              type="button"
-              class="btn btn-outline"
-              onclick="
-                toggleStudent(
-                  '${student.id}',
-                  ${student.active}
-                )
-              "
-            >
-
-              ${
-                student.active
-                  ? "Desativar"
-                  : "Ativar"
-              }
-
-            </button>
-
-
-            <button
-              type="button"
-              class="btn btn-outline"
-              onclick="
-                manageAccess(
-                  '${student.id}'
-                )
-              "
-            >
-              Acessos
-            </button>
-
-          </div>
-
-        </div>
-
-      `)
+      })
       .join("");
 }
-
-
 function addCourseButtons() {
 
   document
