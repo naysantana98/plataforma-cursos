@@ -1984,3 +1984,566 @@ body.admin-premium{
 .admin-user{
   margin-left:auto;
 }
+/* =====================================================
+   MODAL GERENCIAR ACESSOS - PREMIUM
+===================================================== */
+
+.access-premium-modal{
+  padding:20px;
+  box-sizing:border-box;
+}
+
+.access-modal-content{
+  width:610px;
+  max-width:100%;
+  max-height:90vh;
+
+  padding:0 !important;
+
+  overflow:hidden;
+
+  background:#fff;
+
+  border:1px solid #e6ded2;
+
+  border-radius:20px;
+
+  box-shadow:
+    0 30px 80px
+    rgba(0,0,0,.25);
+}
+
+
+/* CABEÇALHO */
+
+.access-modal-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+
+  gap:20px;
+
+  padding:27px 28px 23px;
+
+  border-bottom:1px solid #eee7dc;
+}
+
+
+.access-header-main{
+  display:flex;
+  align-items:center;
+
+  gap:16px;
+}
+
+
+.access-modal-icon{
+  width:50px;
+  height:50px;
+
+  min-width:50px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:14px;
+
+  color:#926a27;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8eedc,
+      #ead6ae
+    );
+
+  border:1px solid #ead9b9;
+
+  font-size:23px;
+}
+
+
+.access-modal-header h2{
+  margin:0;
+
+  font-family:"Playfair Display",serif;
+
+  color:#1d1b18;
+
+  font-size:27px;
+}
+
+
+.access-modal-header p{
+  margin:5px 0 0;
+
+  color:#898176;
+
+  font-size:12px;
+}
+
+
+/* ALUNO */
+
+.access-student{
+  margin:22px 28px 0;
+
+  padding:14px 16px;
+
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+
+  background:#faf7f1;
+
+  border:1px solid #eee5d7;
+
+  border-radius:12px;
+}
+
+
+.access-student-avatar{
+  width:42px;
+  height:42px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  color:#78571f;
+
+  background:#ecdbba;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:17px;
+  font-weight:700;
+}
+
+
+.access-student > div:last-child{
+  display:flex;
+  flex-direction:column;
+
+  gap:2px;
+}
+
+
+.access-student span{
+  color:#a17b3a;
+
+  font-size:9px;
+  font-weight:700;
+
+  letter-spacing:1.4px;
+}
+
+
+.access-student strong{
+  color:#292622;
+
+  font-size:13px;
+}
+
+
+/* TÍTULO DOS CURSOS */
+
+.access-section-title{
+  padding:22px 28px 12px;
+
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+
+  gap:20px;
+}
+
+
+.access-section-title > div{
+  display:flex;
+  flex-direction:column;
+
+  gap:3px;
+}
+
+
+.access-section-title strong{
+  color:#302c27;
+
+  font-size:13px;
+}
+
+
+.access-section-title span{
+  color:#958d82;
+
+  font-size:11px;
+}
+
+
+.access-section-title small{
+  padding:5px 9px;
+
+  border-radius:20px;
+
+  background:#f2e8d5;
+
+  color:#8b672b;
+
+  font-size:9px;
+  font-weight:700;
+}
+
+
+/* LISTA */
+
+.access-course-list{
+  max-height:300px;
+
+  padding:0 28px 5px;
+
+  overflow-y:auto;
+}
+
+
+.premium-access-option{
+  margin-bottom:9px;
+
+  padding:14px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:15px;
+
+  border:1px solid #e8e2d9;
+
+  border-radius:12px;
+
+  background:#fff;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+
+.premium-access-option:hover{
+  border-color:#d4b77f;
+
+  background:#fdfbf7;
+}
+
+
+.premium-access-option.selected{
+  border-color:#cba65f;
+
+  background:#fcf8ef;
+
+  box-shadow:
+    0 0 0 2px
+    rgba(190,147,73,.07);
+}
+
+
+.access-course-left{
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+}
+
+
+.access-course-icon{
+  width:38px;
+  height:38px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:9px;
+
+  color:#99712c;
+
+  background:#f3e7d0;
+
+  font-size:17px;
+}
+
+
+.access-course-info{
+  display:flex;
+  flex-direction:column;
+
+  gap:3px;
+}
+
+
+.access-course-info strong{
+  color:#312e29;
+
+  font-size:12px;
+}
+
+
+.access-course-info span{
+  color:#9a9288;
+
+  font-size:10px;
+}
+
+
+.premium-access-option.selected
+.access-course-info span{
+  color:#6c876f;
+}
+
+
+/* CHECKBOX */
+
+.premium-checkbox{
+  position:relative;
+
+  width:24px;
+  height:24px;
+
+  flex-shrink:0;
+}
+
+
+.premium-checkbox input{
+  position:absolute;
+
+  width:100%;
+  height:100%;
+
+  margin:0;
+
+  opacity:0;
+
+  cursor:pointer;
+}
+
+
+.checkmark{
+  width:22px;
+  height:22px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:1px solid #d7cfc3;
+
+  border-radius:6px;
+
+  background:#fff;
+
+  color:transparent;
+
+  font-size:13px;
+  font-weight:700;
+
+  transition:.2s;
+
+  pointer-events:none;
+}
+
+
+.premium-checkbox
+input:checked + .checkmark{
+  color:#fff;
+
+  border-color:#b88a3c;
+
+  background:
+    linear-gradient(
+      135deg,
+      #a77b32,
+      #cba45b
+    );
+
+  box-shadow:
+    0 3px 8px
+    rgba(167,123,50,.2);
+}
+
+
+/* RODAPÉ */
+
+.access-modal-footer{
+  margin-top:17px;
+
+  padding:18px 28px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
+
+  background:#faf8f4;
+
+  border-top:1px solid #eee7dc;
+}
+
+
+.access-help{
+  display:flex;
+  align-items:flex-start;
+
+  gap:7px;
+
+  color:#938b80;
+}
+
+
+.access-help span{
+  color:#a37a34;
+
+  font-size:13px;
+}
+
+
+.access-help p{
+  max-width:230px;
+
+  margin:0;
+
+  font-size:9px;
+
+  line-height:1.5;
+}
+
+
+.access-modal-footer
+.modal-actions{
+  margin:0;
+
+  flex-shrink:0;
+}
+
+
+.access-cancel-btn{
+  color:#5e574e !important;
+
+  background:#fff !important;
+
+  border:1px solid #dcd4c8 !important;
+}
+
+
+.access-cancel-btn:hover{
+  background:#f3efe9 !important;
+}
+
+
+/* SEM CURSOS */
+
+.access-empty{
+  padding:30px 20px;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+
+  text-align:center;
+
+  border:1px dashed #ddd3c3;
+
+  border-radius:12px;
+
+  background:#faf8f4;
+}
+
+
+.access-empty > div{
+  margin-bottom:8px;
+
+  color:#a67d37;
+
+  font-size:25px;
+}
+
+
+.access-empty strong{
+  color:#454039;
+
+  font-size:12px;
+}
+
+
+.access-empty span{
+  margin-top:4px;
+
+  color:#978f84;
+
+  font-size:10px;
+}
+
+
+/* BOTÃO DESABILITADO */
+
+.access-modal-footer
+.premium-btn:disabled{
+  opacity:.55;
+
+  cursor:not-allowed;
+
+  transform:none;
+}
+
+
+/* CELULAR */
+
+@media(max-width:650px){
+
+  .access-modal-header{
+    padding:22px 20px;
+  }
+
+  .access-student{
+    margin:
+      18px 20px 0;
+  }
+
+  .access-section-title{
+    padding:
+      20px 20px 12px;
+  }
+
+  .access-course-list{
+    padding:
+      0 20px 5px;
+  }
+
+  .access-modal-footer{
+    padding:17px 20px;
+
+    flex-direction:column;
+
+    align-items:stretch;
+  }
+
+  .access-help p{
+    max-width:none;
+  }
+
+  .access-modal-footer
+  .modal-actions{
+    width:100%;
+  }
+
+  .access-modal-footer
+  .modal-actions .btn{
+    flex:1;
+  }
+
+}
