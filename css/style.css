@@ -3071,3 +3071,558 @@ input:checked
   }
 
 }
+/* =====================================================
+   MÓDULOS PREMIUM
+===================================================== */
+
+.premium-modules-list{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+
+.premium-module-card{
+  overflow:hidden;
+
+  background:#fff;
+
+  border:1px solid #e7dfd3;
+
+  border-radius:14px;
+
+  box-shadow:
+    0 6px 20px
+    rgba(54,43,28,.045);
+
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+
+.premium-module-card:hover{
+  border-color:#d7bd8c;
+
+  box-shadow:
+    0 9px 25px
+    rgba(54,43,28,.07);
+}
+
+
+/* =====================================================
+   CABEÇALHO DO MÓDULO
+===================================================== */
+
+.premium-module-header{
+  min-height:76px;
+
+  padding:16px 18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:15px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #faf7f1,
+      #fff
+    );
+
+  border-bottom:1px solid #ece5db;
+}
+
+
+.module-title-area{
+  display:flex;
+  align-items:center;
+
+  gap:13px;
+
+  min-width:0;
+}
+
+
+/* NÚMERO */
+
+.module-number{
+  width:45px;
+  height:45px;
+
+  min-width:45px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f5e8d0,
+      #e8d1a6
+    );
+
+  border:1px solid #e7d3ad;
+
+  color:#8d6728;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:17px;
+
+  font-weight:700;
+}
+
+
+.module-label{
+  display:block;
+
+  margin-bottom:2px;
+
+  color:#a17a36;
+
+  font-size:8px;
+
+  font-weight:700;
+
+  letter-spacing:1.3px;
+}
+
+
+.module-title-area h3{
+  margin:0;
+
+  color:#29251f;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:17px;
+}
+
+
+.module-title-area small{
+  display:block;
+
+  margin-top:3px;
+
+  color:#968e83;
+
+  font-size:9px;
+}
+
+
+/* =====================================================
+   BOTÕES DO MÓDULO
+===================================================== */
+
+.module-actions{
+  display:flex;
+
+  align-items:center;
+
+  gap:6px;
+}
+
+
+.module-action-btn,
+.lesson-action-btn{
+  min-height:33px;
+
+  padding:7px 11px;
+
+  border:1px solid #ddd5c9;
+
+  border-radius:7px;
+
+  background:#fff;
+
+  color:#625a50;
+
+  font-family:
+    "DM Sans",
+    sans-serif;
+
+  font-size:10px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+
+.module-action-btn:hover,
+.lesson-action-btn:hover{
+  color:#805e25;
+
+  border-color:#c8a76c;
+
+  background:#faf5eb;
+}
+
+
+/* EXCLUIR */
+
+.delete-action:hover{
+  color:#a24949 !important;
+
+  border-color:#ddbcbc !important;
+
+  background:#fff8f8 !important;
+}
+
+
+/* =====================================================
+   AULAS
+===================================================== */
+
+.premium-lessons{
+  background:#fff;
+}
+
+
+.premium-lesson-row{
+  min-height:64px;
+
+  padding:12px 18px;
+
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+
+  border-bottom:
+    1px solid #f0ebe4;
+
+  transition:
+    background .2s ease;
+}
+
+
+.premium-lesson-row:last-child{
+  border-bottom:0;
+}
+
+
+.premium-lesson-row:hover{
+  background:#fdfbf8;
+}
+
+
+/* NÚMERO DA AULA */
+
+.lesson-order{
+  width:34px;
+  height:34px;
+
+  min-width:34px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#f4eee4;
+
+  color:#8e7651;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:11px;
+
+  font-weight:700;
+}
+
+
+/* INFORMAÇÕES */
+
+.premium-lesson-info{
+  flex:1;
+
+  min-width:0;
+}
+
+
+.premium-lesson-info > strong{
+  display:block;
+
+  color:#37322c;
+
+  font-size:12px;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+}
+
+
+.lesson-meta{
+  margin-top:5px;
+
+  display:flex;
+  align-items:center;
+
+  flex-wrap:wrap;
+
+  gap:7px;
+
+  color:#958d82;
+
+  font-size:9px;
+}
+
+
+.lesson-meta-dot{
+  width:3px;
+  height:3px;
+
+  border-radius:50%;
+
+  background:#c9c0b4;
+}
+
+
+/* =====================================================
+   STATUS DA AULA
+===================================================== */
+
+.lesson-status{
+  display:inline-flex;
+  align-items:center;
+
+  gap:5px;
+
+  font-weight:600;
+}
+
+
+.lesson-status-dot{
+  width:6px;
+  height:6px;
+
+  border-radius:50%;
+}
+
+
+.lesson-published{
+  color:#62806a;
+}
+
+
+.lesson-published
+.lesson-status-dot{
+  background:#4dbd75;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(77,189,117,.11);
+}
+
+
+.lesson-draft{
+  color:#9a835d;
+}
+
+
+.lesson-draft
+.lesson-status-dot{
+  background:#c7a564;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(199,165,100,.12);
+}
+
+
+/* =====================================================
+   AÇÕES DA AULA
+===================================================== */
+
+.lesson-actions{
+  display:flex;
+
+  gap:6px;
+
+  flex-shrink:0;
+}
+
+
+/* =====================================================
+   MÓDULO SEM AULAS
+===================================================== */
+
+.module-empty-lessons{
+  padding:18px;
+
+  display:flex;
+  align-items:center;
+
+  gap:11px;
+
+  color:#938b80;
+}
+
+
+.empty-small-icon{
+  width:31px;
+  height:31px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:8px;
+
+  background:#f5eee2;
+
+  color:#9a7433;
+
+  font-size:15px;
+}
+
+
+.module-empty-lessons > div{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:2px;
+}
+
+
+.module-empty-lessons strong{
+  color:#625b52;
+
+  font-size:10px;
+}
+
+
+.module-empty-lessons small{
+  color:#a09990;
+
+  font-size:9px;
+}
+
+
+/* =====================================================
+   NENHUM MÓDULO
+===================================================== */
+
+.course-content-empty{
+  padding:30px 20px;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+
+  text-align:center;
+
+  border:1px dashed #dcd2c3;
+
+  border-radius:12px;
+
+  background:#faf8f4;
+}
+
+
+.content-empty-icon{
+  width:42px;
+  height:42px;
+
+  margin-bottom:10px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#efe2ca;
+
+  color:#99712e;
+
+  font-size:19px;
+}
+
+
+.course-content-empty strong{
+  color:#48423a;
+
+  font-size:12px;
+}
+
+
+.course-content-empty span{
+  max-width:280px;
+
+  margin-top:5px;
+
+  color:#989086;
+
+  font-size:10px;
+
+  line-height:1.5;
+}
+
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+
+@media(max-width:650px){
+
+  .premium-module-header{
+    align-items:flex-start;
+
+    flex-direction:column;
+  }
+
+
+  .module-actions{
+    width:100%;
+  }
+
+
+  .module-action-btn{
+    flex:1;
+  }
+
+
+  .premium-lesson-row{
+    flex-wrap:wrap;
+  }
+
+
+  .premium-lesson-info{
+    width:calc(100% - 50px);
+  }
+
+
+  .lesson-actions{
+    width:100%;
+
+    padding-left:46px;
+  }
+
+
+  .lesson-action-btn{
+    flex:1;
+  }
+
+}
