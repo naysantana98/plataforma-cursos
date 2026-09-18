@@ -386,46 +386,85 @@ function renderModules() {
    MOSTRAR AULA
 ===================================== */
 
-function renderLesson(lesson) {
+function renderLesson(
+  lesson,
+  lessonIndex
+) {
+
+  const lessonNumber =
+    String(lessonIndex + 1)
+      .padStart(2, "0");
+
+
+  const duration =
+    Number(
+      lesson.duration_minutes || 0
+    );
+
 
   return `
 
-    <div class="lesson-row">
+    <div class="premium-lesson-row">
 
-      <div>
+
+      <!-- ÍCONE -->
+
+      <div class="lesson-order">
+        ${lessonNumber}
+      </div>
+
+
+      <!-- INFORMAÇÕES -->
+
+      <div class="premium-lesson-info">
 
         <strong>
-          ${escapeHtml(
-            lesson.title
-          )}
+          ${escapeHtml(lesson.title)}
         </strong>
 
-        <small>
 
-          ${
-            lesson.duration_minutes || 0
-          } min ·
+        <div class="lesson-meta">
 
-          ${
-            lesson.published
-              ? "Publicado"
-              : "Rascunho"
-          }
+          <span>
+            ${duration}
+            ${duration === 1 ? "minuto" : "minutos"}
+          </span>
 
-        </small>
+
+          <span class="lesson-meta-dot"></span>
+
+
+          <span class="
+            lesson-status
+            ${
+              lesson.published
+                ? "lesson-published"
+                : "lesson-draft"
+            }
+          ">
+
+            <span class="lesson-status-dot"></span>
+
+            ${
+              lesson.published
+                ? "Publicado"
+                : "Rascunho"
+            }
+
+          </span>
+
+        </div>
 
       </div>
 
 
-      <div class="course-actions">
+      <!-- AÇÕES -->
+
+      <div class="lesson-actions">
 
         <button
           type="button"
-          class="
-            btn
-            btn-outline
-            edit-lesson
-          "
+          class="lesson-action-btn edit-lesson"
           data-id="${lesson.id}"
         >
           Editar
@@ -435,14 +474,12 @@ function renderLesson(lesson) {
         <button
           type="button"
           class="
-            btn
-            btn-outline
+            lesson-action-btn
+            delete-action
             delete-lesson
           "
           data-id="${lesson.id}"
-          data-title="${escapeAttribute(
-            lesson.title
-          )}"
+          data-title="${escapeAttribute(lesson.title)}"
         >
           Excluir
         </button>
@@ -453,8 +490,6 @@ function renderLesson(lesson) {
 
   `;
 }
-
-
 /* =====================================
    BOTÕES
 ===================================== */
