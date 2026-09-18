@@ -221,9 +221,24 @@ function renderModules() {
   if (!currentModules.length) {
 
     modulesBox.innerHTML = `
-      <p class="muted-text">
-        Nenhum módulo cadastrado.
-      </p>
+
+      <div class="course-content-empty">
+
+        <div class="content-empty-icon">
+          ◇
+        </div>
+
+        <strong>
+          Nenhum módulo cadastrado
+        </strong>
+
+        <span>
+          Crie o primeiro módulo para começar
+          a organizar as aulas deste curso.
+        </span>
+
+      </div>
+
     `;
 
     return;
@@ -232,7 +247,7 @@ function renderModules() {
 
   modulesBox.innerHTML =
     currentModules
-      .map(module => {
+      .map((module, moduleIndex) => {
 
         const lessons =
           [...(module.lessons || [])]
@@ -243,28 +258,55 @@ function renderModules() {
             );
 
 
+        const moduleNumber =
+          String(moduleIndex + 1)
+            .padStart(2, "0");
+
+
         return `
 
-          <div class="module">
+          <div class="premium-module-card">
 
-            <div class="module-head">
+            <!-- CABEÇALHO DO MÓDULO -->
 
-              <strong>
-                ${escapeHtml(
-                  module.title
-                )}
-              </strong>
+            <div class="premium-module-header">
+
+              <div class="module-title-area">
+
+                <div class="module-number">
+                  ${moduleNumber}
+                </div>
 
 
-              <div class="course-actions">
+                <div>
+
+                  <span class="module-label">
+                    MÓDULO ${moduleNumber}
+                  </span>
+
+                  <h3>
+                    ${escapeHtml(module.title)}
+                  </h3>
+
+                  <small>
+                    ${lessons.length}
+                    ${
+                      lessons.length === 1
+                        ? "aula"
+                        : "aulas"
+                    }
+                  </small>
+
+                </div>
+
+              </div>
+
+
+              <div class="module-actions">
 
                 <button
                   type="button"
-                  class="
-                    btn
-                    btn-outline
-                    edit-module
-                  "
+                  class="module-action-btn edit-module"
                   data-id="${module.id}"
                 >
                   Editar
@@ -273,15 +315,9 @@ function renderModules() {
 
                 <button
                   type="button"
-                  class="
-                    btn
-                    btn-outline
-                    delete-module
-                  "
+                  class="module-action-btn delete-action delete-module"
                   data-id="${module.id}"
-                  data-title="${escapeAttribute(
-                    module.title
-                  )}"
+                  data-title="${escapeAttribute(module.title)}"
                 >
                   Excluir
                 </button>
@@ -291,28 +327,50 @@ function renderModules() {
             </div>
 
 
-            ${
-              lessons.length
-                ? lessons
-                    .map(
-                      lesson =>
-                        renderLesson(
-                          lesson
-                        )
-                    )
-                    .join("")
-                : `
+            <!-- AULAS -->
 
-                  <div class="lesson-row">
+            <div class="premium-lessons">
 
-                    <small>
-                      Nenhuma aula neste módulo.
-                    </small>
+              ${
+                lessons.length
 
-                  </div>
+                  ? lessons
+                      .map(
+                        (lesson, lessonIndex) =>
+                          renderLesson(
+                            lesson,
+                            lessonIndex
+                          )
+                      )
+                      .join("")
 
-                `
-            }
+                  : `
+
+                    <div class="module-empty-lessons">
+
+                      <span class="empty-small-icon">
+                        ＋
+                      </span>
+
+                      <div>
+
+                        <strong>
+                          Nenhuma aula neste módulo
+                        </strong>
+
+                        <small>
+                          Use o formulário "Nova aula"
+                          para adicionar conteúdo.
+                        </small>
+
+                      </div>
+
+                    </div>
+
+                  `
+              }
+
+            </div>
 
           </div>
 
@@ -324,8 +382,6 @@ function renderModules() {
 
   activateButtons();
 }
-
-
 /* =====================================
    MOSTRAR AULA
 ===================================== */
