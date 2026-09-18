@@ -5,142 +5,476 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <title>Gerenciar curso</title>
+  <title>Gerenciar curso | Academia Online</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet"
+  >
 
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
 
-<header class="topbar">
+<body class="admin-premium course-manager-page">
 
-  <a class="brand" href="index.html">
-    Academia<span>Online</span>
-  </a>
-
-  <nav>
-    <a href="admin.html">Admin</a>
-
-    <button
-      id="logout"
-      class="btn btn-outline"
-      type="button"
-    >
-      Sair
-    </button>
-  </nav>
-
-</header>
+<div class="admin-layout">
 
 
-<main class="dashboard">
+  <!-- =====================================
+       MENU LATERAL
+  ====================================== -->
 
-  <div id="course"></div>
+  <aside class="admin-sidebar">
 
+    <div class="sidebar-logo">
 
-  <section class="admin-grid">
+      <div class="sidebar-logo-icon">
+        ◇
+      </div>
 
-    <!-- MÓDULOS -->
-
-    <div class="panel">
-
-      <h2>Novo módulo</h2>
-
-      <form id="moduleForm">
-
-        <input
-          id="moduleTitle"
-          placeholder="Nome do módulo"
-          required
+      <div>
+        <a
+          class="brand premium-brand"
+          href="index.html"
         >
-
-        <button
-          class="btn"
-          type="submit"
-        >
-          Adicionar módulo
-        </button>
-
-      </form>
-
-
-      <div id="modules"></div>
+          Academia<span>Online</span>
+        </a>
+      </div>
 
     </div>
 
 
-    <!-- AULAS -->
+    <nav class="sidebar-menu">
 
-    <div class="panel">
-
-      <h2>Nova aula</h2>
-
-      <form id="lessonForm">
-
-        <select
-          id="moduleSelect"
-          required
-        ></select>
+      <a
+        href="admin.html"
+        class="sidebar-link"
+      >
+        <span class="sidebar-icon">⌂</span>
+        Dashboard
+      </a>
 
 
-        <input
-          id="lessonTitle"
-          placeholder="Título da aula"
-          required
-        >
+      <a
+        href="admin.html#cursos"
+        class="sidebar-link active"
+      >
+        <span class="sidebar-icon">▣</span>
+        Cursos
+      </a>
 
 
-        <textarea
-          id="lessonDescription"
-          placeholder="Descrição"
-        ></textarea>
+      <a
+        href="admin.html#alunos"
+        class="sidebar-link"
+      >
+        <span class="sidebar-icon">♙</span>
+        Alunos
+      </a>
 
 
-        <input
-          id="videoUrl"
-          placeholder="URL do vídeo"
-        >
+      <a
+        href="aluno.html"
+        class="sidebar-link"
+      >
+        <span class="sidebar-icon">▷</span>
+        Área do aluno
+      </a>
+
+    </nav>
+
+  </aside>
 
 
-        <input
-          id="materialUrl"
-          placeholder="URL do material"
-        >
+
+  <!-- =====================================
+       CONTEÚDO
+  ====================================== -->
+
+  <div class="admin-content">
 
 
-        <input
-          id="duration"
-          type="number"
-          min="0"
-          placeholder="Duração em minutos"
-        >
+    <!-- TOPO -->
+
+    <header class="admin-topbar">
+
+      <div class="course-topbar-back">
+
+        <a href="admin.html">
+          ← Voltar ao painel
+        </a>
+
+      </div>
+
+
+      <div class="admin-user">
+
+        <div class="admin-avatar">
+          A
+        </div>
+
+        <div class="admin-user-info">
+
+          <strong>
+            Administrador
+          </strong>
+
+          <span>
+            Gestão de conteúdo
+          </span>
+
+        </div>
 
 
         <button
-          class="btn"
-          type="submit"
+          id="logout"
+          class="admin-logout"
+          type="button"
         >
-          Adicionar aula
+          Sair
         </button>
 
-      </form>
+      </div>
 
-    </div>
-
-  </section>
+    </header>
 
 
-  <div
-    id="message"
-    class="message"
-  ></div>
 
-</main>
+    <!-- =====================================
+         CONTEÚDO PRINCIPAL
+    ====================================== -->
+
+    <main class="premium-dashboard course-manager-dashboard">
 
 
-<!-- =================================
+      <!-- CABEÇALHO DO CURSO -->
+
+      <section class="course-manager-heading">
+
+        <div class="course-heading-icon">
+          ◇
+        </div>
+
+
+        <div
+          id="course"
+          class="course-heading-content"
+        ></div>
+
+      </section>
+
+
+
+      <!-- =====================================
+           GRID
+      ====================================== -->
+
+      <section class="course-manager-grid">
+
+
+        <!-- ================================
+             MÓDULOS
+        ================================= -->
+
+        <div class="premium-panel module-manager-panel">
+
+
+          <div class="premium-panel-header">
+
+            <div>
+
+              <span class="premium-eyebrow">
+                ESTRUTURA
+              </span>
+
+              <h2>
+                Módulos
+              </h2>
+
+              <p>
+                Organize o conteúdo do curso em módulos.
+              </p>
+
+            </div>
+
+
+            <div class="panel-icon">
+              ▣
+            </div>
+
+          </div>
+
+
+
+          <!-- NOVO MÓDULO -->
+
+          <div class="manager-create-box">
+
+            <div class="create-box-header">
+
+              <div class="create-icon">
+                +
+              </div>
+
+              <div>
+
+                <h3>
+                  Novo módulo
+                </h3>
+
+                <p>
+                  Adicione uma nova etapa ao curso.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <form
+              id="moduleForm"
+              class="premium-form"
+            >
+
+              <div class="form-group">
+
+                <label for="moduleTitle">
+                  Nome do módulo
+                </label>
+
+                <input
+                  id="moduleTitle"
+                  placeholder="Ex.: Introdução"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-footer">
+
+                <button
+                  class="btn premium-btn"
+                  type="submit"
+                >
+                  <span>＋</span>
+                  Adicionar módulo
+                </button>
+
+              </div>
+
+            </form>
+
+          </div>
+
+
+
+          <div class="section-divider">
+            <span>MÓDULOS DO CURSO</span>
+          </div>
+
+
+          <!-- JS INSERE OS MÓDULOS AQUI -->
+
+          <div
+            id="modules"
+            class="premium-modules-list"
+          ></div>
+
+        </div>
+
+
+
+        <!-- ================================
+             AULAS
+        ================================= -->
+
+        <div class="premium-panel lesson-manager-panel">
+
+
+          <div class="premium-panel-header">
+
+            <div>
+
+              <span class="premium-eyebrow">
+                CONTEÚDO
+              </span>
+
+              <h2>
+                Nova aula
+              </h2>
+
+              <p>
+                Adicione vídeos e materiais aos módulos.
+              </p>
+
+            </div>
+
+
+            <div class="panel-icon">
+              ▷
+            </div>
+
+          </div>
+
+
+
+          <form
+            id="lessonForm"
+            class="premium-form lesson-create-form"
+          >
+
+
+            <div class="form-group">
+
+              <label for="moduleSelect">
+                Módulo
+              </label>
+
+              <select
+                id="moduleSelect"
+                required
+              ></select>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+              <label for="lessonTitle">
+                Título da aula
+              </label>
+
+              <input
+                id="lessonTitle"
+                placeholder="Ex.: Bem-vindo ao curso"
+                required
+              >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+              <label for="lessonDescription">
+                Descrição
+              </label>
+
+              <textarea
+                id="lessonDescription"
+                rows="4"
+                placeholder="Descreva o conteúdo desta aula..."
+              ></textarea>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+              <label for="videoUrl">
+                URL do vídeo
+              </label>
+
+              <input
+                id="videoUrl"
+                placeholder="https://..."
+              >
+
+              <small class="field-help">
+                Informe o endereço do vídeo da aula.
+              </small>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+              <label for="materialUrl">
+                URL do material
+              </label>
+
+              <input
+                id="materialUrl"
+                placeholder="https://..."
+              >
+
+              <small class="field-help">
+                Opcional — PDF, apostila ou material complementar.
+              </small>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+              <label for="duration">
+                Duração
+              </label>
+
+              <div class="duration-input">
+
+                <input
+                  id="duration"
+                  type="number"
+                  min="0"
+                  placeholder="0"
+                >
+
+                <span>
+                  minutos
+                </span>
+
+              </div>
+
+            </div>
+
+
+
+            <div class="form-footer">
+
+              <button
+                class="btn premium-btn"
+                type="submit"
+              >
+                <span>＋</span>
+                Adicionar aula
+              </button>
+
+            </div>
+
+          </form>
+
+        </div>
+
+      </section>
+
+
+
+      <div
+        id="message"
+        class="message premium-message"
+      ></div>
+
+    </main>
+
+  </div>
+
+</div>
+
+
+
+<!-- =================================================
      MODAL EDITAR MÓDULO
-================================= -->
+================================================= -->
 
 <div
   id="editModuleModal"
@@ -148,18 +482,24 @@
   style="display:none;"
 >
 
-  <div class="modal-content">
+  <div class="modal-content premium-modal course-edit-modal">
 
-    <div class="modal-header">
+    <div class="modal-header premium-modal-header">
 
       <div>
-        <span class="eyebrow">
+
+        <span class="premium-eyebrow">
           MÓDULO
         </span>
 
         <h2>
           Editar módulo
         </h2>
+
+        <p>
+          Atualize o nome deste módulo.
+        </p>
+
       </div>
 
 
@@ -174,7 +514,10 @@
     </div>
 
 
-    <form id="editModuleForm">
+    <form
+      id="editModuleForm"
+      class="premium-form"
+    >
 
       <input
         id="editModuleId"
@@ -182,28 +525,36 @@
       >
 
 
-      <label class="form-label">
-        Nome do módulo
-      </label>
+      <div class="form-group">
 
-      <input
-        id="editModuleTitle"
-        required
-      >
+        <label
+          class="form-label"
+          for="editModuleTitle"
+        >
+          Nome do módulo
+        </label>
+
+        <input
+          id="editModuleTitle"
+          required
+        >
+
+      </div>
 
 
       <div class="modal-actions">
 
         <button
           id="cancelModuleEdit"
-          class="btn btn-outline"
+          class="btn btn-outline premium-cancel"
           type="button"
         >
           Cancelar
         </button>
 
+
         <button
-          class="btn"
+          class="btn premium-btn"
           type="submit"
         >
           Salvar alterações
@@ -218,9 +569,10 @@
 </div>
 
 
-<!-- =================================
+
+<!-- =================================================
      MODAL EDITAR AULA
-================================= -->
+================================================= -->
 
 <div
   id="editLessonModal"
@@ -228,19 +580,23 @@
   style="display:none;"
 >
 
-  <div class="modal-content edit-modal-content">
+  <div class="modal-content premium-modal lesson-edit-modal">
 
-    <div class="modal-header">
+    <div class="modal-header premium-modal-header">
 
       <div>
 
-        <span class="eyebrow">
+        <span class="premium-eyebrow">
           AULA
         </span>
 
         <h2>
           Editar aula
         </h2>
+
+        <p>
+          Atualize o conteúdo e as configurações da aula.
+        </p>
 
       </div>
 
@@ -256,7 +612,10 @@
     </div>
 
 
-    <form id="editLessonForm">
+    <form
+      id="editLessonForm"
+      class="premium-form"
+    >
 
       <input
         id="editLessonId"
@@ -264,91 +623,151 @@
       >
 
 
-      <label class="form-label">
-        Módulo
-      </label>
+      <div class="form-group">
 
-      <select
-        id="editLessonModule"
-        required
-      ></select>
+        <label
+          class="form-label"
+          for="editLessonModule"
+        >
+          Módulo
+        </label>
 
+        <select
+          id="editLessonModule"
+          required
+        ></select>
 
-      <label class="form-label">
-        Título da aula
-      </label>
-
-      <input
-        id="editLessonTitle"
-        required
-      >
+      </div>
 
 
-      <label class="form-label">
-        Descrição
-      </label>
 
-      <textarea
-        id="editLessonDescription"
-        rows="4"
-      ></textarea>
+      <div class="form-group">
 
+        <label
+          class="form-label"
+          for="editLessonTitle"
+        >
+          Título da aula
+        </label>
 
-      <label class="form-label">
-        URL do vídeo
-      </label>
+        <input
+          id="editLessonTitle"
+          required
+        >
 
-      <input
-        id="editVideoUrl"
-      >
-
-
-      <label class="form-label">
-        URL do material
-      </label>
-
-      <input
-        id="editMaterialUrl"
-      >
+      </div>
 
 
-      <label class="form-label">
-        Duração em minutos
-      </label>
 
-      <input
-        id="editDuration"
-        type="number"
-        min="0"
-      >
+      <div class="form-group">
+
+        <label
+          class="form-label"
+          for="editLessonDescription"
+        >
+          Descrição
+        </label>
+
+        <textarea
+          id="editLessonDescription"
+          rows="4"
+        ></textarea>
+
+      </div>
 
 
-      <label class="publish-option">
+
+      <div class="form-group">
+
+        <label
+          class="form-label"
+          for="editVideoUrl"
+        >
+          URL do vídeo
+        </label>
+
+        <input
+          id="editVideoUrl"
+        >
+
+      </div>
+
+
+
+      <div class="form-group">
+
+        <label
+          class="form-label"
+          for="editMaterialUrl"
+        >
+          URL do material
+        </label>
+
+        <input
+          id="editMaterialUrl"
+        >
+
+      </div>
+
+
+
+      <div class="form-group">
+
+        <label
+          class="form-label"
+          for="editDuration"
+        >
+          Duração em minutos
+        </label>
+
+        <input
+          id="editDuration"
+          type="number"
+          min="0"
+        >
+
+      </div>
+
+
+
+      <label class="premium-publish-option">
 
         <input
           id="editPublished"
           type="checkbox"
         >
 
-        <span>
-          Aula publicada
-        </span>
+        <span class="publish-switch"></span>
+
+        <div>
+
+          <strong>
+            Aula publicada
+          </strong>
+
+          <small>
+            Quando ativada, esta aula fica disponível para os alunos.
+          </small>
+
+        </div>
 
       </label>
+
 
 
       <div class="modal-actions">
 
         <button
           id="cancelLessonEdit"
-          class="btn btn-outline"
+          class="btn btn-outline premium-cancel"
           type="button"
         >
           Cancelar
         </button>
 
+
         <button
-          class="btn"
+          class="btn premium-btn"
           type="submit"
         >
           Salvar alterações
@@ -363,12 +782,11 @@
 </div>
 
 
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script src="js/config.js"></script>
-
 <script src="js/admin-curso.js"></script>
 
 </body>
-
 </html>
