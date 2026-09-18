@@ -1028,8 +1028,27 @@ async function(
    ACESSOS DO ALUNO
 ======================== */
 
-window.manageAccess =
-async function(studentId) {
+window.manageAccess = async function(studentId) {
+
+  /* BUSCAR ALUNO */
+
+  const {
+    data: student,
+    error: studentError
+  } = await adminSb
+    .from("profiles")
+    .select("full_name")
+    .eq("id", studentId)
+    .single();
+
+
+  if (studentError) {
+    alert(studentError.message);
+    return;
+  }
+
+
+  /* BUSCAR CURSOS */
 
   const {
     data: courses,
@@ -1041,129 +1060,256 @@ async function(studentId) {
 
 
   if (coursesError) {
-
-    alert(
-      coursesError.message
-    );
-
+    alert(coursesError.message);
     return;
   }
 
+
+  /* BUSCAR ACESSOS ATUAIS */
 
   const {
     data: enrollments,
     error: enrollmentsError
   } = await adminSb
     .from("enrollments")
-    .select(
-      "id, course_id, status"
-    )
-    .eq(
-      "user_id",
-      studentId
-    );
+    .select("id, course_id, status")
+    .eq("user_id", studentId);
 
 
   if (enrollmentsError) {
-
-    alert(
-      enrollmentsError.message
-    );
-
+    alert(enrollmentsError.message);
     return;
   }
 
 
-  let html = `
-
-    <h3>
-      Gerenciar acessos
-    </h3>
-
-    <p>
-      Marque os cursos que este aluno poderá acessar.
-    </p>
-
-  `;
+  const studentName =
+    student?.full_name || "Aluno";
 
 
-  courses.forEach(course => {
-
-    const active =
-      enrollments?.find(
-        enrollment =>
-
-          enrollment.course_id ===
-            course.id
-
-          &&
-
-          enrollment.status ===
-            "active"
-      );
+  const initial =
+    studentName
+      .trim()
+      .charAt(0)
+      .toUpperCase() || "A";
 
 
-    html += `
-
-      <label class="access-option">
-
-        <input
-          type="checkbox"
-          value="${course.id}"
-          ${active ? "checked" : ""}
-        >
-
-        <span>
-          ${escapeHtml(
-            course.title
-          )}
-        </span>
-
-      </label>
-
-    `;
-
-  });
-
-
-  html += `
-
-    <div class="modal-actions">
-
-      <button
-        id="cancelAccess"
-        type="button"
-        class="btn btn-outline"
-      >
-        Cancelar
-      </button>
-
-      <button
-        id="saveAccess"
-        type="button"
-        class="btn"
-      >
-        Salvar acessos
-      </button>
-
-    </div>
-
-  `;
-
+  /* CRIAR MODAL */
 
   const box =
     document.createElement("div");
 
-
   box.className =
-    "modal";
+    "modal access-premium-modal";
 
 
   box.innerHTML = `
 
-    <div class="modal-content">
+    <div class="modal-content access-modal-content">
 
-      ${html}
+      <!-- CABEÇALHO -->
+
+      <div class="access-modal-header">
+
+        <div class="access-header-main">
+
+          <div class="access-modal-icon">
+            ◇
+          </div>
+
+          <div>
+
+            <span class="premium-eyebrow">
+              PERMISSÕES
+            </span>
+
+            <h2>
+              Gerenciar acessos
+            </h2>
+
+            <p>
+              Defina quais cursos este aluno poderá acessar.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <button
+          type="button"
+          id="closeAccess"
+          class="modal-close"
+          aria-label="Fechar"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <!-- ALUNO -->
+
+      <div class="access-student">
+
+        <div class="access-student-avatar">
+          ${escapeHtml(initial)}
+        </div>
+
+        <div>
+
+          <span>ALUNO</span>
+
+          <strong>
+            ${escapeHtml(studentName)}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- CURSOS -->
+
+      <div class="access-section-title">
+
+        <div>
+          <strong>Cursos disponíveis</strong>
+
+          <span>
+            Selecione os cursos liberados para este aluno.
+          </span>
+        </div>
+
+        <small>
+          ${courses.length}
+          ${courses.length === 1 ? "curso" : "cursos"}
+        </small>
+
+      </div>
+
+
+      <div class="access-course-list">
+
+        ${
+          courses.length
+            ? courses.map(course => {
+
+                const active =
+                  enrollments?.find(
+                    enrollment =>
+                      enrollment.course_id === course.id &&
+                      enrollment.status === "active"
+                  );
+
+                return `
+
+                  <label class="premium-access-option">
+
+                    <div class="access-course-left">
+
+                      <div class="access-course-icon">
+                        ◫
+                      </div>
+
+                      <div class="access-course-info">
+
+                        <strong>
+                          ${escapeHtml(course.title)}
+                        </strong>
+
+                        <span>
+                          ${
+                            active
+                              ? "Acesso liberado"
+                              : "Sem acesso"
+                          }
+                        </span>
+
+                      </div>
+
+                    </div>
+
+
+                    <div class="premium-checkbox">
+
+                      <input
+                        type="checkbox"
+                        value="${course.id}"
+                        ${active ? "checked" : ""}
+                      >
+
+                      <span class="checkmark">
+                        ✓
+                      </span>
+
+                    </div>
+
+                  </label>
+
+                `;
+
+              }).join("")
+
+            : `
+
+              <div class="access-empty">
+
+                <div>◇</div>
+
+                <strong>
+                  Nenhum curso cadastrado
+                </strong>
+
+                <span>
+                  Cadastre um curso antes de liberar acessos.
+                </span>
+
+              </div>
+
+            `
+        }
+
+      </div>
+
+
+      <!-- RODAPÉ -->
+
+      <div class="access-modal-footer">
+
+        <div class="access-help">
+
+          <span>ⓘ</span>
+
+          <p>
+            As alterações serão aplicadas
+            imediatamente à área do aluno.
+          </p>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+          <button
+            id="cancelAccess"
+            type="button"
+            class="btn access-cancel-btn"
+          >
+            Cancelar
+          </button>
+
+          <button
+            id="saveAccess"
+            type="button"
+            class="btn premium-btn"
+            ${courses.length ? "" : "disabled"}
+          >
+            Salvar acessos
+          </button>
+
+        </div>
+
+      </div>
 
     </div>
 
@@ -1173,43 +1319,119 @@ async function(studentId) {
   document.body.appendChild(box);
 
 
-  const close =
-    () => box.remove();
+  /* FECHAR */
+
+  const close = () => {
+    box.remove();
+  };
 
 
-  $("#cancelAccess").onclick =
-    close;
+  box
+    .querySelector("#closeAccess")
+    .onclick = close;
 
 
-  box.onclick =
-    event => {
+  box
+    .querySelector("#cancelAccess")
+    .onclick = close;
 
-      if (
-        event.target === box
-      ) {
 
-        close();
+  box.onclick = event => {
+
+    if (event.target === box) {
+      close();
+    }
+
+  };
+
+
+  /* ATUALIZAR TEXTO AO MARCAR */
+
+  box
+    .querySelectorAll(
+      '.premium-access-option input[type="checkbox"]'
+    )
+    .forEach(checkbox => {
+
+      checkbox.addEventListener(
+        "change",
+        () => {
+
+          const option =
+            checkbox.closest(
+              ".premium-access-option"
+            );
+
+          const status =
+            option.querySelector(
+              ".access-course-info span"
+            );
+
+
+          if (checkbox.checked) {
+
+            option.classList.add(
+              "selected"
+            );
+
+            status.textContent =
+              "Acesso liberado";
+
+          } else {
+
+            option.classList.remove(
+              "selected"
+            );
+
+            status.textContent =
+              "Sem acesso";
+
+          }
+
+        }
+      );
+
+
+      if (checkbox.checked) {
+
+        checkbox
+          .closest(
+            ".premium-access-option"
+          )
+          .classList.add(
+            "selected"
+          );
 
       }
 
-    };
+    });
 
 
-  $("#saveAccess").onclick =
-  async () => {
+  /* SALVAR */
 
-    const checkboxes =
-      [
-        ...box.querySelectorAll(
-          'input[type="checkbox"]'
-        )
-      ];
+  const saveButton =
+    box.querySelector("#saveAccess");
 
 
-    for (
-      const checkbox
-      of checkboxes
-    ) {
+  if (!saveButton) return;
+
+
+  saveButton.onclick = async () => {
+
+    const checkboxes = [
+      ...box.querySelectorAll(
+        '.premium-access-option input[type="checkbox"]'
+      )
+    ];
+
+
+    saveButton.disabled = true;
+
+    saveButton.textContent =
+      "Salvando...";
+
+
+    for (const checkbox of checkboxes) {
 
       const courseId =
         checkbox.value;
@@ -1223,80 +1445,82 @@ async function(studentId) {
         );
 
 
-      if (
-        checkbox.checked
-      ) {
+      /* CURSO MARCADO */
+
+      if (checkbox.checked) {
 
         if (enrollment) {
 
-          const {
-            error
-          } = await adminSb
-            .from("enrollments")
-            .update({
-
-              status:
-                "active"
-
-            })
-            .eq(
-              "id",
-              enrollment.id
-            );
+          const { error } =
+            await adminSb
+              .from("enrollments")
+              .update({
+                status: "active"
+              })
+              .eq(
+                "id",
+                enrollment.id
+              );
 
 
           if (error) {
 
-            alert(
-              error.message
-            );
+            alert(error.message);
+
+            saveButton.disabled =
+              false;
+
+            saveButton.textContent =
+              "Salvar acessos";
 
             return;
           }
 
         } else {
 
-          const {
-            error
-          } = await adminSb
-            .from("enrollments")
-            .insert({
+          const { error } =
+            await adminSb
+              .from("enrollments")
+              .insert({
 
-              user_id:
-                studentId,
+                user_id:
+                  studentId,
 
-              course_id:
-                courseId,
+                course_id:
+                  courseId,
 
-              status:
-                "active"
+                status:
+                  "active"
 
-            });
+              });
 
 
           if (error) {
 
-            alert(
-              error.message
-            );
+            alert(error.message);
+
+            saveButton.disabled =
+              false;
+
+            saveButton.textContent =
+              "Salvar acessos";
 
             return;
           }
+
         }
 
-      } else {
+      }
 
-        if (enrollment) {
+      /* CURSO DESMARCADO */
 
-          const {
-            error
-          } = await adminSb
+      else if (enrollment) {
+
+        const { error } =
+          await adminSb
             .from("enrollments")
             .update({
-
-              status:
-                "inactive"
-
+              status: "inactive"
             })
             .eq(
               "id",
@@ -1304,31 +1528,34 @@ async function(studentId) {
             );
 
 
-          if (error) {
+        if (error) {
 
-            alert(
-              error.message
-            );
+          alert(error.message);
 
-            return;
-          }
+          saveButton.disabled =
+            false;
+
+          saveButton.textContent =
+            "Salvar acessos";
+
+          return;
         }
+
       }
+
     }
 
 
     close();
 
-
     message.textContent =
-      "Acessos atualizados com sucesso!";
-
+      `Acessos de ${studentName} atualizados com sucesso!`;
 
     await load();
+
   };
+
 };
-
-
 /* ========================
    LOGOUT
 ======================== */
