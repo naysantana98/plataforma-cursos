@@ -2547,3 +2547,527 @@ input:checked + .checkmark{
   }
 
 }
+/* =====================================================
+   GERENCIAR CURSO - PREMIUM
+===================================================== */
+
+.course-manager-page{
+  background:#f7f4ef;
+}
+
+
+/* VOLTAR */
+
+.course-topbar-back{
+  margin-right:auto;
+}
+
+.course-topbar-back a{
+  display:inline-flex;
+  align-items:center;
+
+  color:#756d63;
+
+  text-decoration:none;
+
+  font-size:13px;
+  font-weight:600;
+
+  transition:.2s;
+}
+
+.course-topbar-back a:hover{
+  color:#a77b32;
+}
+
+
+/* =====================================================
+   CABEÇALHO DO CURSO
+===================================================== */
+
+.course-manager-heading{
+  min-height:115px;
+
+  margin-bottom:24px;
+  padding:25px 28px;
+
+  display:flex;
+  align-items:center;
+
+  gap:18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #24211d,
+      #171614
+    );
+
+  border-radius:18px;
+
+  box-shadow:
+    0 12px 35px
+    rgba(28,23,17,.12);
+
+  overflow:hidden;
+  position:relative;
+}
+
+
+.course-manager-heading::after{
+  content:"";
+
+  width:210px;
+  height:210px;
+
+  position:absolute;
+
+  right:-80px;
+  top:-100px;
+
+  border-radius:50%;
+
+  border:1px solid
+    rgba(210,174,103,.17);
+}
+
+
+.course-heading-icon{
+  width:62px;
+  height:62px;
+
+  min-width:62px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:15px;
+
+  color:#e2bd72;
+
+  background:
+    rgba(211,174,102,.12);
+
+  border:
+    1px solid
+    rgba(211,174,102,.25);
+
+  font-size:27px;
+}
+
+
+.course-heading-content{
+  position:relative;
+  z-index:2;
+}
+
+
+/*
+O admin-curso.js já gera
+eyebrow, h1 e descrição dentro de #course
+*/
+
+.course-heading-content .eyebrow{
+  color:#d3ad64;
+}
+
+.course-heading-content h1{
+  margin:3px 0 5px;
+
+  color:#fff;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:31px;
+}
+
+.course-heading-content p{
+  margin:0;
+
+  color:#bdb7af;
+
+  font-size:13px;
+}
+
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.course-manager-grid{
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1.1fr)
+    minmax(360px,.9fr);
+
+  gap:22px;
+
+  align-items:start;
+}
+
+
+/* =====================================================
+   CAIXA NOVO MÓDULO
+===================================================== */
+
+.manager-create-box{
+  padding:19px;
+
+  background:#faf8f4;
+
+  border:1px solid #eae3d8;
+
+  border-radius:13px;
+}
+
+
+/* =====================================================
+   SELECTS
+===================================================== */
+
+.course-manager-page
+.premium-form select{
+  width:100%;
+
+  box-sizing:border-box;
+
+  padding:12px 38px 12px 14px;
+
+  border:1px solid #ded9d0;
+
+  border-radius:9px;
+
+  outline:none;
+
+  background:#fff;
+
+  color:#292621;
+
+  font-family:"DM Sans",sans-serif;
+
+  font-size:13px;
+}
+
+
+.course-manager-page
+.premium-form select:focus{
+  border-color:#b58a42;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(181,138,66,.12);
+}
+
+
+/* =====================================================
+   AJUDA DOS CAMPOS
+===================================================== */
+
+.field-help{
+  margin-top:1px;
+
+  color:#9b9389;
+
+  font-size:10px;
+
+  line-height:1.4;
+}
+
+
+/* =====================================================
+   DURAÇÃO
+===================================================== */
+
+.duration-input{
+  display:flex;
+  align-items:center;
+
+  border:1px solid #ded9d0;
+
+  border-radius:9px;
+
+  background:#fff;
+
+  overflow:hidden;
+}
+
+
+.duration-input input{
+  flex:1;
+
+  border:0 !important;
+
+  border-radius:0 !important;
+
+  box-shadow:none !important;
+}
+
+
+.duration-input span{
+  padding:0 14px;
+
+  color:#8b8175;
+
+  font-size:11px;
+
+  border-left:
+    1px solid #e5ded4;
+}
+
+
+/* =====================================================
+   LISTA DE MÓDULOS GERADA PELO JS
+===================================================== */
+
+.premium-modules-list{
+  display:flex;
+  flex-direction:column;
+
+  gap:12px;
+}
+
+
+.course-manager-page .module{
+  overflow:hidden;
+
+  background:#fff;
+
+  border:1px solid #e8e1d6;
+
+  border-radius:13px;
+
+  box-shadow:
+    0 5px 18px
+    rgba(52,42,28,.04);
+}
+
+
+.course-manager-page .module-head{
+  padding:14px 16px;
+
+  background:#faf7f1;
+
+  border-bottom:1px solid #ebe4d9;
+
+  color:#332e28;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:16px;
+}
+
+
+/* AULAS DENTRO DO MÓDULO */
+
+.course-manager-page .lesson-row{
+  padding:13px 16px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:12px;
+
+  border-bottom:
+    1px solid #f0ebe4;
+}
+
+
+.course-manager-page
+.lesson-row:last-child{
+  border-bottom:0;
+}
+
+
+.course-manager-page
+.lesson-row b{
+  color:#35312c;
+
+  font-size:12px;
+}
+
+
+.course-manager-page
+.lesson-row small{
+  display:block;
+
+  margin-top:3px;
+
+  color:#938b81;
+
+  font-size:10px;
+}
+
+
+/* =====================================================
+   MODAIS DE MÓDULO E AULA
+===================================================== */
+
+.course-edit-modal{
+  width:480px;
+}
+
+
+.lesson-edit-modal{
+  width:590px;
+
+  max-height:90vh;
+
+  overflow-y:auto;
+}
+
+
+/* =====================================================
+   PUBLICAR AULA
+===================================================== */
+
+.premium-publish-option{
+  margin-top:7px;
+  padding:14px;
+
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+
+  border:1px solid #e5ded3;
+
+  border-radius:11px;
+
+  background:#faf8f4;
+
+  cursor:pointer;
+}
+
+
+.premium-publish-option
+input{
+  position:absolute;
+
+  opacity:0;
+
+  pointer-events:none;
+}
+
+
+.publish-switch{
+  width:42px;
+  height:23px;
+
+  flex-shrink:0;
+
+  position:relative;
+
+  border-radius:20px;
+
+  background:#d8d3cb;
+
+  transition:.25s;
+}
+
+
+.publish-switch::after{
+  content:"";
+
+  width:17px;
+  height:17px;
+
+  position:absolute;
+
+  left:3px;
+  top:3px;
+
+  border-radius:50%;
+
+  background:#fff;
+
+  box-shadow:
+    0 2px 5px
+    rgba(0,0,0,.18);
+
+  transition:.25s;
+}
+
+
+.premium-publish-option
+input:checked + .publish-switch{
+  background:
+    linear-gradient(
+      135deg,
+      #a77b32,
+      #caa359
+    );
+}
+
+
+.premium-publish-option
+input:checked
++ .publish-switch::after{
+  transform:
+    translateX(19px);
+}
+
+
+.premium-publish-option > div{
+  display:flex;
+  flex-direction:column;
+
+  gap:2px;
+}
+
+
+.premium-publish-option strong{
+  color:#403a33;
+
+  font-size:12px;
+}
+
+
+.premium-publish-option small{
+  color:#948c82;
+
+  font-size:10px;
+}
+
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+
+@media(max-width:1050px){
+
+  .course-manager-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+
+@media(max-width:780px){
+
+  .course-manager-heading{
+    padding:20px;
+  }
+
+  .course-heading-icon{
+    width:50px;
+    height:50px;
+
+    min-width:50px;
+  }
+
+  .course-heading-content h1{
+    font-size:25px;
+  }
+
+  .course-topbar-back{
+    display:none;
+  }
+
+}
