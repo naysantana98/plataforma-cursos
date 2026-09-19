@@ -35,8 +35,11 @@ textarea,select{padding:13px;border:1px solid #d9dfe7;border-radius:9px;font:inh
 .modal-header{
   display:flex;
   justify-content:space-between;
+  align-items:flex-start;
+  gap:20px;
+}
 
-    /* =====================================================
+/* =====================================================
    CURSOS CADASTRADOS - PREMIUM
 ===================================================== */
 
@@ -581,8 +584,6 @@ textarea,select{padding:13px;border:1px solid #d9dfe7;border-radius:9px;font:inh
   gap:20px;
   margin-bottom:20px;
 }
-
-.modal-header h2{
 
 .modal-header h2{
   margin:4px 0 0;
