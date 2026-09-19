@@ -3837,3 +3837,59 @@ body{
   }
 
 }
+/* =====================================================
+   REFINO FINAL - CARD DE ALUNOS
+===================================================== */
+
+.students-panel .premium-student-card{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:14px;
+}
+
+.students-panel .student-main{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.students-panel .student-actions{
+  width:100%;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.students-panel .student-actions .btn{
+  width:100%;
+  min-width:0;
+  justify-content:center;
+  padding-left:10px;
+  padding-right:10px;
+}
+
+/* Em telas maiores, mantém tudo bem distribuído */
+@media (min-width:1400px){
+
+  .students-panel .premium-student-card{
+    flex-direction:row;
+    align-items:center;
+  }
+
+  .students-panel .student-actions{
+    width:auto;
+    display:flex;
+  }
+
+}
+
+/* Celular pequeno */
+@media (max-width:430px){
+
+  .students-panel .student-actions{
+    grid-template-columns:1fr;
+  }
+
+}
