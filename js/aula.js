@@ -3,78 +3,55 @@ const sb2 = window.supabase.createClient(
   SUPABASE_ANON_KEY
 );
 
-const box = document.getElementById("lesson");
+const box =
+  document.getElementById("lesson");
 
 
 async function initLesson() {
 
+  /* =====================================
+     USUÁRIO
+  ===================================== */
+
   const {
-    data: { user }
+    data: { user },
+    error: userError
   } = await sb2.auth.getUser();
 
 
-  if (!user) {
+  if (userError || !user) {
+
     location.href = "login.html";
+
     return;
   }
 
 
-  const id = (
+  const lessonId = (
     new URLSearchParams(
       location.search
     ).get("id") || ""
   ).trim();
 
 
-  if (!id) {
-    box.innerHTML =
-      "<h1>Aula não encontrada.</h1>";
+  if (!lessonId) {
+
+    showError(
+      "Aula não encontrada.",
+      "Não foi possível identificar a aula."
+    );
 
     return;
   }
 
 
-  /* =========================
-     MATRÍCULA DO ALUNO
-  ========================= */
-
-  const {
-    data: enrollment,
-    error: enrollmentError
-  } = await sb2
-    .from("enrollments")
-    .select("course_id")
-    .eq("user_id", user.id)
-    .eq("status", "active")
-    .limit(1)
-    .maybeSingle();
-
-
-  if (
-    enrollmentError ||
-    !enrollment
-  ) {
-
-    box.innerHTML = `
-      <h1>Acesso não liberado.</h1>
-
-      <p>
-        Seu usuário não possui
-        matrícula ativa.
-      </p>
-    `;
-
-    return;
-  }
-
-
-  /* =========================
-     AULA ATUAL
-  ========================= */
+  /* =====================================
+     CARREGAR AULA
+  ===================================== */
 
   const {
     data: lesson,
-    error
+    error: lessonError
   } = await sb2
     .from("lessons")
     .select(`
@@ -86,27 +63,90 @@ async function initLesson() {
         position
       )
     `)
-    .eq("id", id)
+    .eq("id", lessonId)
     .single();
 
 
   if (
-    error ||
+    lessonError ||
     !lesson ||
-    lesson.modules.course_id !==
-      enrollment.course_id
+    !lesson.modules
   ) {
 
-    box.innerHTML =
-      "<h1>Aula indisponível.</h1>";
+    showError(
+      "Aula indisponível.",
+      "Esta aula não foi encontrada."
+    );
 
     return;
   }
 
 
-  /* =========================
-     TODAS AS AULAS DO CURSO
-  ========================= */
+  /* =====================================
+     BLOQUEAR RASCUNHO
+  ===================================== */
+
+  if (lesson.published !== true) {
+
+    showError(
+      "Aula indisponível.",
+      "Esta aula ainda não foi publicada."
+    );
+
+    return;
+  }
+
+
+  const courseId =
+    lesson.modules.course_id;
+
+
+  /* =====================================
+     VALIDAR MATRÍCULA DESTE CURSO
+  ===================================== */
+
+  const {
+    data: enrollment,
+    error: enrollmentError
+  } = await sb2
+    .from("enrollments")
+    .select("id, course_id, status")
+    .eq("user_id", user.id)
+    .eq("course_id", courseId)
+    .eq("status", "active")
+    .maybeSingle();
+
+
+  if (
+    enrollmentError ||
+    !enrollment
+  ) {
+
+    showError(
+      "Acesso não liberado.",
+      "Você não possui matrícula ativa para este curso."
+    );
+
+    return;
+  }
+
+
+  /* =====================================
+     CARREGAR CURSO
+  ===================================== */
+
+  const {
+    data: course
+  } = await sb2
+    .from("courses")
+    .select("id, title")
+    .eq("id", courseId)
+    .maybeSingle();
+
+
+  /* =====================================
+     TODAS AS AULAS PUBLICADAS
+  ===================================== */
 
   const {
     data: modules,
@@ -124,10 +164,7 @@ async function initLesson() {
         published
       )
     `)
-    .eq(
-      "course_id",
-      enrollment.course_id
-    )
+    .eq("course_id", courseId)
     .order(
       "position",
       { ascending: true }
@@ -140,18 +177,17 @@ async function initLesson() {
       "Erro ao carregar aulas:",
       modulesError
     );
-
   }
 
 
-  /* =========================
-     ORDENAR AULAS
-  ========================= */
+  /* =====================================
+     ORGANIZAR NAVEGAÇÃO
+  ===================================== */
 
   const allLessons = [];
 
 
-  (modules || [])
+  [...(modules || [])]
     .sort(
       (a, b) =>
         (a.position || 0) -
@@ -159,12 +195,14 @@ async function initLesson() {
     )
     .forEach(module => {
 
-      const lessons =
+      const publishedLessons =
         [...(module.lessons || [])]
+
           .filter(
             item =>
-              item.published !== false
+              item.published === true
           )
+
           .sort(
             (a, b) =>
               (a.position || 0) -
@@ -172,15 +210,20 @@ async function initLesson() {
           );
 
 
-      lessons.forEach(item => {
+      publishedLessons.forEach(
+        item => {
 
-        allLessons.push({
-          ...item,
-          module_title:
-            module.title
-        });
+          allLessons.push({
 
-      });
+            ...item,
+
+            module_title:
+              module.title
+
+          });
+
+        }
+      );
 
     });
 
@@ -194,102 +237,272 @@ async function initLesson() {
 
   const previousLesson =
     currentIndex > 0
-      ? allLessons[
-          currentIndex - 1
-        ]
+      ? allLessons[currentIndex - 1]
       : null;
 
 
   const nextLesson =
     currentIndex >= 0 &&
-    currentIndex <
-      allLessons.length - 1
-      ? allLessons[
-          currentIndex + 1
-        ]
+    currentIndex < allLessons.length - 1
+      ? allLessons[currentIndex + 1]
       : null;
 
 
-  /* =========================
-     CONTEÚDO DA AULA
-  ========================= */
+  const lessonPosition =
+    currentIndex >= 0
+      ? currentIndex + 1
+      : 1;
+
+
+  const totalLessons =
+    allLessons.length;
+
+
+  /* =====================================
+     MATERIAL
+  ===================================== */
+
+  const materialButton =
+    lesson.material_url
+      ? `
+        <a
+          class="premium-material-btn"
+          href="${escapeAttr(
+            lesson.material_url
+          )}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="material-icon">
+            ↓
+          </span>
+
+          Material da aula
+        </a>
+      `
+      : "";
+
+
+  /* =====================================
+     MOSTRAR AULA
+  ===================================== */
 
   box.innerHTML = `
 
-    <span class="eyebrow">
-      ${escapeHtml(
-        lesson.modules.title
-      )}
-    </span>
+    <div class="premium-lesson-header">
+
+      <div class="premium-lesson-breadcrumb">
+
+        <span>
+          ${escapeHtml(
+            course?.title ||
+            "Meu curso"
+          )}
+        </span>
+
+        <span class="breadcrumb-separator">
+          /
+        </span>
+
+        <span>
+          ${escapeHtml(
+            lesson.modules.title
+          )}
+        </span>
+
+      </div>
 
 
-    <h1>
-      ${escapeHtml(
-        lesson.title
-      )}
-    </h1>
+      <div class="premium-lesson-title-row">
+
+        <div>
+
+          <span class="premium-eyebrow">
+            ${
+              escapeHtml(
+                lesson.modules.title
+              )
+            }
+          </span>
+
+          <h1>
+            ${escapeHtml(
+              lesson.title
+            )}
+          </h1>
+
+        </div>
 
 
-    <p class="muted-text">
-      ${escapeHtml(
-        lesson.description || ""
-      )}
-    </p>
+        <div class="premium-lesson-position">
 
+          <strong>
+            ${lessonPosition}
+          </strong>
 
-    <div class="video">
+          <span>
+            de ${totalLessons}
+          </span>
+
+        </div>
+
+      </div>
+
 
       ${
-        lesson.video_url
+        lesson.description
           ? `
-            <iframe
-              width="100%"
-              height="100%"
-              style="
-                border:0;
-                border-radius:18px;
-              "
-              src="${escapeAttr(
-                lesson.video_url
-              )}"
-              allowfullscreen
-            ></iframe>
+            <p class="premium-lesson-description">
+              ${escapeHtml(
+                lesson.description
+              )}
+            </p>
           `
-          : "Vídeo da aula"
+          : ""
       }
 
     </div>
 
 
-    <div class="lesson-navigation">
+    <!-- PLAYER -->
+
+    <div class="premium-video-card">
+
+      <div class="premium-video">
+
+        ${
+          lesson.video_url
+            ? `
+              <iframe
+                src="${escapeAttr(
+                  lesson.video_url
+                )}"
+                title="${escapeAttr(
+                  lesson.title
+                )}"
+                allow="
+                  accelerometer;
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture
+                "
+                allowfullscreen
+              ></iframe>
+            `
+            : `
+              <div class="premium-video-empty">
+
+                <div class="video-play-icon">
+                  ▶
+                </div>
+
+                <strong>
+                  Vídeo da aula
+                </strong>
+
+                <span>
+                  O vídeo será exibido aqui.
+                </span>
+
+              </div>
+            `
+        }
+
+      </div>
+
+
+      ${
+        lesson.material_url
+          ? `
+            <div class="premium-video-footer">
+
+              <div>
+
+                <span class="premium-eyebrow">
+                  MATERIAL
+                </span>
+
+                <strong>
+                  Conteúdo complementar
+                </strong>
+
+              </div>
+
+              ${materialButton}
+
+            </div>
+          `
+          : ""
+      }
+
+    </div>
+
+
+    <!-- NAVEGAÇÃO -->
+
+    <div class="premium-lesson-navigation">
 
       <a
         href="aluno.html"
-        class="btn btn-outline lesson-back"
+        class="premium-back-course"
       >
-        ← Voltar para o curso
+        <span>←</span>
+
+        Voltar para o curso
       </a>
 
 
-      <div class="lesson-navigation-pages">
+      <div class="premium-page-navigation">
 
         ${
           previousLesson
             ? `
               <a
-                href="aula.html?id=${previousLesson.id}"
-                class="btn btn-outline"
+                href="aula.html?id=${encodeURIComponent(
+                  previousLesson.id
+                )}"
+                class="
+                  premium-nav-btn
+                  premium-nav-secondary
+                "
               >
-                ← Aula anterior
+                <span>←</span>
+
+                <div>
+                  <small>
+                    ANTERIOR
+                  </small>
+
+                  <strong>
+                    ${escapeHtml(
+                      previousLesson.title
+                    )}
+                  </strong>
+                </div>
               </a>
             `
             : `
               <button
                 type="button"
-                class="btn btn-outline"
+                class="
+                  premium-nav-btn
+                  premium-nav-secondary
+                "
                 disabled
               >
-                ← Aula anterior
+                <span>←</span>
+
+                <div>
+                  <small>
+                    ANTERIOR
+                  </small>
+
+                  <strong>
+                    Primeira aula
+                  </strong>
+                </div>
               </button>
             `
         }
@@ -299,19 +512,53 @@ async function initLesson() {
           nextLesson
             ? `
               <a
-                href="aula.html?id=${nextLesson.id}"
-                class="btn"
+                href="aula.html?id=${encodeURIComponent(
+                  nextLesson.id
+                )}"
+                class="
+                  premium-nav-btn
+                  premium-nav-next
+                "
               >
-                Próxima aula →
+
+                <div>
+                  <small>
+                    PRÓXIMA
+                  </small>
+
+                  <strong>
+                    ${escapeHtml(
+                      nextLesson.title
+                    )}
+                  </strong>
+                </div>
+
+                <span>→</span>
+
               </a>
             `
             : `
               <button
                 type="button"
-                class="btn"
+                class="
+                  premium-nav-btn
+                  premium-nav-next
+                "
                 disabled
               >
-                Fim do curso
+
+                <div>
+                  <small>
+                    CURSO
+                  </small>
+
+                  <strong>
+                    Fim do curso
+                  </strong>
+                </div>
+
+                <span>✓</span>
+
               </button>
             `
         }
@@ -327,13 +574,50 @@ async function initLesson() {
     ></div>
 
   `;
-
 }
 
 
-/* =========================
-   SAIR
-========================= */
+/* =====================================
+   ERROS
+===================================== */
+
+function showError(
+  title,
+  description
+) {
+
+  box.innerHTML = `
+
+    <div class="premium-lesson-error">
+
+      <div class="premium-error-icon">
+        ◇
+      </div>
+
+      <h1>
+        ${escapeHtml(title)}
+      </h1>
+
+      <p>
+        ${escapeHtml(description)}
+      </p>
+
+      <a
+        href="aluno.html"
+        class="premium-error-back"
+      >
+        ← Voltar para meus cursos
+      </a>
+
+    </div>
+
+  `;
+}
+
+
+/* =====================================
+   LOGOUT
+===================================== */
 
 document
   .getElementById("logout")
@@ -348,9 +632,9 @@ document
   };
 
 
-/* =========================
+/* =====================================
    SEGURANÇA
-========================= */
+===================================== */
 
 function escapeHtml(value) {
 
@@ -368,19 +652,12 @@ function escapeHtml(value) {
 
     }[character])
   );
-
 }
 
 
 function escapeAttr(value) {
 
-  return String(
-    value ?? ""
-  ).replace(
-    /"/g,
-    "&quot;"
-  );
-
+  return escapeHtml(value);
 }
 
 
