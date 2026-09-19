@@ -1,10 +1,97 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Aula</title><link rel="stylesheet" href="css/style.css"></head>
-<body>
-<header class="topbar"><a class="brand" href="index.html">Academia<span>Online</span></a><nav><a href="aluno.html">Área do aluno</a><button id="logout" class="btn btn-outline">Sair</button></nav></header>
-<main class="lesson-page">
-<div id="lesson"></div>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>Aula | Academia Online</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
+</head>
+
+
+<body class="premium-lesson-page">
+
+
+<header class="student-topbar">
+
+  <a
+    class="student-brand"
+    href="index.html"
+  >
+
+    <span class="student-brand-icon">
+      ◇
+    </span>
+
+    <strong>
+      Academia<span>Online</span>
+    </strong>
+
+  </a>
+
+
+  <div class="premium-lesson-top-actions">
+
+    <a
+      href="aluno.html"
+      class="premium-student-area"
+    >
+      Área do aluno
+    </a>
+
+    <button
+      id="logout"
+      class="student-logout"
+      type="button"
+    >
+      Sair
+    </button>
+
+  </div>
+
+</header>
+
+
+<main class="premium-lesson-container">
+
+  <div id="lesson"></div>
+
 </main>
+
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/config.js"></script><script src="js/aula.js"></script>
-</body></html>
+
+<script src="js/config.js"></script>
+
+<script src="js/aula.js"></script>
+
+
+</body>
+</html>
