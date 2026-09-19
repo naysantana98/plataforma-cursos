@@ -3944,3 +3944,914 @@ body{
   }
 
 }
+/* =====================================================
+   ÁREA DO ALUNO - PREMIUM
+===================================================== */
+
+.student-premium{
+  margin:0;
+
+  min-height:100vh;
+
+  background:#f7f4ef;
+
+  color:#25211d;
+
+  font-family:
+    "DM Sans",
+    sans-serif;
+}
+
+
+/* =====================================================
+   TOPO
+===================================================== */
+
+.student-topbar{
+  min-height:84px;
+
+  padding:0 6%;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:24px;
+
+  background:#fff;
+
+  border-bottom:1px solid #e8e1d7;
+}
+
+
+.student-brand{
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  color:#1e1b18;
+
+  text-decoration:none;
+}
+
+
+.student-brand-icon{
+  color:#bd8a35;
+
+  font-size:25px;
+}
+
+
+.student-brand strong{
+  font-size:21px;
+}
+
+
+.student-brand strong span{
+  color:#bd8a35;
+
+  font-weight:500;
+}
+
+
+/* USUÁRIO */
+
+.student-user{
+  display:flex;
+  align-items:center;
+
+  gap:11px;
+}
+
+
+.student-user-avatar{
+  width:42px;
+  height:42px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  flex-shrink:0;
+
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #9b7335,
+      #c49a52
+    );
+
+  color:#fff;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:16px;
+}
+
+
+.student-user-data{
+  display:flex;
+  flex-direction:column;
+
+  gap:1px;
+}
+
+
+.student-user-data strong{
+  color:#25211d;
+
+  font-size:12px;
+}
+
+
+.student-user-data span{
+  color:#928a80;
+
+  font-size:9px;
+}
+
+
+.student-logout{
+  margin-left:8px;
+
+  min-height:38px;
+
+  padding:8px 17px;
+
+  border:1px solid #ddd5ca;
+
+  border-radius:8px;
+
+  background:#fff;
+
+  color:#514a42;
+
+  font-family:
+    "DM Sans",
+    sans-serif;
+
+  font-size:11px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+
+.student-logout:hover{
+  border-color:#bd8a35;
+
+  color:#956b29;
+}
+
+
+/* =====================================================
+   CONTEÚDO
+===================================================== */
+
+.student-dashboard{
+  width:min(1160px, 88%);
+
+  margin:0 auto;
+
+  padding:52px 0 70px;
+}
+
+
+/* BOAS-VINDAS */
+
+.student-welcome{
+  margin-bottom:30px;
+}
+
+
+.student-eyebrow{
+  display:block;
+
+  margin-bottom:7px;
+
+  color:#a37834;
+
+  font-size:9px;
+
+  font-weight:700;
+
+  letter-spacing:1.8px;
+}
+
+
+.student-welcome h1{
+  margin:0;
+
+  color:#211e1a;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:38px;
+
+  line-height:1.15;
+}
+
+
+.student-welcome p{
+  margin:9px 0 0;
+
+  color:#81796f;
+
+  font-size:13px;
+}
+
+
+/* =====================================================
+   CURSO
+===================================================== */
+
+.student-course{
+  margin-bottom:28px;
+}
+
+
+/* HERO DO CURSO */
+
+.student-course-hero{
+  min-height:140px;
+
+  padding:27px 30px;
+
+  box-sizing:border-box;
+
+  display:flex;
+  align-items:center;
+
+  gap:20px;
+
+  position:relative;
+
+  overflow:hidden;
+
+  border-radius:18px 18px 0 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      #24211d,
+      #171614
+    );
+
+  box-shadow:
+    0 12px 35px
+    rgba(42,34,24,.10);
+}
+
+
+.student-course-hero::after{
+  content:"";
+
+  width:230px;
+  height:230px;
+
+  position:absolute;
+
+  right:-90px;
+  top:-120px;
+
+  border-radius:50%;
+
+  border:
+    1px solid
+    rgba(208,169,95,.17);
+}
+
+
+.student-course-icon{
+  width:58px;
+  height:58px;
+
+  min-width:58px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  position:relative;
+  z-index:1;
+
+  border-radius:14px;
+
+  background:
+    rgba(197,151,72,.12);
+
+  border:
+    1px solid
+    rgba(211,174,103,.27);
+
+  color:#d9ad5c;
+
+  font-size:25px;
+}
+
+
+.student-course-info{
+  flex:1;
+
+  position:relative;
+  z-index:1;
+}
+
+
+.student-course-info
+.student-eyebrow{
+  color:#d0a353;
+}
+
+
+.student-course-info h2{
+  margin:0;
+
+  color:#fff;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:27px;
+}
+
+
+.student-course-info p{
+  margin:5px 0 0;
+
+  color:#bcb5ac;
+
+  font-size:12px;
+}
+
+
+.student-course-count{
+  min-width:70px;
+
+  position:relative;
+  z-index:1;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  color:#fff;
+}
+
+
+.student-course-count strong{
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:27px;
+}
+
+
+.student-course-count span{
+  color:#aaa299;
+
+  font-size:9px;
+
+  text-transform:uppercase;
+
+  letter-spacing:1px;
+}
+
+
+/* =====================================================
+   CONTEÚDO DO CURSO
+===================================================== */
+
+.student-content{
+  padding:27px 30px 31px;
+
+  background:#fff;
+
+  border:
+    1px solid #e5ddd2;
+
+  border-top:0;
+
+  border-radius:
+    0 0 18px 18px;
+
+  box-shadow:
+    0 12px 35px
+    rgba(42,34,24,.06);
+}
+
+
+.student-content-title{
+  margin-bottom:18px;
+}
+
+
+.student-content-title h3{
+  margin:0;
+
+  color:#29251f;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:21px;
+}
+
+
+/* =====================================================
+   MÓDULO
+===================================================== */
+
+.student-module{
+  margin-top:14px;
+
+  overflow:hidden;
+
+  border:1px solid #e7dfd4;
+
+  border-radius:13px;
+
+  background:#fff;
+}
+
+
+.student-module-header{
+  min-height:72px;
+
+  padding:14px 17px;
+
+  box-sizing:border-box;
+
+  display:flex;
+  align-items:center;
+
+  gap:13px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #faf7f1,
+      #fff
+    );
+
+  border-bottom:
+    1px solid #ebe4da;
+}
+
+
+.student-module-number{
+  width:43px;
+  height:43px;
+
+  min-width:43px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:11px;
+
+  background:#f0e1c4;
+
+  color:#946c2c;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:15px;
+
+  font-weight:700;
+}
+
+
+.student-module-title{
+  flex:1;
+
+  min-width:0;
+}
+
+
+.student-module-title > span{
+  display:block;
+
+  margin-bottom:2px;
+
+  color:#a47a36;
+
+  font-size:8px;
+
+  font-weight:700;
+
+  letter-spacing:1.3px;
+}
+
+
+.student-module-title h4{
+  margin:0;
+
+  color:#332e28;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:16px;
+}
+
+
+.student-module-count{
+  color:#9b9288;
+
+  font-size:10px;
+}
+
+
+/* =====================================================
+   AULAS
+===================================================== */
+
+.student-lessons{
+  background:#fff;
+}
+
+
+.student-lesson{
+  min-height:72px;
+
+  padding:13px 17px;
+
+  box-sizing:border-box;
+
+  display:flex;
+  align-items:center;
+
+  gap:13px;
+
+  border-bottom:
+    1px solid #f0ebe4;
+
+  transition:
+    background .2s ease;
+}
+
+
+.student-lesson:last-child{
+  border-bottom:0;
+}
+
+
+.student-lesson:hover{
+  background:#fdfbf8;
+}
+
+
+.student-lesson-number{
+  width:35px;
+  height:35px;
+
+  min-width:35px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#f3ede3;
+
+  color:#8e7651;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:11px;
+
+  font-weight:700;
+}
+
+
+.student-lesson-info{
+  flex:1;
+
+  min-width:0;
+}
+
+
+.student-lesson-info strong{
+  display:block;
+
+  color:#38332d;
+
+  font-size:12px;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+}
+
+
+.student-lesson-meta{
+  margin-top:5px;
+
+  display:flex;
+  align-items:center;
+
+  flex-wrap:wrap;
+
+  gap:6px;
+
+  color:#8d857b;
+
+  font-size:9px;
+}
+
+
+.available-dot{
+  width:6px;
+  height:6px;
+
+  border-radius:50%;
+
+  background:#4cbd75;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(76,189,117,.11);
+}
+
+
+.meta-separator{
+  color:#c6beb4;
+}
+
+
+/* =====================================================
+   ASSISTIR
+===================================================== */
+
+.student-watch-btn{
+  min-height:36px;
+
+  padding:8px 13px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:7px;
+
+  flex-shrink:0;
+
+  border:1px solid #c99b4b;
+
+  border-radius:8px;
+
+  background:#fff;
+
+  color:#8c6427;
+
+  text-decoration:none;
+
+  font-size:10px;
+
+  font-weight:700;
+
+  transition:.2s;
+}
+
+
+.student-watch-btn:hover{
+  background:
+    linear-gradient(
+      135deg,
+      #a9792e,
+      #c79d50
+    );
+
+  border-color:#b98838;
+
+  color:#fff;
+
+  box-shadow:
+    0 6px 15px
+    rgba(167,121,46,.18);
+}
+
+
+/* =====================================================
+   SEM CURSO / SEM AULAS
+===================================================== */
+
+.student-empty{
+  padding:55px 25px;
+
+  text-align:center;
+
+  background:#fff;
+
+  border:1px solid #e4ddd2;
+
+  border-radius:17px;
+}
+
+
+.student-empty-icon{
+  width:55px;
+  height:55px;
+
+  margin:0 auto 15px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#efe2ca;
+
+  color:#9b712e;
+
+  font-size:23px;
+}
+
+
+.student-empty h2{
+  margin:0;
+
+  font-family:
+    "Playfair Display",
+    serif;
+}
+
+
+.student-empty p{
+  max-width:420px;
+
+  margin:8px auto 0;
+
+  color:#8c847a;
+
+  font-size:12px;
+}
+
+
+.student-no-lessons{
+  padding:22px;
+
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+
+  background:#faf8f4;
+
+  border:1px dashed #ddd2c3;
+
+  border-radius:11px;
+}
+
+
+.student-no-lessons > span{
+  color:#a47934;
+
+  font-size:20px;
+}
+
+
+.student-no-lessons strong{
+  color:#49423a;
+
+  font-size:11px;
+}
+
+
+.student-no-lessons p{
+  margin:3px 0 0;
+
+  color:#968e84;
+
+  font-size:10px;
+}
+
+
+/* =====================================================
+   RESPONSIVIDADE
+===================================================== */
+
+@media(max-width:700px){
+
+  .student-topbar{
+    min-height:72px;
+
+    padding:0 18px;
+  }
+
+
+  .student-user-data{
+    display:none;
+  }
+
+
+  .student-brand strong{
+    font-size:17px;
+  }
+
+
+  .student-dashboard{
+    width:auto;
+
+    margin:0 18px;
+
+    padding-top:35px;
+  }
+
+
+  .student-welcome h1{
+    font-size:31px;
+  }
+
+
+  .student-course-hero{
+    padding:22px 19px;
+  }
+
+
+  .student-course-count{
+    display:none;
+  }
+
+
+  .student-course-info h2{
+    font-size:23px;
+  }
+
+
+  .student-content{
+    padding:22px 16px;
+  }
+
+
+  .student-lesson{
+    flex-wrap:wrap;
+  }
+
+
+  .student-lesson-info{
+    width:
+      calc(100% - 50px);
+  }
+
+
+  .student-watch-btn{
+    width:100%;
+
+    margin-left:48px;
+  }
+
+}
+
+
+@media(max-width:430px){
+
+  .student-brand-icon{
+    display:none;
+  }
+
+
+  .student-user-avatar{
+    display:none;
+  }
+
+
+  .student-logout{
+    margin-left:0;
+  }
+
+
+  .student-module-count{
+    display:none;
+  }
+
+
+  .student-watch-btn{
+    margin-left:0;
+  }
+
+}
