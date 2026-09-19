@@ -1,12 +1,124 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Área do aluno</title><link rel="stylesheet" href="css/style.css"></head>
-<body>
-<header class="topbar"><a class="brand" href="index.html">Academia<span>Online</span></a><nav><span id="userName"></span><button id="logout" class="btn btn-outline">Sair</button></nav></header>
-<main class="dashboard">
-<section class="dashboard-head"><div><span class="eyebrow">ÁREA DO ALUNO</span><h1>Olá, <span id="welcome">aluno</span>!</h1><p>Continue de onde parou.</p></div></section>
-<section id="courseArea" class="course-layout"></section>
-<div id="message" class="message"></div>
-</main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/config.js"></script><script src="js/aluno.js"></script>
-</body></html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>Área do aluno | Academia Online</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+
+<body class="student-premium">
+
+  <!-- =====================================
+       TOPO
+  ====================================== -->
+
+  <header class="student-topbar">
+
+    <a class="student-brand" href="index.html">
+
+      <span class="student-brand-icon">
+        ◇
+      </span>
+
+      <strong>
+        Academia<span>Online</span>
+      </strong>
+
+    </a>
+
+
+    <div class="student-user">
+
+      <div class="student-user-avatar" id="studentAvatar">
+        A
+      </div>
+
+      <div class="student-user-data">
+
+        <strong id="studentTopName">
+          Aluno
+        </strong>
+
+        <span id="userName"></span>
+
+      </div>
+
+
+      <button
+        id="logout"
+        class="student-logout"
+        type="button"
+      >
+        Sair
+      </button>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =====================================
+       CONTEÚDO
+  ====================================== -->
+
+  <main class="student-dashboard">
+
+
+    <!-- BOAS-VINDAS -->
+
+    <section class="student-welcome">
+
+      <span class="student-eyebrow">
+        ÁREA DO ALUNO
+      </span>
+
+      <h1>
+        Olá, <span id="welcome">aluno</span>!
+      </h1>
+
+      <p>
+        Continue seus estudos e acesse suas aulas.
+      </p>
+
+    </section>
+
+
+
+    <!-- CURSOS / MÓDULOS / AULAS -->
+
+    <section
+      id="courseArea"
+      class="student-course-area"
+    ></section>
+
+
+    <div
+      id="message"
+      class="message student-message"
+    ></div>
+
+  </main>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="js/config.js"></script>
+  <script src="js/aluno.js"></script>
+
+</body>
+</html>
