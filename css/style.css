@@ -4855,3 +4855,681 @@ body{
   }
 
 }
+/* =====================================================
+   PÁGINA DA AULA - PREMIUM
+===================================================== */
+
+.premium-lesson-page{
+  margin:0;
+
+  min-height:100vh;
+
+  background:#f7f4ef;
+
+  color:#28231e;
+
+  font-family:
+    "DM Sans",
+    sans-serif;
+}
+
+
+.premium-lesson-container{
+  width:min(980px, 88%);
+
+  margin:0 auto;
+
+  padding:45px 0 70px;
+}
+
+
+.premium-lesson-top-actions{
+  display:flex;
+  align-items:center;
+
+  gap:18px;
+}
+
+
+.premium-student-area{
+  color:#6e665d;
+
+  font-size:12px;
+
+  font-weight:600;
+
+  text-decoration:none;
+
+  transition:.2s;
+}
+
+
+.premium-student-area:hover{
+  color:#a77830;
+}
+
+
+/* =====================================================
+   CABEÇALHO DA AULA
+===================================================== */
+
+.premium-lesson-header{
+  margin-bottom:24px;
+}
+
+
+.premium-lesson-breadcrumb{
+  margin-bottom:22px;
+
+  display:flex;
+  align-items:center;
+
+  gap:8px;
+
+  color:#9b9287;
+
+  font-size:10px;
+}
+
+
+.breadcrumb-separator{
+  color:#c3b9ad;
+}
+
+
+.premium-lesson-title-row{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+
+  gap:25px;
+}
+
+
+.premium-eyebrow{
+  display:block;
+
+  margin-bottom:7px;
+
+  color:#a87931;
+
+  font-size:9px;
+
+  font-weight:700;
+
+  letter-spacing:1.8px;
+
+  text-transform:uppercase;
+}
+
+
+.premium-lesson-title-row h1{
+  margin:0;
+
+  color:#211e1a;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:38px;
+
+  line-height:1.15;
+}
+
+
+.premium-lesson-description{
+  max-width:750px;
+
+  margin:13px 0 0;
+
+  color:#7f776e;
+
+  font-size:13px;
+
+  line-height:1.7;
+}
+
+
+.premium-lesson-position{
+  width:58px;
+  height:58px;
+
+  flex-shrink:0;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#efe2c9;
+
+  color:#8f6729;
+}
+
+
+.premium-lesson-position strong{
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:18px;
+
+  line-height:1;
+}
+
+
+.premium-lesson-position span{
+  margin-top:3px;
+
+  color:#a88c60;
+
+  font-size:8px;
+}
+
+
+/* =====================================================
+   PLAYER
+===================================================== */
+
+.premium-video-card{
+  overflow:hidden;
+
+  border-radius:17px;
+
+  background:#fff;
+
+  border:1px solid #e2dbd1;
+
+  box-shadow:
+    0 15px 40px
+    rgba(45,37,27,.08);
+}
+
+
+.premium-video{
+  width:100%;
+
+  aspect-ratio:16 / 9;
+
+  background:
+    linear-gradient(
+      145deg,
+      #181714,
+      #25221d
+    );
+}
+
+
+.premium-video iframe{
+  display:block;
+
+  width:100%;
+  height:100%;
+
+  border:0;
+}
+
+
+.premium-video-empty{
+  width:100%;
+  height:100%;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  color:#fff;
+}
+
+
+.video-play-icon{
+  width:62px;
+  height:62px;
+
+  margin-bottom:15px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding-left:4px;
+
+  box-sizing:border-box;
+
+  border-radius:50%;
+
+  background:
+    rgba(195,148,67,.17);
+
+  border:
+    1px solid
+    rgba(211,169,93,.38);
+
+  color:#d4a451;
+
+  font-size:20px;
+}
+
+
+.premium-video-empty strong{
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:18px;
+}
+
+
+.premium-video-empty span{
+  margin-top:5px;
+
+  color:#aaa49c;
+
+  font-size:10px;
+}
+
+
+/* =====================================================
+   MATERIAL
+===================================================== */
+
+.premium-video-footer{
+  min-height:72px;
+
+  padding:15px 20px;
+
+  box-sizing:border-box;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
+}
+
+
+.premium-video-footer
+.premium-eyebrow{
+  margin-bottom:3px;
+
+  font-size:7px;
+}
+
+
+.premium-video-footer strong{
+  display:block;
+
+  color:#37312b;
+
+  font-size:11px;
+}
+
+
+.premium-material-btn{
+  min-height:37px;
+
+  padding:8px 14px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:7px;
+
+  border:1px solid #c79748;
+
+  border-radius:8px;
+
+  color:#906526;
+
+  text-decoration:none;
+
+  font-size:10px;
+
+  font-weight:700;
+
+  transition:.2s;
+}
+
+
+.premium-material-btn:hover{
+  background:#b78638;
+
+  color:#fff;
+}
+
+
+.material-icon{
+  font-size:13px;
+}
+
+
+/* =====================================================
+   NAVEGAÇÃO
+===================================================== */
+
+.premium-lesson-navigation{
+  margin-top:24px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
+}
+
+
+.premium-back-course{
+  display:inline-flex;
+  align-items:center;
+
+  gap:7px;
+
+  color:#776e64;
+
+  font-size:11px;
+
+  font-weight:600;
+
+  text-decoration:none;
+
+  transition:.2s;
+}
+
+
+.premium-back-course:hover{
+  color:#9c702c;
+}
+
+
+.premium-page-navigation{
+  display:flex;
+  align-items:stretch;
+
+  gap:9px;
+}
+
+
+.premium-nav-btn{
+  min-width:150px;
+  min-height:51px;
+
+  padding:9px 13px;
+
+  box-sizing:border-box;
+
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  border-radius:9px;
+
+  font-family:
+    "DM Sans",
+    sans-serif;
+
+  text-decoration:none;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+
+.premium-nav-btn div{
+  flex:1;
+
+  min-width:0;
+}
+
+
+.premium-nav-btn small{
+  display:block;
+
+  margin-bottom:2px;
+
+  font-size:7px;
+
+  font-weight:700;
+
+  letter-spacing:1px;
+}
+
+
+.premium-nav-btn strong{
+  display:block;
+
+  max-width:125px;
+
+  overflow:hidden;
+
+  white-space:nowrap;
+
+  text-overflow:ellipsis;
+
+  font-size:10px;
+}
+
+
+.premium-nav-secondary{
+  border:1px solid #ddd5ca;
+
+  background:#fff;
+
+  color:#5d554c;
+}
+
+
+.premium-nav-secondary:hover:not(:disabled){
+  border-color:#b98a3c;
+
+  color:#956a28;
+}
+
+
+.premium-nav-next{
+  border:1px solid #aa7c32;
+
+  background:
+    linear-gradient(
+      135deg,
+      #a87930,
+      #c89c4d
+    );
+
+  color:#fff;
+
+  box-shadow:
+    0 6px 17px
+    rgba(167,120,45,.17);
+}
+
+
+.premium-nav-next:hover:not(:disabled){
+  transform:
+    translateY(-1px);
+
+  box-shadow:
+    0 9px 20px
+    rgba(167,120,45,.24);
+}
+
+
+.premium-nav-btn:disabled{
+  opacity:.42;
+
+  cursor:not-allowed;
+
+  box-shadow:none;
+}
+
+
+/* =====================================================
+   ERRO
+===================================================== */
+
+.premium-lesson-error{
+  max-width:540px;
+
+  margin:80px auto;
+
+  padding:45px 30px;
+
+  text-align:center;
+
+  background:#fff;
+
+  border:1px solid #e3dbd0;
+
+  border-radius:17px;
+}
+
+
+.premium-error-icon{
+  width:54px;
+  height:54px;
+
+  margin:0 auto 16px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#efe1c6;
+
+  color:#9a6e29;
+
+  font-size:22px;
+}
+
+
+.premium-lesson-error h1{
+  margin:0;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:25px;
+}
+
+
+.premium-lesson-error p{
+  margin:8px 0 20px;
+
+  color:#8b8278;
+
+  font-size:11px;
+}
+
+
+.premium-error-back{
+  color:#956a29;
+
+  font-size:11px;
+
+  font-weight:700;
+
+  text-decoration:none;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:700px){
+
+  .premium-lesson-container{
+    width:auto;
+
+    margin:0 18px;
+
+    padding-top:32px;
+  }
+
+
+  .premium-lesson-title-row{
+    align-items:flex-start;
+  }
+
+
+  .premium-lesson-title-row h1{
+    font-size:30px;
+  }
+
+
+  .premium-lesson-position{
+    width:50px;
+    height:50px;
+  }
+
+
+  .premium-lesson-navigation{
+    flex-direction:column;
+
+    align-items:stretch;
+  }
+
+
+  .premium-back-course{
+    margin-bottom:5px;
+  }
+
+
+  .premium-page-navigation{
+    display:grid;
+
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+
+  .premium-nav-btn{
+    min-width:0;
+  }
+
+
+  .premium-video-footer{
+    align-items:flex-start;
+
+    flex-direction:column;
+  }
+
+
+  .premium-material-btn{
+    width:100%;
+  }
+
+}
+
+
+@media(max-width:480px){
+
+  .premium-student-area{
+    display:none;
+  }
+
+
+  .premium-page-navigation{
+    grid-template-columns:1fr;
+  }
+
+
+  .premium-nav-btn{
+    width:100%;
+  }
+
+
+  .premium-lesson-position{
+    display:none;
+  }
+
+}
