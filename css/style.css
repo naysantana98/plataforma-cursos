@@ -7610,3 +7610,96 @@ body{
   }
 
 }
+
+
+/* =====================================================
+   CADASTRO PREMIUM
+===================================================== */
+
+.premium-register-page
+.premium-login-visual-content{
+  max-width:560px;
+}
+
+
+.premium-register-page
+.premium-login-visual-content h1{
+  font-size:
+    clamp(44px,4.6vw,66px);
+}
+
+
+.premium-register-card{
+  max-width:420px;
+}
+
+
+.premium-register-password-hint{
+  display:block;
+
+  margin-top:6px;
+
+  color:#aaa197;
+
+  font-size:8px;
+
+  line-height:1.5;
+}
+
+
+.premium-register-page
+.premium-login-field{
+  margin-bottom:14px;
+}
+
+
+.premium-register-page
+.premium-login-button{
+  margin-top:11px;
+}
+
+
+@media(max-height:750px) and (min-width:901px){
+
+  .premium-register-page
+  .premium-login-form-side{
+    padding-top:70px;
+    padding-bottom:50px;
+  }
+
+
+  .premium-register-page
+  .premium-login-card h2{
+    font-size:34px;
+  }
+
+
+  .premium-register-page
+  .premium-login-subtitle{
+    margin-bottom:20px;
+  }
+
+
+  .premium-register-page
+  .premium-login-field{
+    margin-bottom:11px;
+  }
+
+
+  .premium-register-page
+  .premium-login-divider{
+    margin-top:18px;
+    margin-bottom:14px;
+  }
+
+}
+
+
+@media(max-width:480px){
+
+  .premium-register-page
+  .premium-login-visual-content h1{
+    font-size:38px;
+  }
+
+}
