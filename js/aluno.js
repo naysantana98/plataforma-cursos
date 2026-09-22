@@ -50,45 +50,61 @@ async function init() {
     "Aluno";
 
 
-  document
-    .getElementById("welcome")
-    .textContent = name;
+  /* =====================================
+   EXIBIR DADOS DO ALUNO
+===================================== */
+
+const welcome =
+  document.getElementById("welcome");
+
+const studentTopName =
+  document.getElementById("studentTopName");
+
+const userName =
+  document.getElementById("userName");
+
+const studentAvatar =
+  document.getElementById("studentAvatar");
 
 
-  const userName =
-    document.getElementById("userName");
+/* NOME NA BOAS-VINDAS */
+
+if (welcome) {
+
+  welcome.textContent = name;
+
+}
 
 
-  if (userName) {
+/* NOME NO CABEÇALHO */
 
-    userName.innerHTML = `
+if (studentTopName) {
 
-      <div class="student-user">
+  studentTopName.textContent = name;
 
-        <div class="student-avatar">
-          ${escapeHtml(
-            name.charAt(0).toUpperCase()
-          )}
-        </div>
+}
 
-        <div class="student-user-info">
 
-          <strong>
-            ${escapeHtml(name)}
-          </strong>
+/* E-MAIL NO CABEÇALHO */
 
-          <small>
-            ${escapeHtml(
-              user.email || ""
-            )}
-          </small>
+if (userName) {
 
-        </div>
+  userName.textContent =
+    user.email || "";
 
-      </div>
+}
 
-    `;
-  }
+
+/* PRIMEIRA LETRA DO NOME */
+
+if (studentAvatar) {
+
+  studentAvatar.textContent =
+    name
+      .charAt(0)
+      .toUpperCase();
+
+}
 
 
   /* =====================================
