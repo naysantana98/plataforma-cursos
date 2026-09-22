@@ -186,7 +186,7 @@ if (registerForm) {
         },
 
         emailRedirectTo:
-          "https://naysantana98.github.io/plataforma-cursos/login.html"
+  "https://systemsnfs.github.io/plataforma-cursos/login.html"
 
       }
 
