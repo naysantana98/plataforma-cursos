@@ -7703,3 +7703,31 @@ body{
   }
 
 }
+/* =====================================================
+   CORREÇÃO DE CONTRASTE - CARD DO CURSO
+===================================================== */
+
+.student-course-hero .student-course-title h2{
+  color:#ffffff !important;
+  opacity:1 !important;
+}
+
+.student-course-hero .student-course-title p{
+  color:#bdb5aa !important;
+  opacity:1 !important;
+}
+
+.student-course-hero .student-course-total strong{
+  color:#ffffff !important;
+  opacity:1 !important;
+}
+
+.student-course-hero .student-course-total span{
+  color:#c69a4b !important;
+  opacity:1 !important;
+}
+
+.student-course-hero .premium-eyebrow{
+  color:#c69a4b !important;
+  opacity:1 !important;
+}
