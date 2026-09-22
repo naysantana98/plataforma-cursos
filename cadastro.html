@@ -1,18 +1,362 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Criar conta</title><link rel="stylesheet" href="css/style.css"></head>
-<body class="auth-page">
-<div class="auth-box">
-<a class="brand" href="index.html">Academia<span>Online</span></a>
-<h1>Criar sua conta</h1><p class="muted-text">A conta será usada para acessar sua área de aluno.</p>
-<form id="registerForm">
-<label>Nome<input id="name" required></label>
-<label>E-mail<input id="email" type="email" required></label>
-<label>Senha<input id="password" type="password" minlength="6" required></label>
-<button class="btn full" type="submit">Criar conta</button>
-<div id="message" class="message"></div>
-</form>
-<p>Já possui conta? <a href="login.html">Entrar</a></p>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/config.js"></script><script src="js/auth.js"></script>
-</body></html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>Criar conta | Academia Online</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+</head>
+
+
+<body class="premium-login-page premium-register-page">
+
+
+  <main class="premium-login-layout">
+
+
+    <!-- =====================================
+         LADO ESQUERDO
+    ====================================== -->
+
+    <section class="premium-login-visual">
+
+      <a
+        href="index.html"
+        class="premium-login-brand"
+      >
+
+        <span class="premium-login-brand-icon">
+          ◇
+        </span>
+
+        <strong>
+          Academia<span>Online</span>
+        </strong>
+
+      </a>
+
+
+      <div class="premium-login-decoration decoration-one"></div>
+      <div class="premium-login-decoration decoration-two"></div>
+
+
+      <div class="premium-login-visual-content">
+
+        <span class="premium-login-eyebrow">
+          COMECE SUA JORNADA
+        </span>
+
+        <h1>
+          Seu próximo
+          <br>
+          <em>passo começa aqui.</em>
+        </h1>
+
+        <p>
+          Crie sua conta e tenha uma área
+          exclusiva para acessar seus cursos,
+          aulas e materiais.
+        </p>
+
+
+        <div class="premium-login-benefits">
+
+          <div>
+
+            <span>✓</span>
+
+            <p>
+              <strong>Área exclusiva</strong>
+
+              <small>
+                Seus cursos reunidos em um só lugar
+              </small>
+            </p>
+
+          </div>
+
+
+          <div>
+
+            <span>✓</span>
+
+            <p>
+              <strong>Acesso simples</strong>
+
+              <small>
+                Entre com seu e-mail e senha
+              </small>
+            </p>
+
+          </div>
+
+
+          <div>
+
+            <span>✓</span>
+
+            <p>
+              <strong>Estude no seu ritmo</strong>
+
+              <small>
+                Acesse suas aulas quando quiser
+              </small>
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="premium-login-visual-footer">
+        APRENDA • EVOLUA • TRANSFORME
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         FORMULÁRIO
+    ====================================== -->
+
+    <section class="premium-login-form-side">
+
+
+      <a
+        href="index.html"
+        class="premium-login-back"
+      >
+        <span>←</span>
+        Voltar para o início
+      </a>
+
+
+      <div class="premium-login-card premium-register-card">
+
+
+        <div class="premium-login-mobile-brand">
+
+          <span>◇</span>
+
+          <strong>
+            Academia<em>Online</em>
+          </strong>
+
+        </div>
+
+
+        <span class="premium-login-eyebrow">
+          NOVA CONTA
+        </span>
+
+
+        <h2>
+          Crie sua conta
+        </h2>
+
+
+        <p class="premium-login-subtitle">
+          Preencha seus dados para criar
+          sua área de aluno.
+        </p>
+
+
+
+        <form id="registerForm">
+
+
+          <!-- NOME -->
+
+          <div class="premium-login-field">
+
+            <label for="name">
+              Nome
+            </label>
+
+            <div class="premium-input-wrap">
+
+              <span class="premium-input-icon">
+                ◇
+              </span>
+
+              <input
+                id="name"
+                type="text"
+                placeholder="Seu nome"
+                autocomplete="name"
+                required
+              >
+
+            </div>
+
+          </div>
+
+
+
+          <!-- EMAIL -->
+
+          <div class="premium-login-field">
+
+            <label for="email">
+              E-mail
+            </label>
+
+            <div class="premium-input-wrap">
+
+              <span class="premium-input-icon">
+                @
+              </span>
+
+              <input
+                id="email"
+                type="email"
+                placeholder="seu@email.com"
+                autocomplete="email"
+                required
+              >
+
+            </div>
+
+          </div>
+
+
+
+          <!-- SENHA -->
+
+          <div class="premium-login-field">
+
+            <label for="password">
+              Senha
+            </label>
+
+            <div class="premium-input-wrap">
+
+              <span class="premium-input-icon">
+                ◇
+              </span>
+
+              <input
+                id="password"
+                type="password"
+                minlength="6"
+                placeholder="Mínimo de 6 caracteres"
+                autocomplete="new-password"
+                required
+              >
+
+            </div>
+
+            <small class="premium-register-password-hint">
+              Use pelo menos 6 caracteres.
+            </small>
+
+          </div>
+
+
+
+          <button
+            class="premium-login-button"
+            type="submit"
+          >
+
+            <span>
+              Criar minha conta
+            </span>
+
+            <span class="premium-login-button-arrow">
+              →
+            </span>
+
+          </button>
+
+
+          <div
+            id="message"
+            class="message premium-login-message"
+          ></div>
+
+
+        </form>
+
+
+
+        <div class="premium-login-divider">
+
+          <span></span>
+
+          <small>
+            JÁ POSSUI CONTA?
+          </small>
+
+          <span></span>
+
+        </div>
+
+
+
+        <div class="premium-login-register">
+
+          <p>
+            Já criou sua conta?
+          </p>
+
+          <a href="login.html">
+            Entrar na minha conta
+            <span>→</span>
+          </a>
+
+        </div>
+
+
+      </div>
+
+
+      <p class="premium-login-security">
+        ◇ &nbsp; Ambiente seguro e exclusivo para alunos
+      </p>
+
+
+    </section>
+
+
+  </main>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+
+
+</body>
+
+</html>
