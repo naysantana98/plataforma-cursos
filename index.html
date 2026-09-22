@@ -1,64 +1,633 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
   <title>Academia Online</title>
-  <link rel="stylesheet" href="css/style.css">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
 </head>
-<body>
-<header class="topbar">
-  <a class="brand" href="index.html">Academia<span>Online</span></a>
-  <nav>
-    <a href="#curso">Curso</a>
-    <a href="#como-funciona">Como funciona</a>
-    <a class="btn btn-outline" href="login.html">Entrar</a>
+
+
+<body class="premium-home">
+
+
+<!-- =========================================
+     CABEÇALHO
+========================================= -->
+
+<header class="home-header">
+
+  <a
+    href="index.html"
+    class="home-brand"
+  >
+
+    <span class="home-brand-icon">
+      ◇
+    </span>
+
+    <strong>
+      Academia<span>Online</span>
+    </strong>
+
+  </a>
+
+
+  <nav class="home-nav">
+
+    <a href="#curso">
+      Curso
+    </a>
+
+    <a href="#beneficios">
+      Benefícios
+    </a>
+
+    <a href="#como-funciona">
+      Como funciona
+    </a>
+
+    <a
+      href="login.html"
+      class="home-login"
+    >
+      Entrar
+    </a>
+
   </nav>
+
 </header>
 
+
+
 <main>
-<section class="hero">
-  <div class="hero-copy">
-    <span class="eyebrow">CURSO ONLINE</span>
-    <h1>Aprenda no seu ritmo. <span>Transforme seu conhecimento.</span></h1>
-    <p>Uma área de membros simples, segura e preparada para entregar aulas, materiais e acompanhamento do seu progresso.</p>
-    <div class="hero-actions">
-      <a class="btn" href="#curso">Conhecer o curso</a>
-      <a class="btn btn-light" href="login.html">Já sou aluno</a>
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="premium-home-hero">
+
+  <div class="home-hero-content">
+
+    <span class="home-eyebrow">
+      APRENDA NO SEU RITMO
+    </span>
+
+
+    <h1>
+
+      Conhecimento que
+      <span>
+        transforma.
+      </span>
+
+    </h1>
+
+
+    <p class="home-hero-description">
+
+      Uma experiência de aprendizado
+      simples, organizada e feita para
+      você estudar onde e quando quiser.
+
+    </p>
+
+
+    <div class="home-hero-actions">
+
+      <a
+        href="#curso"
+        class="home-primary-btn"
+      >
+        Conhecer o curso
+        <span>→</span>
+      </a>
+
+
+      <a
+        href="login.html"
+        class="home-secondary-btn"
+      >
+        Já sou aluno
+      </a>
+
     </div>
+
+
+    <div class="home-trust">
+
+      <div>
+        <span>✓</span>
+        Acesso online
+      </div>
+
+      <div>
+        <span>✓</span>
+        Estude no seu ritmo
+      </div>
+
+      <div>
+        <span>✓</span>
+        Acesso seguro
+      </div>
+
+    </div>
+
   </div>
-  <div class="hero-card">
-    <div class="play">▶</div>
-    <strong>Aulas organizadas</strong>
-    <small>Assista quando quiser</small>
+
+
+
+  <!-- CARD DO LADO DIREITO -->
+
+  <div class="home-feature-card">
+
+    <div class="home-card-decoration"></div>
+
+
+    <div class="home-feature-top">
+
+      <span class="home-feature-label">
+        EXPERIÊNCIA ONLINE
+      </span>
+
+      <span class="home-feature-number">
+        01
+      </span>
+
+    </div>
+
+
+    <div class="home-play">
+
+      <div class="home-play-circle">
+        ▶
+      </div>
+
+    </div>
+
+
+    <div class="home-feature-bottom">
+
+      <span>
+        SUA JORNADA COMEÇA AQUI
+      </span>
+
+      <h2>
+        Aprenda de um jeito
+        simples e organizado.
+      </h2>
+
+      <p>
+        Aulas, materiais e todo o
+        conteúdo do curso reunidos
+        em um só lugar.
+      </p>
+
+    </div>
+
   </div>
+
 </section>
 
-<section id="curso" class="section">
-  <div class="section-heading">
-    <span class="eyebrow">O QUE VOCÊ RECEBE</span>
-    <h2>Seu curso em um só lugar</h2>
+
+
+<!-- =========================================
+     BENEFÍCIOS
+========================================= -->
+
+<section
+  id="beneficios"
+  class="home-section home-benefits"
+>
+
+  <div class="home-section-heading">
+
+    <span class="home-eyebrow">
+      UMA NOVA FORMA DE APRENDER
+    </span>
+
+    <h2>
+      Tudo o que você precisa
+      <br>
+      para evoluir.
+    </h2>
+
+    <p>
+      Uma plataforma criada para tornar
+      sua experiência de aprendizado
+      mais simples e agradável.
+    </p>
+
   </div>
-  <div class="cards">
-    <article><div class="icon">01</div><h3>Aulas</h3><p>Conteúdos separados por módulos e aulas.</p></article>
-    <article><div class="icon">02</div><h3>Progresso</h3><p>Marque as aulas concluídas e acompanhe sua evolução.</p></article>
-    <article><div class="icon">03</div><h3>Acesso seguro</h3><p>Somente alunos matriculados acessam o conteúdo.</p></article>
+
+
+  <div class="home-benefit-grid">
+
+
+    <article class="home-benefit-card">
+
+      <span class="benefit-number">
+        01
+      </span>
+
+      <div class="benefit-icon">
+        ▷
+      </div>
+
+      <h3>
+        Aulas organizadas
+      </h3>
+
+      <p>
+        Conteúdo dividido em módulos
+        e aulas para você acompanhar
+        tudo com facilidade.
+      </p>
+
+    </article>
+
+
+
+    <article class="home-benefit-card">
+
+      <span class="benefit-number">
+        02
+      </span>
+
+      <div class="benefit-icon">
+        ◇
+      </div>
+
+      <h3>
+        Acesso online
+      </h3>
+
+      <p>
+        Entre na sua área de aluno
+        sempre que quiser e continue
+        seus estudos.
+      </p>
+
+    </article>
+
+
+
+    <article class="home-benefit-card">
+
+      <span class="benefit-number">
+        03
+      </span>
+
+      <div class="benefit-icon">
+        ✓
+      </div>
+
+      <h3>
+        Simples e seguro
+      </h3>
+
+      <p>
+        Uma área exclusiva para você
+        acessar somente os cursos
+        disponíveis em sua conta.
+      </p>
+
+    </article>
+
+
   </div>
-  <div class="offer">
-    <div><span class="eyebrow">OFERTA</span><h2>Curso completo</h2><p>Acesso à área de membros após a confirmação do pagamento.</p></div>
-    <div class="price">R$ 197,00 <a class="btn" href="checkout.html?course_id=CURSO_ID">Comprar agora</a></div>
-  </div>
+
 </section>
 
-<section id="como-funciona" class="section muted">
-  <div class="section-heading"><span class="eyebrow">PASSO A PASSO</span><h2>Como funciona?</h2></div>
-  <div class="steps">
-    <div><b>1</b><h3>Faça a compra</h3><p>Realize o pagamento pelo checkout.</p></div>
-    <div><b>2</b><h3>Receba o acesso</h3><p>Após a confirmação, sua matrícula é liberada.</p></div>
-    <div><b>3</b><h3>Comece a estudar</h3><p>Entre na área do aluno e assista às aulas.</p></div>
+
+
+<!-- =========================================
+     CURSO
+========================================= -->
+
+<section
+  id="curso"
+  class="home-course-section"
+>
+
+  <div class="home-course-wrapper">
+
+
+    <div class="home-course-preview">
+
+      <span class="home-course-small">
+        CURSO ONLINE
+      </span>
+
+
+      <div class="home-course-preview-icon">
+        ◇
+      </div>
+
+
+      <div class="home-course-preview-bottom">
+
+        <span>
+          CONTEÚDO EXCLUSIVO
+        </span>
+
+        <p>
+          Aprenda com aulas organizadas
+          e acesso à sua própria área
+          de estudos.
+        </p>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="home-course-info">
+
+      <span class="home-eyebrow">
+        COMECE SUA JORNADA
+      </span>
+
+
+      <h2>
+        Curso Completo
+      </h2>
+
+
+      <p class="home-course-description">
+
+        Um ambiente completo para você
+        aprender de forma prática,
+        organizada e no seu próprio ritmo.
+
+      </p>
+
+
+      <div class="home-course-features">
+
+        <div>
+          <span>✓</span>
+          Acesso à área exclusiva do aluno
+        </div>
+
+        <div>
+          <span>✓</span>
+          Aulas organizadas por módulos
+        </div>
+
+        <div>
+          <span>✓</span>
+          Assista quando quiser
+        </div>
+
+        <div>
+          <span>✓</span>
+          Conteúdo disponível online
+        </div>
+
+      </div>
+
+
+      <div class="home-course-purchase">
+
+        <div class="home-price">
+
+          <small>
+            INVESTIMENTO
+          </small>
+
+          <strong>
+            R$ 100
+          </strong>
+
+          <span>
+            pagamento único
+          </span>
+
+        </div>
+
+
+        <!-- Depois ligaremos ao Mercado Pago -->
+
+        <a
+          href="login.html"
+          class="home-buy-btn"
+        >
+          Quero começar
+          <span>→</span>
+        </a>
+
+      </div>
+
+    </div>
+
+
   </div>
+
 </section>
+
+
+
+<!-- =========================================
+     COMO FUNCIONA
+========================================= -->
+
+<section
+  id="como-funciona"
+  class="home-section home-how"
+>
+
+  <div class="home-section-heading">
+
+    <span class="home-eyebrow">
+      SIMPLES E RÁPIDO
+    </span>
+
+    <h2>
+      Como funciona
+    </h2>
+
+    <p>
+      Em poucos passos você começa
+      sua jornada de aprendizado.
+    </p>
+
+  </div>
+
+
+  <div class="home-steps">
+
+
+    <article>
+
+      <span class="step-number">
+        01
+      </span>
+
+      <h3>
+        Crie sua conta
+      </h3>
+
+      <p>
+        Faça seu cadastro para ter
+        acesso à plataforma.
+      </p>
+
+    </article>
+
+
+
+    <div class="step-line"></div>
+
+
+
+    <article>
+
+      <span class="step-number">
+        02
+      </span>
+
+      <h3>
+        Garanta seu acesso
+      </h3>
+
+      <p>
+        Escolha o curso e finalize
+        sua inscrição.
+      </p>
+
+    </article>
+
+
+
+    <div class="step-line"></div>
+
+
+
+    <article>
+
+      <span class="step-number">
+        03
+      </span>
+
+      <h3>
+        Comece a estudar
+      </h3>
+
+      <p>
+        Entre na área do aluno
+        e assista às suas aulas.
+      </p>
+
+    </article>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================
+     CTA FINAL
+========================================= -->
+
+<section class="home-final-cta">
+
+  <div class="final-decoration"></div>
+
+  <span class="home-eyebrow">
+    SEU PRÓXIMO PASSO
+  </span>
+
+
+  <h2>
+    Comece hoje.
+    <br>
+    <em>Aprenda no seu ritmo.</em>
+  </h2>
+
+
+  <p>
+    Seu conteúdo, suas aulas e sua
+    evolução em um único lugar.
+  </p>
+
+
+  <a
+    href="#curso"
+    class="home-gold-btn"
+  >
+    Conhecer o curso
+    <span>→</span>
+  </a>
+
+</section>
+
+
 </main>
-<footer>© 2026 Academia Online · Plataforma de cursos</footer>
+
+
+
+<!-- =========================================
+     RODAPÉ
+========================================= -->
+
+<footer class="home-footer">
+
+  <div class="home-footer-brand">
+
+    <span>◇</span>
+
+    <strong>
+      Academia<span>Online</span>
+    </strong>
+
+  </div>
+
+
+  <p>
+    Aprenda no seu ritmo.
+    Transforme seu conhecimento.
+  </p>
+
+
+  <span class="home-footer-copy">
+    © 2026 Academia Online
+  </span>
+
+</footer>
+
+
 </body>
+
 </html>
