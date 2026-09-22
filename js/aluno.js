@@ -1,21 +1,17 @@
-const sb =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-  );
-
+const sb = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
 
 const area =
   document.getElementById("courseArea");
-
 
 const msg =
   document.getElementById("message");
 
 
-
 /* =====================================
-   INICIAR
+   INICIAR ÁREA DO ALUNO
 ===================================== */
 
 async function init() {
@@ -35,10 +31,20 @@ async function init() {
 
 
   /* =====================================
-     DADOS DO ALUNO
+     PERFIL DO ALUNO
   ===================================== */
 
+  const {
+    data: profile
+  } = await sb
+    .from("profiles")
+    .select("full_name")
+    .eq("id", user.id)
+    .maybeSingle();
+
+
   const name =
+    profile?.full_name ||
     user.user_metadata?.full_name ||
     user.email?.split("@")[0] ||
     "Aluno";
@@ -49,24 +55,44 @@ async function init() {
     .textContent = name;
 
 
-  document
-    .getElementById("studentTopName")
-    .textContent = name;
+  const userName =
+    document.getElementById("userName");
 
 
-  document
-    .getElementById("userName")
-    .textContent = user.email || "";
+  if (userName) {
 
+    userName.innerHTML = `
 
-  document
-    .getElementById("studentAvatar")
-    .textContent =
-      name.charAt(0).toUpperCase();
+      <div class="student-user">
+
+        <div class="student-avatar">
+          ${escapeHtml(
+            name.charAt(0).toUpperCase()
+          )}
+        </div>
+
+        <div class="student-user-info">
+
+          <strong>
+            ${escapeHtml(name)}
+          </strong>
+
+          <small>
+            ${escapeHtml(
+              user.email || ""
+            )}
+          </small>
+
+        </div>
+
+      </div>
+
+    `;
+  }
 
 
   /* =====================================
-     MATRÍCULAS
+     MATRÍCULAS ATIVAS
   ===================================== */
 
   const {
@@ -75,6 +101,7 @@ async function init() {
   } = await sb
     .from("enrollments")
     .select(`
+      id,
       course_id,
       status,
       courses(
@@ -96,10 +123,6 @@ async function init() {
   }
 
 
-  /* =====================================
-     SEM CURSOS
-  ===================================== */
-
   if (!enrollments?.length) {
 
     area.innerHTML = `
@@ -115,8 +138,9 @@ async function init() {
         </h2>
 
         <p>
-          Após a confirmação do pagamento,
-          seu curso aparecerá aqui automaticamente.
+          Quando uma matrícula for
+          liberada, seu curso aparecerá
+          aqui.
         </p>
 
       </div>
@@ -131,7 +155,7 @@ async function init() {
      CARREGAR TODOS OS CURSOS
   ===================================== */
 
-  let html = "";
+  area.innerHTML = "";
 
 
   for (const enrollment of enrollments) {
@@ -143,161 +167,73 @@ async function init() {
     if (!course) continue;
 
 
-    const {
-      data: modules,
-      error: modulesError
-    } = await sb
-      .from("modules")
-      .select(`
-        id,
-        title,
-        position,
-        lessons(
-          id,
-          title,
-          description,
-          video_url,
-          material_url,
-          duration_minutes,
-          position,
-          published
-        )
-      `)
-      .eq("course_id", course.id)
-      .order(
-        "position",
-        { ascending: true }
-      );
-
-
-    if (modulesError) {
-
-      msg.textContent =
-        modulesError.message;
-
-      return;
-    }
-
-
-    html += renderCourse(
-      course,
-      modules || []
-    );
+    await renderCourse(course);
 
   }
 
-
-  area.innerHTML = html;
 }
 
 
-
 /* =====================================
-   MOSTRAR CURSO
+   RENDERIZAR CURSO
 ===================================== */
 
-function renderCourse(
-  course,
-  modules
-) {
+async function renderCourse(course) {
 
-  const totalLessons =
-    modules.reduce(
-      (total, module) => {
-
-        const publishedLessons =
-          (module.lessons || [])
-            .filter(
-              lesson =>
-                lesson.published === true
-            );
-
-        return (
-          total +
-          publishedLessons.length
-        );
-
-      },
-      0
+  const {
+    data: modules,
+    error
+  } = await sb
+    .from("modules")
+    .select(`
+      id,
+      title,
+      position,
+      lessons(
+        id,
+        title,
+        description,
+        position,
+        published
+      )
+    `)
+    .eq("course_id", course.id)
+    .order(
+      "position",
+      { ascending: true }
     );
 
 
-  let html = `
+  if (error) {
 
-    <article class="student-course">
+    console.error(
+      "Erro ao carregar curso:",
+      error
+    );
 
-      <!-- CABEÇALHO DO CURSO -->
-
-      <div class="student-course-hero">
-
-        <div class="student-course-icon">
-          ◇
-        </div>
+    return;
+  }
 
 
-        <div class="student-course-info">
+  /* =====================================
+     ORGANIZAR MÓDULOS E AULAS
+  ===================================== */
 
-          <span class="student-eyebrow">
-            MEU CURSO
-          </span>
-
-          <h2>
-            ${escapeHtml(course.title)}
-          </h2>
-
-          <p>
-            ${escapeHtml(
-              course.description || ""
-            )}
-          </p>
-
-        </div>
+  const orderedModules =
+    [...(modules || [])]
+      .sort(
+        (a, b) =>
+          (a.position || 0) -
+          (b.position || 0)
+      );
 
 
-        <div class="student-course-count">
-
-          <strong>
-            ${totalLessons}
-          </strong>
-
-          <span>
-            ${
-              totalLessons === 1
-                ? "aula"
-                : "aulas"
-            }
-          </span>
-
-        </div>
-
-      </div>
+  let totalLessons = 0;
 
 
-      <!-- CONTEÚDO -->
+  orderedModules.forEach(module => {
 
-      <div class="student-content">
-
-        <div class="student-content-title">
-
-          <span class="student-eyebrow">
-            CONTEÚDO DO CURSO
-          </span>
-
-          <h3>
-            Módulos e aulas
-          </h3>
-
-        </div>
-
-  `;
-
-
-  let visibleModuleNumber = 0;
-
-
-  for (const module of modules) {
-
-    const lessons =
+    module.lessons =
       [...(module.lessons || [])]
 
         .filter(
@@ -312,161 +248,140 @@ function renderCourse(
         );
 
 
-    /*
-      Não mostra módulo vazio
-      para o aluno.
-    */
+    totalLessons +=
+      module.lessons.length;
 
-    if (!lessons.length) {
-      continue;
-    }
+  });
 
 
-    visibleModuleNumber++;
+  /* =====================================
+     CARD DO CURSO
+  ===================================== */
+
+  const courseCard =
+    document.createElement("section");
 
 
-    const moduleNumber =
-      String(visibleModuleNumber)
-        .padStart(2, "0");
+  courseCard.className =
+    "student-course-card";
 
 
-    html += `
-
-      <div class="student-module">
-
-        <div class="student-module-header">
-
-          <div class="student-module-number">
-            ${moduleNumber}
-          </div>
+  let modulesHtml = "";
 
 
-          <div class="student-module-title">
+  orderedModules.forEach(
+    (module, moduleIndex) => {
 
-            <span>
-              MÓDULO ${moduleNumber}
-            </span>
-
-            <h4>
-              ${escapeHtml(module.title)}
-            </h4>
-
-          </div>
+      if (!module.lessons.length) {
+        return;
+      }
 
 
-          <div class="student-module-count">
+      const lessonsHtml =
+        module.lessons
+          .map(
+            (lesson, lessonIndex) => `
 
-            ${lessons.length}
+              <a
+                href="aula.html?id=${encodeURIComponent(
+                  lesson.id
+                )}"
+                class="student-lesson"
+              >
 
-            ${
-              lessons.length === 1
-                ? "aula"
-                : "aulas"
-            }
-
-          </div>
-
-        </div>
-
-
-        <div class="student-lessons">
-
-    `;
+                <div class="student-lesson-number">
+                  ${lessonIndex + 1}
+                </div>
 
 
-    lessons.forEach(
-      (lesson, index) => {
+                <div class="student-lesson-info">
 
-        const lessonNumber =
-          String(index + 1)
-            .padStart(2, "0");
+                  <strong>
+                    ${escapeHtml(
+                      lesson.title
+                    )}
+                  </strong>
 
+                  <small>
+                    Aula disponível
+                  </small>
 
-        const duration =
-          Number(
-            lesson.duration_minutes || 0
-          );
-
-
-        html += `
-
-          <div class="student-lesson">
-
-            <div class="student-lesson-number">
-              ${lessonNumber}
-            </div>
+                </div>
 
 
-            <div class="student-lesson-info">
-
-              <strong>
-                ${escapeHtml(lesson.title)}
-              </strong>
-
-
-              <div class="student-lesson-meta">
-
-                <span class="available-dot"></span>
-
-                <span>
-                  Aula disponível
+                <span class="student-lesson-open">
+                  Abrir
+                  <span>→</span>
                 </span>
 
-                ${
-                  duration > 0
-                    ? `
-                      <span class="meta-separator">
-                        •
-                      </span>
+              </a>
 
-                      <span>
-                        ${duration} min
-                      </span>
-                    `
-                    : ""
-                }
+            `
+          )
+          .join("");
 
-              </div>
+
+      modulesHtml += `
+
+        <div class="student-module">
+
+          <div class="student-module-header">
+
+            <div>
+
+              <span class="premium-eyebrow">
+                MÓDULO ${moduleIndex + 1}
+              </span>
+
+              <h3>
+                ${escapeHtml(
+                  module.title
+                )}
+              </h3>
 
             </div>
 
 
-            <a
-              class="student-watch-btn"
-              href="aula.html?id=${encodeURIComponent(
-                lesson.id
-              )}"
-            >
-              Assistir aula
-              <span>→</span>
-            </a>
+            <span class="student-module-count">
+
+              ${module.lessons.length}
+
+              ${
+                module.lessons.length === 1
+                  ? "aula"
+                  : "aulas"
+              }
+
+            </span>
 
           </div>
 
-        `;
 
-      }
-    );
+          <div class="student-lessons">
 
+            ${lessonsHtml}
 
-    html += `
+          </div>
 
         </div>
 
-      </div>
+      `;
 
-    `;
+    }
+  );
 
-  }
 
+  /* =====================================
+     CURSO SEM AULAS PUBLICADAS
+  ===================================== */
 
-  if (visibleModuleNumber === 0) {
+  if (!modulesHtml) {
 
-    html += `
+    modulesHtml = `
 
-      <div class="student-no-lessons">
+      <div class="student-course-preparing">
 
-        <span>
+        <span class="preparing-icon">
           ◇
         </span>
 
@@ -476,10 +391,10 @@ function renderCourse(
             Conteúdo em preparação
           </strong>
 
-          <p>
+          <small>
             As aulas deste curso ainda
             não foram publicadas.
-          </p>
+          </small>
 
         </div>
 
@@ -490,18 +405,90 @@ function renderCourse(
   }
 
 
-  html += `
+  /* =====================================
+     HTML FINAL
+  ===================================== */
+
+  courseCard.innerHTML = `
+
+    <div class="student-course-hero">
+
+      <div class="student-course-icon">
+        ◇
+      </div>
+
+
+      <div class="student-course-title">
+
+        <span class="premium-eyebrow">
+          MEU CURSO
+        </span>
+
+        <h2>
+          ${escapeHtml(
+            course.title
+          )}
+        </h2>
+
+        ${
+          course.description
+            ? `
+                <p>
+                  ${escapeHtml(
+                    course.description
+                  )}
+                </p>
+              `
+            : ""
+        }
 
       </div>
 
-    </article>
+
+      <div class="student-course-total">
+
+        <strong>
+          ${totalLessons}
+        </strong>
+
+        <span>
+          ${
+            totalLessons === 1
+              ? "AULA"
+              : "AULAS"
+          }
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="student-course-content">
+
+      <div class="student-course-content-head">
+
+        <span class="premium-eyebrow">
+          CONTEÚDO DO CURSO
+        </span>
+
+        <h2>
+          Módulos e aulas
+        </h2>
+
+      </div>
+
+
+      ${modulesHtml}
+
+    </div>
 
   `;
 
 
-  return html;
-}
+  area.appendChild(courseCard);
 
+}
 
 
 /* =====================================
@@ -511,19 +498,18 @@ function renderCourse(
 document
   .getElementById("logout")
   .onclick =
-    async () => {
+  async () => {
 
-      await sb.auth.signOut();
+    await sb.auth.signOut();
 
-      location.href =
-        "index.html";
+    location.href =
+      "index.html";
 
-    };
-
+  };
 
 
 /* =====================================
-   SEGURANÇA
+   SEGURANÇA HTML
 ===================================== */
 
 function escapeHtml(value) {
@@ -542,6 +528,7 @@ function escapeHtml(value) {
 
     }[character])
   );
+
 }
 
 
