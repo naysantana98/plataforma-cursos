@@ -7731,3 +7731,60 @@ body{
   color:#c69a4b !important;
   opacity:1 !important;
 }
+/* =====================================================
+   CONTRASTE FINAL - HERO DO CURSO
+===================================================== */
+
+.student-premium .student-course-card .student-course-hero{
+  color:#ffffff !important;
+}
+
+/* TÍTULO */
+
+.student-premium
+.student-course-card
+.student-course-hero
+.student-course-title h2{
+  color:#ffffff !important;
+  opacity:1 !important;
+}
+
+/* DESCRIÇÃO */
+
+.student-premium
+.student-course-card
+.student-course-hero
+.student-course-title p{
+  color:#bdb5aa !important;
+  opacity:1 !important;
+}
+
+/* NÚMERO DE AULAS */
+
+.student-premium
+.student-course-card
+.student-course-hero
+.student-course-total strong{
+  color:#ffffff !important;
+  opacity:1 !important;
+}
+
+/* TEXTO AULA / AULAS */
+
+.student-premium
+.student-course-card
+.student-course-hero
+.student-course-total span{
+  color:#c99b4d !important;
+  opacity:1 !important;
+}
+
+/* MEU CURSO */
+
+.student-premium
+.student-course-card
+.student-course-hero
+.premium-eyebrow{
+  color:#c99b4d !important;
+  opacity:1 !important;
+}
