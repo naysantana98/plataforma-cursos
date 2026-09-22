@@ -1,633 +1,1991 @@
-<!doctype html>
-<html lang="pt-BR">
+}
 
-<head>
-  <meta charset="utf-8">
+}
+/* =====================================================
+   PÁGINA DA AULA - PREMIUM
+===================================================== */
 
-  <meta
-    name="viewport"
-    content="width=device-width,initial-scale=1"
-  >
+.premium-lesson-page{
+  margin:0;
 
-  <title>Academia Online</title>
+  min-height:100vh;
 
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  >
+  background:#f7f4ef;
 
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
+  color:#28231e;
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
-    rel="stylesheet"
-  >
+  font-family:
+    "DM Sans",
+    sans-serif;
+}
 
-  <link
-    rel="stylesheet"
-    href="css/style.css"
-  >
-</head>
 
+.premium-lesson-container{
+  width:min(980px, 88%);
 
-<body class="premium-home">
+  margin:0 auto;
 
+  padding:45px 0 70px;
+}
 
-<!-- =========================================
-     CABEÇALHO
-========================================= -->
 
-<header class="home-header">
+.premium-lesson-top-actions{
+  display:flex;
+  align-items:center;
 
-  <a
-    href="index.html"
-    class="home-brand"
-  >
+  gap:18px;
+}
 
-    <span class="home-brand-icon">
-      ◇
-    </span>
 
-    <strong>
-      Academia<span>Online</span>
-    </strong>
+.premium-student-area{
+  color:#6e665d;
 
-  </a>
+  font-size:12px;
 
+  font-weight:600;
 
-  <nav class="home-nav">
+  text-decoration:none;
 
-    <a href="#curso">
-      Curso
-    </a>
+  transition:.2s;
+}
 
-    <a href="#beneficios">
-      Benefícios
-    </a>
 
-    <a href="#como-funciona">
-      Como funciona
-    </a>
+.premium-student-area:hover{
+  color:#a77830;
+}
 
-    <a
-      href="login.html"
-      class="home-login"
-    >
-      Entrar
-    </a>
 
-  </nav>
+/* =====================================================
+   CABEÇALHO DA AULA
+===================================================== */
 
-</header>
+.premium-lesson-header{
+  margin-bottom:24px;
+}
 
 
+.premium-lesson-breadcrumb{
+  margin-bottom:22px;
 
-<main>
+  display:flex;
+  align-items:center;
 
+  gap:8px;
 
-<!-- =========================================
-     HERO
-========================================= -->
+  color:#9b9287;
 
-<section class="premium-home-hero">
+  font-size:10px;
+}
 
-  <div class="home-hero-content">
 
-    <span class="home-eyebrow">
-      APRENDA NO SEU RITMO
-    </span>
+.breadcrumb-separator{
+  color:#c3b9ad;
+}
 
 
-    <h1>
+.premium-lesson-title-row{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
 
-      Conhecimento que
-      <span>
-        transforma.
-      </span>
+  gap:25px;
+}
 
-    </h1>
 
+.premium-eyebrow{
+  display:block;
 
-    <p class="home-hero-description">
+  margin-bottom:7px;
 
-      Uma experiência de aprendizado
-      simples, organizada e feita para
-      você estudar onde e quando quiser.
+  color:#a87931;
 
-    </p>
+  font-size:9px;
 
+  font-weight:700;
 
-    <div class="home-hero-actions">
+  letter-spacing:1.8px;
 
-      <a
-        href="#curso"
-        class="home-primary-btn"
-      >
-        Conhecer o curso
-        <span>→</span>
-      </a>
+  text-transform:uppercase;
+}
 
 
-      <a
-        href="login.html"
-        class="home-secondary-btn"
-      >
-        Já sou aluno
-      </a>
+.premium-lesson-title-row h1{
+  margin:0;
 
-    </div>
+  color:#211e1a;
 
+  font-family:
+    "Playfair Display",
+    serif;
 
-    <div class="home-trust">
+  font-size:38px;
 
-      <div>
-        <span>✓</span>
-        Acesso online
-      </div>
+  line-height:1.15;
+}
 
-      <div>
-        <span>✓</span>
-        Estude no seu ritmo
-      </div>
 
-      <div>
-        <span>✓</span>
-        Acesso seguro
-      </div>
+.premium-lesson-description{
+  max-width:750px;
 
-    </div>
+  margin:13px 0 0;
 
-  </div>
+  color:#7f776e;
 
+  font-size:13px;
 
+  line-height:1.7;
+}
 
-  <!-- CARD DO LADO DIREITO -->
 
-  <div class="home-feature-card">
+.premium-lesson-position{
+  width:58px;
+  height:58px;
 
-    <div class="home-card-decoration"></div>
+  flex-shrink:0;
 
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 
-    <div class="home-feature-top">
+  border-radius:50%;
 
-      <span class="home-feature-label">
-        EXPERIÊNCIA ONLINE
-      </span>
+  background:#efe2c9;
 
-      <span class="home-feature-number">
-        01
-      </span>
+  color:#8f6729;
+}
 
-    </div>
 
+.premium-lesson-position strong{
+  font-family:
+    "Playfair Display",
+    serif;
 
-    <div class="home-play">
+  font-size:18px;
 
-      <div class="home-play-circle">
-        ▶
-      </div>
+  line-height:1;
+}
 
-    </div>
 
+.premium-lesson-position span{
+  margin-top:3px;
 
-    <div class="home-feature-bottom">
+  color:#a88c60;
 
-      <span>
-        SUA JORNADA COMEÇA AQUI
-      </span>
+  font-size:8px;
+}
 
-      <h2>
-        Aprenda de um jeito
-        simples e organizado.
-      </h2>
 
-      <p>
-        Aulas, materiais e todo o
-        conteúdo do curso reunidos
-        em um só lugar.
-      </p>
+/* =====================================================
+   PLAYER
+===================================================== */
 
-    </div>
+.premium-video-card{
+  overflow:hidden;
 
-  </div>
+  border-radius:17px;
 
-</section>
+  background:#fff;
 
+  border:1px solid #e2dbd1;
 
+  box-shadow:
+    0 15px 40px
+    rgba(45,37,27,.08);
+}
 
-<!-- =========================================
-     BENEFÍCIOS
-========================================= -->
 
-<section
-  id="beneficios"
-  class="home-section home-benefits"
->
+.premium-video{
+  width:100%;
 
-  <div class="home-section-heading">
+  aspect-ratio:16 / 9;
 
-    <span class="home-eyebrow">
-      UMA NOVA FORMA DE APRENDER
-    </span>
+  background:
+    linear-gradient(
+      145deg,
+      #181714,
+      #25221d
+    );
+}
 
-    <h2>
-      Tudo o que você precisa
-      <br>
-      para evoluir.
-    </h2>
 
-    <p>
-      Uma plataforma criada para tornar
-      sua experiência de aprendizado
-      mais simples e agradável.
-    </p>
+.premium-video iframe{
+  display:block;
 
-  </div>
+  width:100%;
+  height:100%;
 
+  border:0;
+}
 
-  <div class="home-benefit-grid">
 
+.premium-video-empty{
+  width:100%;
+  height:100%;
 
-    <article class="home-benefit-card">
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 
-      <span class="benefit-number">
-        01
-      </span>
+  color:#fff;
+}
 
-      <div class="benefit-icon">
-        ▷
-      </div>
 
-      <h3>
-        Aulas organizadas
-      </h3>
+.video-play-icon{
+  width:62px;
+  height:62px;
 
-      <p>
-        Conteúdo dividido em módulos
-        e aulas para você acompanhar
-        tudo com facilidade.
-      </p>
+  margin-bottom:15px;
 
-    </article>
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
+  padding-left:4px;
 
+  box-sizing:border-box;
 
-    <article class="home-benefit-card">
+  border-radius:50%;
 
-      <span class="benefit-number">
-        02
-      </span>
+  background:
+    rgba(195,148,67,.17);
 
-      <div class="benefit-icon">
-        ◇
-      </div>
+  border:
+    1px solid
+    rgba(211,169,93,.38);
 
-      <h3>
-        Acesso online
-      </h3>
+  color:#d4a451;
 
-      <p>
-        Entre na sua área de aluno
-        sempre que quiser e continue
-        seus estudos.
-      </p>
+  font-size:20px;
+}
 
-    </article>
 
+.premium-video-empty strong{
+  font-family:
+    "Playfair Display",
+    serif;
 
+  font-size:18px;
+}
 
-    <article class="home-benefit-card">
 
-      <span class="benefit-number">
-        03
-      </span>
+.premium-video-empty span{
+  margin-top:5px;
 
-      <div class="benefit-icon">
-        ✓
-      </div>
+  color:#aaa49c;
 
-      <h3>
-        Simples e seguro
-      </h3>
+  font-size:10px;
+}
 
-      <p>
-        Uma área exclusiva para você
-        acessar somente os cursos
-        disponíveis em sua conta.
-      </p>
 
-    </article>
+/* =====================================================
+   MATERIAL
+===================================================== */
 
+.premium-video-footer{
+  min-height:72px;
 
-  </div>
+  padding:15px 20px;
 
-</section>
+  box-sizing:border-box;
 
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 
+  gap:20px;
+}
 
-<!-- =========================================
-     CURSO
-========================================= -->
 
-<section
-  id="curso"
-  class="home-course-section"
->
+.premium-video-footer
+.premium-eyebrow{
+  margin-bottom:3px;
 
-  <div class="home-course-wrapper">
+  font-size:7px;
+}
 
 
-    <div class="home-course-preview">
+.premium-video-footer strong{
+  display:block;
 
-      <span class="home-course-small">
-        CURSO ONLINE
-      </span>
+  color:#37312b;
 
+  font-size:11px;
+}
 
-      <div class="home-course-preview-icon">
-        ◇
-      </div>
 
+.premium-material-btn{
+  min-height:37px;
 
-      <div class="home-course-preview-bottom">
+  padding:8px 14px;
 
-        <span>
-          CONTEÚDO EXCLUSIVO
-        </span>
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
 
-        <p>
-          Aprenda com aulas organizadas
-          e acesso à sua própria área
-          de estudos.
-        </p>
+  gap:7px;
 
-      </div>
+  border:1px solid #c79748;
 
-    </div>
+  border-radius:8px;
 
+  color:#906526;
 
+  text-decoration:none;
 
-    <div class="home-course-info">
+  font-size:10px;
 
-      <span class="home-eyebrow">
-        COMECE SUA JORNADA
-      </span>
+  font-weight:700;
 
+  transition:.2s;
+}
 
-      <h2>
-        Curso Completo
-      </h2>
 
+.premium-material-btn:hover{
+  background:#b78638;
 
-      <p class="home-course-description">
+  color:#fff;
+}
 
-        Um ambiente completo para você
-        aprender de forma prática,
-        organizada e no seu próprio ritmo.
 
-      </p>
+.material-icon{
+  font-size:13px;
+}
 
 
-      <div class="home-course-features">
+/* =====================================================
+   NAVEGAÇÃO
+===================================================== */
 
-        <div>
-          <span>✓</span>
-          Acesso à área exclusiva do aluno
-        </div>
+.premium-lesson-navigation{
+  margin-top:24px;
 
-        <div>
-          <span>✓</span>
-          Aulas organizadas por módulos
-        </div>
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 
-        <div>
-          <span>✓</span>
-          Assista quando quiser
-        </div>
+  gap:20px;
+}
 
-        <div>
-          <span>✓</span>
-          Conteúdo disponível online
-        </div>
 
-      </div>
+.premium-back-course{
+  display:inline-flex;
+  align-items:center;
 
+  gap:7px;
 
-      <div class="home-course-purchase">
+  color:#776e64;
 
-        <div class="home-price">
+  font-size:11px;
 
-          <small>
-            INVESTIMENTO
-          </small>
+  font-weight:600;
 
-          <strong>
-            R$ 100
-          </strong>
+  text-decoration:none;
 
-          <span>
-            pagamento único
-          </span>
+  transition:.2s;
+}
 
-        </div>
 
+.premium-back-course:hover{
+  color:#9c702c;
+}
 
-        <!-- Depois ligaremos ao Mercado Pago -->
 
-        <a
-          href="login.html"
-          class="home-buy-btn"
-        >
-          Quero começar
-          <span>→</span>
-        </a>
+.premium-page-navigation{
+  display:flex;
+  align-items:stretch;
 
-      </div>
+  gap:9px;
+}
 
-    </div>
 
+.premium-nav-btn{
+  min-width:150px;
+  min-height:51px;
 
-  </div>
+  padding:9px 13px;
 
-</section>
+  box-sizing:border-box;
 
+  display:flex;
+  align-items:center;
 
+  gap:10px;
 
-<!-- =========================================
-     COMO FUNCIONA
-========================================= -->
+  border-radius:9px;
 
-<section
-  id="como-funciona"
-  class="home-section home-how"
->
+  font-family:
+    "DM Sans",
+    sans-serif;
 
-  <div class="home-section-heading">
+  text-decoration:none;
 
-    <span class="home-eyebrow">
-      SIMPLES E RÁPIDO
-    </span>
+  cursor:pointer;
 
-    <h2>
-      Como funciona
-    </h2>
+  transition:.2s;
+}
 
-    <p>
-      Em poucos passos você começa
-      sua jornada de aprendizado.
-    </p>
 
-  </div>
+.premium-nav-btn div{
+  flex:1;
 
+  min-width:0;
+}
 
-  <div class="home-steps">
 
+.premium-nav-btn small{
+  display:block;
 
-    <article>
+  margin-bottom:2px;
 
-      <span class="step-number">
-        01
-      </span>
+  font-size:7px;
 
-      <h3>
-        Crie sua conta
-      </h3>
+  font-weight:700;
 
-      <p>
-        Faça seu cadastro para ter
-        acesso à plataforma.
-      </p>
+  letter-spacing:1px;
+}
 
-    </article>
 
+.premium-nav-btn strong{
+  display:block;
 
+  max-width:125px;
 
-    <div class="step-line"></div>
+  overflow:hidden;
 
+  white-space:nowrap;
 
+  text-overflow:ellipsis;
 
-    <article>
+  font-size:10px;
+}
 
-      <span class="step-number">
-        02
-      </span>
 
-      <h3>
-        Garanta seu acesso
-      </h3>
+.premium-nav-secondary{
+  border:1px solid #ddd5ca;
 
-      <p>
-        Escolha o curso e finalize
-        sua inscrição.
-      </p>
+  background:#fff;
 
-    </article>
+  color:#5d554c;
+}
 
 
+.premium-nav-secondary:hover:not(:disabled){
+  border-color:#b98a3c;
 
-    <div class="step-line"></div>
+  color:#956a28;
+}
 
 
+.premium-nav-next{
+  border:1px solid #aa7c32;
 
-    <article>
+  background:
+    linear-gradient(
+      135deg,
+      #a87930,
+      #c89c4d
+    );
 
-      <span class="step-number">
-        03
-      </span>
+  color:#fff;
 
-      <h3>
-        Comece a estudar
-      </h3>
+  box-shadow:
+    0 6px 17px
+    rgba(167,120,45,.17);
+}
 
-      <p>
-        Entre na área do aluno
-        e assista às suas aulas.
-      </p>
 
-    </article>
+.premium-nav-next:hover:not(:disabled){
+  transform:
+    translateY(-1px);
 
+  box-shadow:
+    0 9px 20px
+    rgba(167,120,45,.24);
+}
 
-  </div>
 
-</section>
+.premium-nav-btn:disabled{
+  opacity:.42;
 
+  cursor:not-allowed;
 
+  box-shadow:none;
+}
 
-<!-- =========================================
-     CTA FINAL
-========================================= -->
 
-<section class="home-final-cta">
+/* =====================================================
+   ERRO
+===================================================== */
 
-  <div class="final-decoration"></div>
+.premium-lesson-error{
+  max-width:540px;
 
-  <span class="home-eyebrow">
-    SEU PRÓXIMO PASSO
-  </span>
+  margin:80px auto;
 
+  padding:45px 30px;
 
-  <h2>
-    Comece hoje.
-    <br>
-    <em>Aprenda no seu ritmo.</em>
-  </h2>
+  text-align:center;
 
+  background:#fff;
 
-  <p>
-    Seu conteúdo, suas aulas e sua
-    evolução em um único lugar.
-  </p>
+  border:1px solid #e3dbd0;
 
+  border-radius:17px;
+}
 
-  <a
-    href="#curso"
-    class="home-gold-btn"
-  >
-    Conhecer o curso
-    <span>→</span>
-  </a>
 
-</section>
+.premium-error-icon{
+  width:54px;
+  height:54px;
 
+  margin:0 auto 16px;
 
-</main>
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
+  border-radius:50%;
 
+  background:#efe1c6;
 
-<!-- =========================================
-     RODAPÉ
-========================================= -->
+  color:#9a6e29;
 
-<footer class="home-footer">
+  font-size:22px;
+}
 
-  <div class="home-footer-brand">
 
-    <span>◇</span>
+.premium-lesson-error h1{
+  margin:0;
 
-    <strong>
-      Academia<span>Online</span>
-    </strong>
+  font-family:
+    "Playfair Display",
+    serif;
 
-  </div>
+  font-size:25px;
+}
 
 
-  <p>
-    Aprenda no seu ritmo.
-    Transforme seu conhecimento.
-  </p>
+.premium-lesson-error p{
+  margin:8px 0 20px;
 
+  color:#8b8278;
 
-  <span class="home-footer-copy">
-    © 2026 Academia Online
-  </span>
+  font-size:11px;
+}
 
-</footer>
 
+.premium-error-back{
+  color:#956a29;
 
-</body>
+  font-size:11px;
 
-</html>
+  font-weight:700;
+
+  text-decoration:none;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:700px){
+
+  .premium-lesson-container{
+    width:auto;
+
+    margin:0 18px;
+
+    padding-top:32px;
+  }
+
+
+  .premium-lesson-title-row{
+    align-items:flex-start;
+  }
+
+
+  .premium-lesson-title-row h1{
+    font-size:30px;
+  }
+
+
+  .premium-lesson-position{
+    width:50px;
+    height:50px;
+  }
+
+
+  .premium-lesson-navigation{
+    flex-direction:column;
+
+    align-items:stretch;
+  }
+
+
+  .premium-back-course{
+    margin-bottom:5px;
+  }
+
+
+  .premium-page-navigation{
+    display:grid;
+
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+
+  .premium-nav-btn{
+    min-width:0;
+  }
+
+
+  .premium-video-footer{
+    align-items:flex-start;
+
+    flex-direction:column;
+  }
+
+
+  .premium-material-btn{
+    width:100%;
+  }
+
+}
+
+
+@media(max-width:480px){
+
+  .premium-student-area{
+    display:none;
+  }
+
+
+  .premium-page-navigation{
+    grid-template-columns:1fr;
+  }
+
+
+  .premium-nav-btn{
+    width:100%;
+  }
+
+
+  .premium-lesson-position{
+    display:none;
+  }
+
+}
+/* =====================================================
+   HOME PREMIUM
+===================================================== */
+
+.premium-home{
+  margin:0;
+  background:#f7f4ef;
+  color:#211e1a;
+  font-family:"DM Sans",sans-serif;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.home-header{
+  height:82px;
+  padding:0 7%;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  position:relative;
+  z-index:50;
+
+  background:#fff;
+  border-bottom:1px solid #eee8df;
+}
+
+
+.home-brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+
+  color:#211e1a;
+  text-decoration:none;
+}
+
+
+.home-brand-icon{
+  color:#b9822e;
+  font-size:29px;
+  line-height:1;
+}
+
+
+.home-brand strong{
+  font-size:21px;
+  letter-spacing:-.6px;
+}
+
+
+.home-brand strong span{
+  color:#b9822e;
+  font-weight:500;
+}
+
+
+.home-nav{
+  display:flex;
+  align-items:center;
+  gap:29px;
+}
+
+
+.home-nav > a{
+  color:#665f57;
+  font-size:13px;
+  font-weight:500;
+  text-decoration:none;
+
+  transition:.2s;
+}
+
+
+.home-nav > a:hover{
+  color:#a8782d;
+}
+
+
+.home-login{
+  padding:10px 19px;
+
+  color:#29241e !important;
+
+  border:1px solid #ddd5ca;
+  border-radius:9px;
+
+  background:#fff;
+  font-weight:600 !important;
+}
+
+
+.home-login:hover{
+  color:#fff !important;
+  background:#211f1c;
+  border-color:#211f1c;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.premium-home-hero{
+  min-height:640px;
+
+  padding:75px 8% 80px;
+
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(380px,.82fr);
+  align-items:center;
+
+  gap:80px;
+
+  position:relative;
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 88% 15%,
+      rgba(191,150,78,.10),
+      transparent 25%
+    ),
+    linear-gradient(
+      135deg,
+      #faf8f4,
+      #f3efe8
+    );
+}
+
+
+.premium-home-hero::before{
+  content:"";
+
+  width:450px;
+  height:450px;
+
+  position:absolute;
+  left:-260px;
+  bottom:-280px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(176,132,57,.12);
+}
+
+
+.home-hero-content{
+  max-width:680px;
+  position:relative;
+  z-index:2;
+}
+
+
+.home-eyebrow{
+  display:block;
+
+  margin-bottom:16px;
+
+  color:#a67830;
+
+  font-size:10px;
+  font-weight:700;
+
+  letter-spacing:2.4px;
+}
+
+
+.home-hero-content h1{
+  max-width:650px;
+
+  margin:0;
+
+  color:#1d1a17;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:65px;
+  line-height:1.02;
+
+  letter-spacing:-2px;
+}
+
+
+.home-hero-content h1 span{
+  display:block;
+
+  color:#9b7130;
+
+  font-style:italic;
+  font-weight:500;
+}
+
+
+.home-hero-description{
+  max-width:580px;
+
+  margin:25px 0 0;
+
+  color:#746c63;
+
+  font-size:17px;
+  line-height:1.8;
+}
+
+
+.home-hero-actions{
+  margin-top:34px;
+
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+}
+
+
+.home-primary-btn,
+.home-secondary-btn,
+.home-buy-btn,
+.home-gold-btn{
+  min-height:48px;
+
+  padding:0 21px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:18px;
+
+  border-radius:9px;
+
+  text-decoration:none;
+
+  font-size:13px;
+  font-weight:600;
+
+  transition:.2s;
+}
+
+
+.home-primary-btn{
+  color:#fff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #25221e,
+      #171614
+    );
+
+  box-shadow:
+    0 8px 25px
+    rgba(27,23,18,.15);
+}
+
+
+.home-primary-btn:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 12px 30px
+    rgba(27,23,18,.20);
+}
+
+
+.home-primary-btn span{
+  color:#d8b16b;
+}
+
+
+.home-secondary-btn{
+  color:#675f56;
+
+  background:transparent;
+
+  border:1px solid #dcd4c8;
+}
+
+
+.home-secondary-btn:hover{
+  background:#fff;
+  border-color:#c6a66d;
+}
+
+
+.home-trust{
+  margin-top:38px;
+
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+
+  gap:22px;
+
+  color:#8c847b;
+
+  font-size:10px;
+}
+
+
+.home-trust div{
+  display:flex;
+  align-items:center;
+
+  gap:7px;
+}
+
+
+.home-trust span{
+  width:18px;
+  height:18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  color:#8c6527;
+
+  background:#eee0c6;
+
+  font-size:9px;
+}
+
+
+/* =====================================================
+   HERO CARD
+===================================================== */
+
+.home-feature-card{
+  min-height:460px;
+
+  padding:31px;
+
+  position:relative;
+  overflow:hidden;
+
+  display:flex;
+  flex-direction:column;
+
+  color:#fff;
+
+  border-radius:22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #28241f,
+      #161513
+    );
+
+  box-shadow:
+    0 30px 70px
+    rgba(34,28,21,.18);
+}
+
+
+.home-card-decoration{
+  width:330px;
+  height:330px;
+
+  position:absolute;
+
+  right:-130px;
+  top:-170px;
+
+  border-radius:50%;
+
+  border:
+    1px solid
+    rgba(214,176,105,.20);
+}
+
+
+.home-card-decoration::after{
+  content:"";
+
+  width:240px;
+  height:240px;
+
+  position:absolute;
+
+  left:44px;
+  top:44px;
+
+  border-radius:50%;
+
+  border:
+    1px solid
+    rgba(214,176,105,.10);
+}
+
+
+.home-feature-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  position:relative;
+  z-index:2;
+}
+
+
+.home-feature-label{
+  color:#caa55f;
+
+  font-size:9px;
+  font-weight:700;
+
+  letter-spacing:2px;
+}
+
+
+.home-feature-number{
+  color:#9c9285;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:13px;
+}
+
+
+.home-play{
+  flex:1;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+
+.home-play-circle{
+  width:78px;
+  height:78px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding-left:4px;
+
+  border-radius:50%;
+
+  color:#e2b85f;
+
+  background:
+    rgba(201,158,81,.11);
+
+  border:
+    1px solid
+    rgba(215,174,96,.35);
+
+  font-size:23px;
+
+  box-shadow:
+    0 0 0 13px
+    rgba(205,162,83,.035);
+}
+
+
+.home-feature-bottom{
+  position:relative;
+  z-index:2;
+}
+
+
+.home-feature-bottom > span{
+  color:#c59b50;
+
+  font-size:8px;
+  font-weight:700;
+
+  letter-spacing:1.8px;
+}
+
+
+.home-feature-bottom h2{
+  max-width:360px;
+
+  margin:9px 0;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:28px;
+  line-height:1.2;
+}
+
+
+.home-feature-bottom p{
+  max-width:360px;
+
+  margin:0;
+
+  color:#aaa39b;
+
+  font-size:12px;
+  line-height:1.7;
+}
+
+
+/* =====================================================
+   SEÇÕES
+===================================================== */
+
+.home-section{
+  padding:95px 8%;
+}
+
+
+.home-section-heading{
+  max-width:650px;
+
+  margin:0 auto 50px;
+
+  text-align:center;
+}
+
+
+.home-section-heading h2{
+  margin:0;
+
+  color:#211e1a;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:42px;
+  line-height:1.15;
+}
+
+
+.home-section-heading p{
+  max-width:520px;
+
+  margin:16px auto 0;
+
+  color:#837b72;
+
+  font-size:13px;
+  line-height:1.7;
+}
+
+
+/* =====================================================
+   BENEFÍCIOS
+===================================================== */
+
+.home-benefits{
+  background:#fff;
+}
+
+
+.home-benefit-grid{
+  max-width:1200px;
+
+  margin:auto;
+
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+
+  gap:18px;
+}
+
+
+.home-benefit-card{
+  min-height:260px;
+
+  padding:29px;
+
+  position:relative;
+
+  border:1px solid #e9e3da;
+  border-radius:16px;
+
+  background:#fff;
+
+  transition:.25s;
+}
+
+
+.home-benefit-card:hover{
+  transform:translateY(-4px);
+
+  border-color:#d7bd8b;
+
+  box-shadow:
+    0 15px 35px
+    rgba(57,44,27,.07);
+}
+
+
+.benefit-number{
+  position:absolute;
+
+  right:25px;
+  top:23px;
+
+  color:#c9c1b6;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:13px;
+}
+
+
+.benefit-icon{
+  width:48px;
+  height:48px;
+
+  margin-bottom:28px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:12px;
+
+  color:#9d722e;
+
+  background:#f2e6d0;
+
+  font-size:20px;
+}
+
+
+.home-benefit-card h3{
+  margin:0 0 10px;
+
+  color:#28231e;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:21px;
+}
+
+
+.home-benefit-card p{
+  margin:0;
+
+  color:#8a8177;
+
+  font-size:12px;
+  line-height:1.7;
+}
+
+
+/* =====================================================
+   CURSO
+===================================================== */
+
+.home-course-section{
+  padding:100px 8%;
+
+  background:#f5f1ea;
+}
+
+
+.home-course-wrapper{
+  max-width:1160px;
+
+  margin:auto;
+
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+
+  overflow:hidden;
+
+  border-radius:21px;
+
+  background:#fff;
+
+  border:1px solid #e7dfd4;
+
+  box-shadow:
+    0 18px 50px
+    rgba(46,37,25,.07);
+}
+
+
+.home-course-preview{
+  min-height:500px;
+
+  padding:35px;
+
+  position:relative;
+  overflow:hidden;
+
+  display:flex;
+  flex-direction:column;
+
+  color:#fff;
+
+  background:
+    linear-gradient(
+      145deg,
+      #28241f,
+      #161513
+    );
+}
+
+
+.home-course-preview::after{
+  content:"";
+
+  width:390px;
+  height:390px;
+
+  position:absolute;
+
+  left:-180px;
+  bottom:-200px;
+
+  border-radius:50%;
+
+  border:
+    1px solid
+    rgba(210,169,93,.18);
+}
+
+
+.home-course-small{
+  color:#cba55d;
+
+  font-size:9px;
+  font-weight:700;
+
+  letter-spacing:2px;
+}
+
+
+.home-course-preview-icon{
+  flex:1;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#d3a653;
+
+  font-size:75px;
+  font-weight:200;
+}
+
+
+.home-course-preview-bottom{
+  position:relative;
+  z-index:2;
+}
+
+
+.home-course-preview-bottom span{
+  color:#b58b45;
+
+  font-size:8px;
+  font-weight:700;
+
+  letter-spacing:1.7px;
+}
+
+
+.home-course-preview-bottom p{
+  max-width:330px;
+
+  margin:8px 0 0;
+
+  color:#b2aaa0;
+
+  font-size:12px;
+  line-height:1.7;
+}
+
+
+.home-course-info{
+  padding:55px;
+}
+
+
+.home-course-info h2{
+  margin:0;
+
+  color:#211e1a;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:42px;
+}
+
+
+.home-course-description{
+  max-width:500px;
+
+  margin:16px 0 30px;
+
+  color:#7f776e;
+
+  font-size:14px;
+  line-height:1.75;
+}
+
+
+.home-course-features{
+  display:grid;
+
+  gap:14px;
+
+  margin-bottom:35px;
+}
+
+
+.home-course-features div{
+  display:flex;
+  align-items:center;
+
+  gap:11px;
+
+  color:#554f48;
+
+  font-size:12px;
+}
+
+
+.home-course-features span{
+  width:22px;
+  height:22px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  flex-shrink:0;
+
+  border-radius:50%;
+
+  color:#8d6728;
+
+  background:#f1e4cd;
+
+  font-size:9px;
+}
+
+
+.home-course-purchase{
+  padding-top:25px;
+
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+
+  gap:25px;
+
+  border-top:1px solid #eee7de;
+}
+
+
+.home-price{
+  display:flex;
+  flex-direction:column;
+}
+
+
+.home-price small{
+  margin-bottom:3px;
+
+  color:#a17b3b;
+
+  font-size:8px;
+  font-weight:700;
+
+  letter-spacing:1.5px;
+}
+
+
+.home-price strong{
+  color:#211e1a;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:37px;
+}
+
+
+.home-price span{
+  color:#999086;
+
+  font-size:9px;
+}
+
+
+.home-buy-btn{
+  min-width:170px;
+
+  color:#fff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #a77b32,
+      #cda75f
+    );
+
+  box-shadow:
+    0 7px 18px
+    rgba(167,123,50,.20);
+}
+
+
+.home-buy-btn:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 10px 25px
+    rgba(167,123,50,.28);
+}
+
+
+/* =====================================================
+   COMO FUNCIONA
+===================================================== */
+
+.home-how{
+  background:#fff;
+}
+
+
+.home-steps{
+  max-width:1050px;
+
+  margin:auto;
+
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+}
+
+
+.home-steps article{
+  width:260px;
+
+  text-align:center;
+}
+
+
+.step-number{
+  width:52px;
+  height:52px;
+
+  margin:0 auto 20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  color:#8e682a;
+
+  background:#f1e4ce;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:15px;
+}
+
+
+.home-steps h3{
+  margin:0 0 8px;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:20px;
+}
+
+
+.home-steps p{
+  margin:0;
+
+  color:#8c847b;
+
+  font-size:11px;
+  line-height:1.7;
+}
+
+
+.step-line{
+  width:120px;
+  height:1px;
+
+  margin-top:26px;
+
+  background:#dfd6c9;
+}
+
+
+/* =====================================================
+   CTA FINAL
+===================================================== */
+
+.home-final-cta{
+  min-height:430px;
+
+  padding:80px 20px;
+
+  position:relative;
+  overflow:hidden;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  color:#fff;
+
+  background:
+    linear-gradient(
+      145deg,
+      #29251f,
+      #171614
+    );
+}
+
+
+.final-decoration{
+  width:500px;
+  height:500px;
+
+  position:absolute;
+
+  top:-360px;
+
+  border-radius:50%;
+
+  border:
+    1px solid
+    rgba(207,166,90,.16);
+}
+
+
+.home-final-cta .home-eyebrow{
+  color:#c89c4f;
+}
+
+
+.home-final-cta h2{
+  margin:0;
+
+  position:relative;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:47px;
+  line-height:1.15;
+}
+
+
+.home-final-cta h2 em{
+  color:#d2ad67;
+
+  font-weight:500;
+}
+
+
+.home-final-cta p{
+  margin:18px 0 26px;
+
+  color:#aaa39a;
+
+  font-size:12px;
+}
+
+
+.home-gold-btn{
+  color:#241e17;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d8b36d,
+      #b98938
+    );
+}
+
+
+.home-gold-btn:hover{
+  transform:translateY(-2px);
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.home-footer{
+  padding:35px 7%;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:30px;
+
+  color:#8d857c;
+
+  background:#11110f;
+
+  border:0;
+
+  font-size:10px;
+}
+
+
+.home-footer-brand{
+  display:flex;
+  align-items:center;
+
+  gap:8px;
+}
+
+
+.home-footer-brand > span{
+  color:#c59749;
+
+  font-size:21px;
+}
+
+
+.home-footer-brand strong{
+  color:#fff;
+
+  font-size:15px;
+}
+
+
+.home-footer-brand strong span{
+  color:#c89a4e;
+
+  font-weight:400;
+}
+
+
+.home-footer p{
+  margin:0;
+}
+
+
+/* =====================================================
+   RESPONSIVIDADE HOME
+===================================================== */
+
+@media(max-width:1000px){
+
+  .premium-home-hero{
+    grid-template-columns:1fr;
+    gap:45px;
+  }
+
+  .home-hero-content{
+    max-width:760px;
+  }
+
+  .home-feature-card{
+    min-height:400px;
+  }
+
+  .home-course-wrapper{
+    grid-template-columns:1fr;
+  }
+
+  .home-course-preview{
+    min-height:340px;
+  }
+
+}
+
+
+@media(max-width:760px){
+
+  .home-header{
+    height:72px;
+    padding:0 20px;
+  }
+
+  .home-nav > a:not(.home-login){
+    display:none;
+  }
+
+  .home-brand strong{
+    font-size:18px;
+  }
+
+  .premium-home-hero{
+    min-height:auto;
+
+    padding:
+      60px 22px
+      65px;
+  }
+
+  .home-hero-content h1{
+    font-size:47px;
+  }
+
+  .home-hero-description{
+    font-size:15px;
+  }
+
+  .home-trust{
+    gap:13px;
+  }
+
+  .home-benefit-grid{
+    grid-template-columns:1fr;
+  }
+
+  .home-section{
+    padding:70px 22px;
+  }
+
+  .home-section-heading h2{
+    font-size:34px;
+  }
+
+  .home-course-section{
+    padding:70px 20px;
+  }
+
+  .home-course-info{
+    padding:34px 25px;
+  }
+
+  .home-course-info h2{
+    font-size:34px;
+  }
+
+  .home-course-purchase{
+    align-items:stretch;
+    flex-direction:column;
+  }
+
+  .home-buy-btn{
+    width:100%;
+  }
+
+  .home-steps{
+    flex-direction:column;
+    align-items:center;
+
+    gap:25px;
+  }
+
+  .step-line{
+    width:1px;
+    height:45px;
+
+    margin:0;
+  }
+
+  .home-final-cta h2{
+    font-size:37px;
+  }
+
+  .home-footer{
+    flex-direction:column;
+    text-align:center;
+  }
+
+}
+
+
+@media(max-width:480px){
+
+  .home-brand-icon{
+    display:none;
+  }
+
+  .premium-home-hero{
+    padding-top:48px;
+  }
+
+  .home-hero-content h1{
+    font-size:40px;
+    letter-spacing:-1px;
+  }
+
+  .home-hero-actions{
+    align-items:stretch;
+    flex-direction:column;
+  }
+
+  .home-primary-btn,
+  .home-secondary-btn{
+    width:100%;
+  }
+
+  .home-feature-card{
+    min-height:390px;
+    padding:25px;
+  }
+
+  .home-course-preview{
+    min-height:300px;
+  }
+
+}
