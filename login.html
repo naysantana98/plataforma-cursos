@@ -1,17 +1,311 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Entrar</title><link rel="stylesheet" href="css/style.css"></head>
-<body class="auth-page">
-<div class="auth-box">
-<a class="brand" href="index.html">Academia<span>Online</span></a>
-<h1>Bem-vindo de volta</h1><p class="muted-text">Entre para acessar suas aulas.</p>
-<form id="loginForm">
-<label>E-mail<input id="email" type="email" required></label>
-<label>Senha<input id="password" type="password" required></label>
-<button class="btn full" type="submit">Entrar</button>
-<div id="message" class="message"></div>
-</form>
-<p>Ainda não tem acesso? <a href="cadastro.html">Criar conta</a></p>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/config.js"></script><script src="js/auth.js"></script>
-</body></html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>Entrar | Academia Online</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+</head>
+
+
+<body class="premium-login-page">
+
+
+  <main class="premium-login-layout">
+
+
+    <!-- =====================================
+         LADO ESQUERDO
+    ====================================== -->
+
+    <section class="premium-login-visual">
+
+      <a
+        href="index.html"
+        class="premium-login-brand"
+      >
+
+        <span class="premium-login-brand-icon">
+          ◇
+        </span>
+
+        <strong>
+          Academia<span>Online</span>
+        </strong>
+
+      </a>
+
+
+      <div class="premium-login-decoration decoration-one"></div>
+      <div class="premium-login-decoration decoration-two"></div>
+
+
+      <div class="premium-login-visual-content">
+
+        <span class="premium-login-eyebrow">
+          SUA ÁREA DE ESTUDOS
+        </span>
+
+        <h1>
+          Continue sua
+          <br>
+          <em>jornada.</em>
+        </h1>
+
+        <p>
+          Acesse seus cursos, acompanhe
+          suas aulas e continue aprendendo
+          no seu próprio ritmo.
+        </p>
+
+
+        <div class="premium-login-benefits">
+
+          <div>
+            <span>✓</span>
+            <p>
+              <strong>Seus cursos</strong>
+              <small>
+                Todo o conteúdo em um só lugar
+              </small>
+            </p>
+          </div>
+
+          <div>
+            <span>✓</span>
+            <p>
+              <strong>Acesso online</strong>
+              <small>
+                Estude onde e quando quiser
+              </small>
+            </p>
+          </div>
+
+          <div>
+            <span>✓</span>
+            <p>
+              <strong>Ambiente exclusivo</strong>
+              <small>
+                Uma área preparada para seus estudos
+              </small>
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="premium-login-visual-footer">
+        APRENDA • EVOLUA • TRANSFORME
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         FORMULÁRIO
+    ====================================== -->
+
+    <section class="premium-login-form-side">
+
+
+      <a
+        href="index.html"
+        class="premium-login-back"
+      >
+        <span>←</span>
+        Voltar para o início
+      </a>
+
+
+      <div class="premium-login-card">
+
+
+        <div class="premium-login-mobile-brand">
+
+          <span>◇</span>
+
+          <strong>
+            Academia<em>Online</em>
+          </strong>
+
+        </div>
+
+
+        <span class="premium-login-eyebrow">
+          BEM-VINDO DE VOLTA
+        </span>
+
+
+        <h2>
+          Entre na sua conta
+        </h2>
+
+
+        <p class="premium-login-subtitle">
+          Informe seus dados para acessar
+          sua área de estudos.
+        </p>
+
+
+
+        <form id="loginForm">
+
+
+          <div class="premium-login-field">
+
+            <label for="email">
+              E-mail
+            </label>
+
+            <div class="premium-input-wrap">
+
+              <span class="premium-input-icon">
+                @
+              </span>
+
+              <input
+                id="email"
+                type="email"
+                placeholder="seu@email.com"
+                autocomplete="email"
+                required
+              >
+
+            </div>
+
+          </div>
+
+
+
+          <div class="premium-login-field">
+
+            <label for="password">
+              Senha
+            </label>
+
+            <div class="premium-input-wrap">
+
+              <span class="premium-input-icon">
+                ◇
+              </span>
+
+              <input
+                id="password"
+                type="password"
+                placeholder="Digite sua senha"
+                autocomplete="current-password"
+                required
+              >
+
+            </div>
+
+          </div>
+
+
+
+          <button
+            class="premium-login-button"
+            type="submit"
+          >
+
+            <span>
+              Entrar
+            </span>
+
+            <span class="premium-login-button-arrow">
+              →
+            </span>
+
+          </button>
+
+
+          <div
+            id="message"
+            class="message premium-login-message"
+          ></div>
+
+
+        </form>
+
+
+
+        <div class="premium-login-divider">
+
+          <span></span>
+
+          <small>
+            NOVO POR AQUI?
+          </small>
+
+          <span></span>
+
+        </div>
+
+
+
+        <div class="premium-login-register">
+
+          <p>
+            Ainda não tem acesso?
+          </p>
+
+          <a href="cadastro.html">
+            Criar minha conta
+            <span>→</span>
+          </a>
+
+        </div>
+
+
+      </div>
+
+
+      <p class="premium-login-security">
+        ◇ &nbsp; Ambiente seguro e exclusivo para alunos
+      </p>
+
+
+    </section>
+
+
+  </main>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+
+
+</body>
+
+</html>
