@@ -7788,3 +7788,43 @@ body{
   color:#c99b4d !important;
   opacity:1 !important;
 }
+
+
+/* =====================================================
+   ÁREA DO ALUNO - BOTÃO VER CURSOS
+===================================================== */
+
+.student-empty-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+
+  margin-top:24px;
+  padding:13px 24px;
+
+  border-radius:9px;
+
+  background:#211e1a;
+  color:#ffffff;
+
+  font-family:"DM Sans",sans-serif;
+  font-size:11px;
+  font-weight:600;
+
+  text-decoration:none;
+
+  transition:
+    transform .2s ease,
+    background .2s ease;
+}
+
+.student-empty-button span{
+  color:#c99b4d;
+  font-size:16px;
+}
+
+.student-empty-button:hover{
+  background:#302b25;
+  transform:translateY(-2px);
+}
