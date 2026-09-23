@@ -141,30 +141,37 @@ if (studentAvatar) {
 
   if (!enrollments?.length) {
 
-    area.innerHTML = `
+  area.innerHTML = `
 
-      <div class="student-empty">
+    <div class="student-empty">
 
-        <div class="student-empty-icon">
-          ◇
-        </div>
-
-        <h2>
-          Nenhum curso disponível
-        </h2>
-
-        <p>
-          Quando uma matrícula for
-          liberada, seu curso aparecerá
-          aqui.
-        </p>
-
+      <div class="student-empty-icon">
+        ◇
       </div>
 
-    `;
+      <h2>
+        Nenhum curso disponível
+      </h2>
 
-    return;
-  }
+      <p>
+        Explore nossos cursos e escolha
+        o próximo passo da sua jornada.
+      </p>
+
+      <a
+        href="index.html#cursos"
+        class="student-empty-button"
+      >
+        Ver cursos
+        <span>→</span>
+      </a>
+
+    </div>
+
+  `;
+
+  return;
+}
 
 
   /* =====================================
