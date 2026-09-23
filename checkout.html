@@ -1,12 +1,179 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Comprar curso</title><link rel="stylesheet" href="css/style.css"></head>
-<body class="auth-page">
-<div class="auth-box checkout">
-<a class="brand" href="index.html">Academia<span>Online</span></a>
-<span class="eyebrow">CHECKOUT</span><h1>Curso completo</h1>
-<p>Aqui entra o checkout do seu gateway de pagamento (Mercado Pago, Stripe, Asaas etc.).</p>
-<div class="checkout-price">R$ 197,00</div>
-<button class="btn full" id="payButton">Ir para pagamento</button>
-<p class="small">Nesta versão inicial o botão é um placeholder. A confirmação real deve ser feita por webhook no backend/Edge Function.</p>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="js/config.js"></script><script>const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);document.getElementById('payButton').onclick=async()=>{const b=document.getElementById('payButton');b.disabled=true;b.textContent='Abrindo pagamento...';const {data:{user}}=await sb.auth.getUser();if(!user){location.href='login.html?redirect=checkout.html';return}const courseId=new URLSearchParams(location.search).get('course_id');const {data,error}=await sb.functions.invoke('create-checkout',{body:{course_id:courseId}});if(error||data?.error){b.disabled=false;b.textContent='Tentar novamente';alert(data?.error||error.message);return}location.href=data.init_point}</script></body></html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>Finalizar inscrição | Academia Online</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+
+<body class="premium-checkout">
+
+  <header class="checkout-header">
+
+    <a href="index.html" class="checkout-brand">
+      <span>◇</span>
+
+      <strong>
+        Academia<span>Online</span>
+      </strong>
+    </a>
+
+  </header>
+
+
+  <main class="checkout-page">
+
+    <section class="checkout-wrapper">
+
+
+      <!-- LADO ESQUERDO -->
+
+      <div class="checkout-info">
+
+        <a href="index.html#curso" class="checkout-back">
+          ← Voltar para o curso
+        </a>
+
+
+        <span class="checkout-eyebrow">
+          FINALIZAR INSCRIÇÃO
+        </span>
+
+
+        <h1>
+          Você está a um passo
+          <em>de começar.</em>
+        </h1>
+
+
+        <p class="checkout-description">
+          Revise as informações do curso
+          antes de continuar para o pagamento.
+        </p>
+
+
+        <div class="checkout-benefits">
+
+          <div>
+            <span>✓</span>
+            Acesso à área exclusiva do aluno
+          </div>
+
+          <div>
+            <span>✓</span>
+            Aulas organizadas por módulos
+          </div>
+
+          <div>
+            <span>✓</span>
+            Acesso online
+          </div>
+
+          <div>
+            <span>✓</span>
+            Pagamento seguro
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- RESUMO DA COMPRA -->
+
+      <div class="checkout-card">
+
+        <span class="checkout-card-label">
+          RESUMO DA INSCRIÇÃO
+        </span>
+
+
+        <div class="checkout-course-icon">
+          ◇
+        </div>
+
+
+        <h2 id="courseTitle">
+          Carregando curso...
+        </h2>
+
+
+        <p id="courseDescription">
+          Aguarde enquanto carregamos
+          as informações.
+        </p>
+
+
+        <div class="checkout-divider"></div>
+
+
+        <div class="checkout-total">
+
+          <div>
+            <small>
+              INVESTIMENTO
+            </small>
+
+            <span>
+              Pagamento único
+            </span>
+          </div>
+
+
+          <strong id="coursePrice">
+            —
+          </strong>
+
+        </div>
+
+
+        <button
+          type="button"
+          id="payButton"
+          class="checkout-pay-button"
+          disabled
+        >
+          Continuar para pagamento
+          <span>→</span>
+        </button>
+
+
+        <div id="checkoutMessage" class="checkout-message"></div>
+
+
+        <div class="checkout-secure">
+          ◇ Ambiente seguro
+        </div>
+
+      </div>
+
+
+    </section>
+
+  </main>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/checkout.js"></script>
+
+</body>
+
+</html>
