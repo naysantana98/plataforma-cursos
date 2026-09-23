@@ -7828,3 +7828,267 @@ body{
   background:#302b25;
   transform:translateY(-2px);
 }
+/* =====================================================
+   CHECKOUT PREMIUM
+===================================================== */
+
+.premium-checkout{
+  margin:0;
+  min-height:100vh;
+  background:#f7f3ed;
+  color:#211e1a;
+  font-family:"DM Sans",sans-serif;
+}
+
+.checkout-header{
+  height:82px;
+  padding:0 6%;
+  display:flex;
+  align-items:center;
+  background:#fff;
+  border-bottom:1px solid #e8dfd3;
+}
+
+.checkout-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#211e1a;
+  text-decoration:none;
+  font-size:20px;
+}
+
+.checkout-brand > span{
+  color:#bd8731;
+  font-size:22px;
+}
+
+.checkout-brand strong span{
+  color:#bd8731;
+  font-weight:500;
+}
+
+.checkout-page{
+  padding:80px 6%;
+}
+
+.checkout-wrapper{
+  width:min(1100px,100%);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 430px;
+  gap:90px;
+  align-items:center;
+}
+
+.checkout-info{
+  max-width:560px;
+}
+
+.checkout-back{
+  display:inline-block;
+  margin-bottom:70px;
+  color:#776e64;
+  text-decoration:none;
+  font-size:11px;
+}
+
+.checkout-eyebrow,
+.checkout-card-label{
+  display:block;
+  margin-bottom:18px;
+  color:#b47c27;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:2.2px;
+}
+
+.checkout-info h1{
+  margin:0;
+  font-family:"Playfair Display",serif;
+  font-size:52px;
+  line-height:1.08;
+  font-weight:600;
+}
+
+.checkout-info h1 em{
+  display:block;
+  color:#bd8731;
+  font-weight:500;
+}
+
+.checkout-description{
+  max-width:470px;
+  margin:25px 0 38px;
+  color:#776e64;
+  line-height:1.8;
+  font-size:14px;
+}
+
+.checkout-benefits{
+  display:grid;
+  gap:15px;
+  color:#504940;
+  font-size:12px;
+}
+
+.checkout-benefits div{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.checkout-benefits span{
+  width:24px;
+  height:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#eee1ca;
+  color:#a66f20;
+  font-size:10px;
+}
+
+.checkout-card{
+  padding:38px;
+  background:#fff;
+  border:1px solid #e5dbcf;
+  border-radius:18px;
+  box-shadow:0 24px 60px rgba(47,38,28,.08);
+}
+
+.checkout-course-icon{
+  width:54px;
+  height:54px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:22px 0;
+  border-radius:14px;
+  background:#f1e4cc;
+  color:#b67c26;
+  font-size:22px;
+}
+
+.checkout-card h2{
+  margin:0 0 10px;
+  font-family:"Playfair Display",serif;
+  font-size:27px;
+}
+
+.checkout-card > p{
+  min-height:42px;
+  margin:0;
+  color:#83796e;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.checkout-divider{
+  height:1px;
+  margin:28px 0;
+  background:#eee6dc;
+}
+
+.checkout-total{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.checkout-total > div{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.checkout-total small{
+  color:#b47c27;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:1.6px;
+}
+
+.checkout-total span{
+  color:#92887c;
+  font-size:10px;
+}
+
+.checkout-total strong{
+  font-family:"Playfair Display",serif;
+  font-size:27px;
+  white-space:nowrap;
+}
+
+.checkout-pay-button{
+  width:100%;
+  min-height:52px;
+  margin-top:30px;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border:0;
+  border-radius:9px;
+  background:#211e1a;
+  color:#fff;
+  font-family:"DM Sans",sans-serif;
+  font-size:11px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.checkout-pay-button span{
+  color:#c99747;
+  font-size:17px;
+}
+
+.checkout-pay-button:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+.checkout-message{
+  min-height:18px;
+  margin-top:14px;
+  color:#8b6230;
+  text-align:center;
+  font-size:10px;
+}
+
+.checkout-secure{
+  margin-top:18px;
+  color:#a0968b;
+  text-align:center;
+  font-size:9px;
+}
+
+@media(max-width:850px){
+
+  .checkout-page{
+    padding:45px 24px;
+  }
+
+  .checkout-wrapper{
+    grid-template-columns:1fr;
+    gap:50px;
+  }
+
+  .checkout-info{
+    max-width:none;
+  }
+
+  .checkout-back{
+    margin-bottom:40px;
+  }
+
+  .checkout-info h1{
+    font-size:40px;
+  }
+
+  .checkout-card{
+    padding:28px;
+  }
+}
