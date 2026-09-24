@@ -234,8 +234,9 @@ if (registerForm) {
 
         },
 
-        emailRedirectTo:
-  "https://systemsnfs.github.io/plataforma-cursos/login.html"
+      emailRedirectTo: courseId
+  ? `https://systemsnfs.github.io/plataforma-cursos/login.html?course_id=${encodeURIComponent(courseId)}`
+  : "https://systemsnfs.github.io/plataforma-cursos/login.html"
 
       }
 
