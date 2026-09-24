@@ -7,6 +7,45 @@ const loginForm = document.getElementById("loginForm");
 const registerForm = document.getElementById("registerForm");
 const message = document.getElementById("message");
 
+/* =====================================================
+   CURSO / REDIRECIONAMENTO
+===================================================== */
+
+const params =
+  new URLSearchParams(window.location.search);
+
+const courseId =
+  params.get("course_id");
+
+
+/* =====================================
+   LINK LOGIN → CADASTRO
+===================================== */
+
+const registerLink =
+  document.getElementById("registerLink");
+
+if (registerLink && courseId) {
+
+  registerLink.href =
+    `cadastro.html?course_id=${encodeURIComponent(courseId)}`;
+
+}
+
+
+/* =====================================
+   LINK CADASTRO → LOGIN
+===================================== */
+
+const loginLink =
+  document.getElementById("loginLink");
+
+if (loginLink && courseId) {
+
+  loginLink.href =
+    `login.html?course_id=${encodeURIComponent(courseId)}`;
+
+}
 
 /* =====================================================
    LOGIN
