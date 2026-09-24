@@ -168,34 +168,25 @@ if (loginForm) {
 
     }
 
+if (profile.role === "student") {
 
-  if (profile.role === "student") {
+  /* Veio da compra de um curso */
+  if (courseId) {
 
-  const params =
-    new URLSearchParams(window.location.search);
-
-  const next =
-    params.get("next");
-
-
-  if (
-    next &&
-    next.startsWith("checkout.html?course_id=")
-  ) {
-
-    location.href = next;
+    location.href =
+      `checkout.html?course_id=${encodeURIComponent(courseId)}`;
 
     return;
 
   }
 
 
+  /* Login normal */
   location.href = "aluno.html";
 
   return;
 
 }
-
 
     /* =========================
        PERFIL DESCONHECIDO
