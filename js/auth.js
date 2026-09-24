@@ -130,13 +130,32 @@ if (loginForm) {
     }
 
 
-    if (profile.role === "student") {
+  if (profile.role === "student") {
 
-      location.href = "aluno.html";
+  const params =
+    new URLSearchParams(window.location.search);
 
-      return;
+  const next =
+    params.get("next");
 
-    }
+
+  if (
+    next &&
+    next.startsWith("checkout.html?course_id=")
+  ) {
+
+    location.href = next;
+
+    return;
+
+  }
+
+
+  location.href = "aluno.html";
+
+  return;
+
+}
 
 
     /* =========================
